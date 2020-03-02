@@ -23,7 +23,8 @@ namespace DataAccess.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            optionsBuilder.UseSqlServer(config.GetConnectionString("AdvertDb"));
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=advertdb;Trusted_Connection=True;");
+           // optionsBuilder.UseSqlServer(config.GetConnectionString("AdvertDb"));
             return new Context(optionsBuilder.Options);
         }
     }
