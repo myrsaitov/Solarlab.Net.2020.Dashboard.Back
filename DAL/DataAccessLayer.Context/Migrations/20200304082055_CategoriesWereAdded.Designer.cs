@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Context.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20200302111129_Add_Categories")]
-    partial class Add_Categories
+    [Migration("20200304082055_CategoriesWereAdded")]
+    partial class CategoriesWereAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
