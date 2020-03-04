@@ -22,10 +22,8 @@ namespace DataAccess.Context
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json")
                 .Build();
-            
             var optionsBuilder = new DbContextOptionsBuilder<Context>();
-          
-           optionsBuilder.UseSqlServer(config.GetConnectionString("AdvertDb"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("AdvertDb"));
             return new Context(optionsBuilder.Options);
         }
     }
