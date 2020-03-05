@@ -23,7 +23,13 @@ namespace DataAccess.Entities
         /// ключ для связи с родительской категорией
         /// </summary>
         public int? ParentCategoryId { get; set; }
+        /// <summary>
+        /// Родительская категория
+        /// </summary>
         public virtual Category ParentCategory { get; set; }
+        /// <summary>
+        /// Подкатегории родительской категории
+        /// </summary>
         public virtual ICollection<Category> Childs { get; set; }
     }
 }
