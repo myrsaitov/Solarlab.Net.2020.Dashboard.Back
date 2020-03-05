@@ -14,19 +14,23 @@ namespace DataAccess.Entities
         /// id категории
         /// </summary>
         public int Id { get; set; }
+
         /// <summary>
         /// Название категории
         /// </summary>
-        [Required][MaxLength(20)]
+        
         public string Name { get; set; }
+
         /// <summary>
         /// ключ для связи с родительской категорией
         /// </summary>
         public int? ParentCategoryId { get; set; }
+
         /// <summary>
         /// Родительская категория
         /// </summary>
         public virtual Category ParentCategory { get; set; }
+
         /// <summary>
         /// Подкатегории родительской категории
         /// </summary>
