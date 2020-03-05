@@ -18,7 +18,7 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.FileExtensions" Version="3.1.2" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="3.1.2" />
   </ItemGroup>
-
+  
   <ItemGroup>
     <ProjectReference Include="..\..\DataAccessLayer.Entities\DataAccess.Entities.csproj" />
     <ProjectReference Include="..\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
