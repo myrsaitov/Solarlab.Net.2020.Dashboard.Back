@@ -14,6 +14,20 @@ namespace DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<AdvertTag>()
+            .HasKey(t => new { t.AdvertId, t.TagId });
+
+            modelBuilder.Entity<AdvertTag>()
+                .HasOne(pt => pt.Advertisement)
+                .WithMany(p => p.Tags)
+                .HasForeignKey(pt => pt.AdvertId);
+
+            modelBuilder.Entity<AdvertTag>()
+                .HasOne(pt => pt.Tag)
+                .WithMany(t => t.Advertisements)
+                .HasForeignKey(pt => pt.TagId);
+
             var categories = new Category[]
            {
                 new Category
