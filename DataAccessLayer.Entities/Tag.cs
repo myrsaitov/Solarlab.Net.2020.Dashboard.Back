@@ -20,7 +20,7 @@ namespace DataAccess.Entities
         public string TagText { get; set; }
 
        /// <summary>
-       /// Получаем Тэги
+       /// Получаем объявления
        /// </summary>
         public virtual ICollection<AdvertTag> Advertisements { get; set; }
     }

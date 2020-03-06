@@ -5,27 +5,27 @@ using System.Text;
 namespace DataAccess.Entities
 {
     /// <summary>
-    /// Cущность для связи Many-to-Many
+    /// Cущность для связи Many-to-Many Advertisement-Tag
     /// </summary>
     public class AdvertTag
     {
         /// <summary>
-        /// id объявления
+        /// id объявления (ForeignKey)
         /// </summary>
         public int AdvertId { get; set; }
 
         /// <summary>
-        /// Навигационное свойство, получает данные из БД
+        /// Объявление(навигационное свойство)
         /// </summary>
         public virtual Advertisement Advertisement { get; set; }
 
         /// <summary>
-        /// Ключ
+        /// Ключ (ForeignKey)
         /// </summary>
         public int TagId { get; set; }
 
         /// <summary>
-        /// Навигационное свойство, получает данные из БД
+        /// Тег (навигационное свойство)
         /// </summary>
         public virtual Tag Tag { get; set; }
     }
