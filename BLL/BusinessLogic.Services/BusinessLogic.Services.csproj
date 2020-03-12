@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Validation" Version="2.4.22" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\DAL\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\BusinesLogic.Services.Abstractions\BusinessLogic.Services.Abstractions.csproj" />
   </ItemGroup>
