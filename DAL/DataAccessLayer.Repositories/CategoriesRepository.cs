@@ -1,4 +1,5 @@
-﻿using DataAccess.Entities;
+﻿using DataAccess.Context;
+using DataAccess.Entities;
 using DataAccess.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,10 +12,10 @@ namespace DataAccess.Repositories
 {
     public class CategoriesRepository : ICategoryRepository
     {
-       private readonly DbContext _context;
+       private readonly Context.Context _context;
         DbSet<Category> _dbSet;
 
-        public CategoriesRepository(DbContext context)
+        public CategoriesRepository(Context.Context context)
         {
             _context = context;
             _dbSet = context.Set<Category>();
@@ -55,20 +56,20 @@ namespace DataAccess.Repositories
             await _context.Categories.AddAsync(category);
         }
 
-        public void Remove(Category item)
+        public async Task Remove(Category item)
         {
             _dbSet.Remove(item);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
         /// Обновить категорию
         /// </summary>
         /// <param name="item"></param>
-        public void Update(Category item)
+        public async Task Update(Category item)
         {
             _context.Entry(item).State = EntityState.Modified;
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -101,9 +102,11 @@ namespace DataAccess.Repositories
             }
         }
 
-        public Task<ICollection<int>> GetAllChildIds(int categoryId)
+        public async Task<ICollection<int>> GetAllChildIds(int categoryId)
         {
-            throw new NotImplementedException();
+            return await _context.Categories
+                 .Where(c => c.ParentCategoryId == categoryId)
+                 .Select(c => c.Id).ToListAsync();
         }
     }
 }

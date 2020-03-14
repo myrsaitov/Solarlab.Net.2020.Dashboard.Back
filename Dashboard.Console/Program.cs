@@ -25,6 +25,7 @@ namespace Dashboard.Console
                 .AddTransient<IAdvertisementService, AdvertisementService>()
                 .AddTransient<ICategoryService, CategoryService>()
                 .AddTransient<ICategoryRepository, CategoriesRepository>()
+                .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
                 .BuildServiceProvider();
             System.Console.WriteLine("Hello World!");
             var P = serviceProvider.GetService<Context>();

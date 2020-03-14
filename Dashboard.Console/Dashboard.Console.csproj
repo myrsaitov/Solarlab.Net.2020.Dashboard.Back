@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
     <PackageReference Include="FluentValidation" Version="8.6.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
@@ -33,6 +34,8 @@
     <ProjectReference Include="..\BLL\BusinesLogic.Services.Abstractions\BusinessLogic.Services.Abstractions.csproj" />
     <ProjectReference Include="..\BLL\BusinessLogic.Services\BusinessLogic.Services.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Context\DataAccess.Context.csproj" />
+    <ProjectReference Include="..\DAL\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
+    <ProjectReference Include="..\DAL\DataAccessLayer.Repositories\DataAccess.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
