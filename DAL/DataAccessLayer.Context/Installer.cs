@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using DataAccess.Repositories;
-using DataAccess.Repositories.Abstractions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -23,8 +21,7 @@ namespace DataAccess.Context
             services
                 .AddDbContext<Context>(o => o
                    // .UseLazyLoadingProxies() // lazy loading
-                .UseSqlServer(config.GetConnectionString("AdvertDb")))
-                .AddTransient<IAdvertisementRepository, AdvertisementRepository>();
+                .UseSqlServer(config.GetConnectionString("AdvertDb")));
         }
     }
 }

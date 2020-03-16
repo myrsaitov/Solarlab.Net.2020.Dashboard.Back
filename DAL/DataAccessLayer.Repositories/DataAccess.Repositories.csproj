@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\DataAccessLayer.Entities\DataAccess.Entities.csproj" />
+    <ProjectReference Include="..\DataAccessLayer.Context\DataAccess.Context.csproj" />
     <ProjectReference Include="..\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
   </ItemGroup>
 
