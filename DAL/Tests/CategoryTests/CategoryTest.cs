@@ -14,7 +14,7 @@ namespace CategoryTests
     public partial class CategoryTest
     {
         private readonly IMapper _mapper;
-        private Mock<ICategoryRepository> categoryRepositoryMock = new Mock<ICategoryRepository>();
+        private Mock<ICommentRepository> categoryRepositoryMock = new Mock<ICommentRepository>();
         private ICategoryService _categoryService;
        
         public CategoryTest()
