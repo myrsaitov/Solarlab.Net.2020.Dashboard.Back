@@ -13,15 +13,15 @@ namespace DataAccess.Repositories
     public class CommentsRepository : ICommentsRepository
     {
         private readonly Context.Context _context;
-        DbSet<Comments> _dbSet;
+        DbSet<Comment> _dbSet;
 
         public CommentsRepository(Context.Context context)
         {
             _context = context;
-            _dbSet = context.Set<Comments>();
+            _dbSet = context.Set<Comment>();
         }
 
-        public void Create(Comments item)
+        public void Create(Comment item)
         {
             _dbSet.Add(item);
             _context.SaveChanges();
@@ -32,9 +32,9 @@ namespace DataAccess.Repositories
         /// </summary>
         /// <param name="commentId"></param>
         /// <returns></returns>
-        public async Task<Comments> GetById(int commentId)
+        public async Task<Comment> GetById(int commentId)
         {
-            return await _context.Set<Comments>().FindAsync(commentId);
+            return await _context.Set<Comment>().FindAsync(commentId);
         }
 
 
@@ -42,14 +42,14 @@ namespace DataAccess.Repositories
         /// <summary>
         /// Добавить
         /// </summary>
-        /// <param name="comments"></param>
+        /// <param name="comment"></param>
         /// <returns></returns>
-        public async Task Add(Comments comments)
+        public async Task Add(Comment comment)
         {
-            await _context.Comments.AddAsync(comments);
+            await _context.Comments.AddAsync(comment);
         }
 
-        public async Task Remove(Comments item)
+        public async Task Remove(Comment item)
         {
             _dbSet.Remove(item);
             await _context.SaveChangesAsync();
@@ -59,7 +59,7 @@ namespace DataAccess.Repositories
         /// Обновить 
         /// </summary>
         /// <param name="item"></param>
-        public async Task Update(Comments item)
+        public async Task Update(Comment item)
         {
             _context.Entry(item).State = EntityState.Modified;
             await _context.SaveChangesAsync();
@@ -70,11 +70,11 @@ namespace DataAccess.Repositories
         /// <summary>
         /// Удалить 
         /// </summary>
-        /// <param name="commentsId"></param>
+        /// <param name="commentId"></param>
         /// <returns></returns>
-        public async Task Delete(int commentsId)
+        public async Task Delete(int commentId)
         {
-            var comments = await _context.Comments.FindAsync(commentsId);
+            var comments = await _context.Comments.FindAsync(commentId);
             if (comments != null)
             {
                 _context.Comments.Remove(comments);

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Context.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20200318012447_AdvertisementWereAdded")]
+    [Migration("20200319214026_AdvertisementWereAdded")]
     partial class AdvertisementWereAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -112,6 +112,26 @@ namespace DataAccess.Context.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DataAccess.Entities.Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("ParentAdvertisementId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ParentAdvertisementId");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("DataAccess.Entities.Tag", b =>
                 {
                     b.Property<int>("Id")
@@ -154,6 +174,13 @@ namespace DataAccess.Context.Migrations
                     b.HasOne("DataAccess.Entities.Category", "ParentCategory")
                         .WithMany("Childs")
                         .HasForeignKey("ParentCategoryId");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.Comment", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Advertisement", "ParentAdvertisement")
+                        .WithMany()
+                        .HasForeignKey("ParentAdvertisementId");
                 });
 #pragma warning restore 612, 618
         }

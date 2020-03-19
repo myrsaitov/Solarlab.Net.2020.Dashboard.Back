@@ -17,10 +17,35 @@ namespace DataAccess.Context.Migrations
                 maxLength: 256,
                 nullable: true);
 
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Body = table.Column<string>(nullable: true),
+                    ParentAdvertisementId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Comments_Advertisements_ParentAdvertisementId",
+                        column: x => x.ParentAdvertisementId,
+                        principalTable: "Advertisements",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Advertisements_CategoryId",
                 table: "Advertisements",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Comments_ParentAdvertisementId",
+                table: "Comments",
+                column: "ParentAdvertisementId");
 
             migrationBuilder.AddForeignKey(
                 name: "FK_Advertisements_Categories_CategoryId",
@@ -36,6 +61,9 @@ namespace DataAccess.Context.Migrations
             migrationBuilder.DropForeignKey(
                 name: "FK_Advertisements_Categories_CategoryId",
                 table: "Advertisements");
+
+            migrationBuilder.DropTable(
+                name: "Comments");
 
             migrationBuilder.DropIndex(
                 name: "IX_Advertisements_CategoryId",

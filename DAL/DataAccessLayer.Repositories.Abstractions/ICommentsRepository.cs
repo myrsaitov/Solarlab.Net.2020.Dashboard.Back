@@ -15,7 +15,7 @@ namespace DataAccess.Repositories.Abstractions
         /// </summary>
         /// <param name="commentId">Идентификатор сущности</param>
         /// <returns></returns>
-        Task<Comments> GetById(int commentId);
+        Task<Comment> GetById(int commentId);
 
 
 
@@ -24,14 +24,14 @@ namespace DataAccess.Repositories.Abstractions
         /// </summary>
         /// <param name="comments">Сущность для добавления</param>
         /// <returns></returns>
-        Task Add(Comments comments);
+        Task Add(Comment comments);
 
         /// <summary>
         /// Обновить 
         /// </summary>
         /// <param name="comments">Сущность для обновления</param>
         /// <returns></returns>
-        Task Update(Comments comments);
+        Task Update(Comment comments);
 
         /// <summary>
         /// Удалить 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using BusinesLogic.Services.Abstractions;
 using BusinessLogic.Services;
 using BusinessLogic.Services.Abstractions;
@@ -24,7 +23,8 @@ namespace Dashboard.Console
             var serviceProvider = services
                 .AddTransient<IAdvertisementService, AdvertisementService>()
                 .AddTransient<ICategoryService, CategoryService>()
-                .AddTransient<ICommentsRepository, CategoriesRepository>()
+                .AddTransient<ICategoryRepository, CategoriesRepository>()
+                .AddTransient<ICommentsRepository, CommentsRepository>()
                 .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
                 .BuildServiceProvider();
             System.Console.WriteLine("Hello World!");
