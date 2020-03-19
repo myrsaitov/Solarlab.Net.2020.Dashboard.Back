@@ -26,7 +26,6 @@
   
   <ItemGroup>
     <ProjectReference Include="..\..\DataAccessLayer.Entities\DataAccess.Entities.csproj" />
-    <ProjectReference Include="..\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
