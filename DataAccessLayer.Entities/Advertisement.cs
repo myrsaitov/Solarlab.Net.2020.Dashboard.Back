@@ -20,6 +20,7 @@ namespace DataAccess.Entities
         /// <summary>
         /// Само объявление
         /// </summary>
+        [MaxLength(2048)]
         public string Body { get; set; }
 
         /// <summary>
