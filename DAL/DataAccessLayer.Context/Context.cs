@@ -11,7 +11,7 @@ namespace DataAccess.Context
         }
         public DbSet<Advertisement> Advertisements { get; set; }
 
-        public DbSet<Category> Comment { get; set; }
+        public DbSet<Category> Comments { get; set; }
         public DbSet<Category> Categories { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -17,10 +17,10 @@ namespace BusinessLogic.Services
     public class CategoryService : ICategoryService
     {
         private readonly IMapper _mapper;
-        private readonly ICommentRepository _categoryRepository;
+        private readonly ICommentsRepository _categoryRepository;
         
 
-        public CategoryService (IMapper mapper, ICommentRepository categoryRepository)
+        public CategoryService (IMapper mapper, ICommentsRepository categoryRepository)
         {
             _mapper = mapper;
             _categoryRepository = categoryRepository;

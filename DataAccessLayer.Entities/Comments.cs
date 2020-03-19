@@ -4,7 +4,7 @@ using System.Text;
 
 namespace DataAccess.Entities
 {
-    public class Comment
+    public class Comments
     {
         /// <summary>
         /// Индентификатор коментария

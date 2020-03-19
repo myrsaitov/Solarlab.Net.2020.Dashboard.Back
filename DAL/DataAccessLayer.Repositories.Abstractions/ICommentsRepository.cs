@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Abstractions
 {
-    public interface ICommentRepository
+    public interface ICommentsRepository
     {
 
 
@@ -15,30 +15,30 @@ namespace DataAccess.Repositories.Abstractions
         /// </summary>
         /// <param name="commentId">Идентификатор сущности</param>
         /// <returns></returns>
-        Task<Comment> GetById(int commentId);
+        Task<Comments> GetById(int commentId);
 
 
 
         /// <summary>
         /// Добавить 
         /// </summary>
-        /// <param name="comment">Сущность для добавления</param>
+        /// <param name="comments">Сущность для добавления</param>
         /// <returns></returns>
-        Task Add(Comment comment);
+        Task Add(Comments comments);
 
         /// <summary>
         /// Обновить 
         /// </summary>
-        /// <param name="comment">Сущность для обновления</param>
+        /// <param name="comments">Сущность для обновления</param>
         /// <returns></returns>
-        Task Update(Comment comment);
+        Task Update(Comments comments);
 
         /// <summary>
         /// Удалить 
         /// </summary>
-        /// <param name="commentId">Идентификатор для удаления</param>
+        /// <param name="commentsId">Идентификатор для удаления</param>
         /// <returns></returns>
-        Task Delete(int commentId);
+        Task Delete(int commentsId);
 
 
     }
