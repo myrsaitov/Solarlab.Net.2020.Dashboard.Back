@@ -5,23 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Migrations\20200318012447_AdvertisementWereAdded.cs" />
-    <Compile Remove="Migrations\20200318012447_AdvertisementWereAdded.Designer.cs" />
-    <Compile Remove="Migrations\20200319214026_AdvertisementWereAdded.cs" />
-    <Compile Remove="Migrations\20200319214026_AdvertisementWereAdded.Designer.cs" />
-    <Compile Remove="Migrations\20200320075307_CommentariesWereAdded.cs" />
-    <Compile Remove="Migrations\20200320075307_CommentariesWereAdded.Designer.cs" />
-    <Compile Remove="Migrations\20200320075723_CommentariesWereAdded.cs" />
-    <Compile Remove="Migrations\20200320075723_CommentariesWereAdded.Designer.cs" />
-    <Compile Remove="Migrations\20200320075904_CommentariesWereAdded.cs" />
-    <Compile Remove="Migrations\20200320075904_CommentariesWereAdded.Designer.cs" />
-    <Compile Remove="Migrations\20200320080238_CommentariesWereAdded.cs" />
-    <Compile Remove="Migrations\20200320080238_CommentariesWereAdded.Designer.cs" />
-    <Compile Remove="Migrations\20200320081524_CommentariesWereAdded.cs" />
-    <Compile Remove="Migrations\20200320081524_CommentariesWereAdded.Designer.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.2">
       <PrivateAssets>all</PrivateAssets>
