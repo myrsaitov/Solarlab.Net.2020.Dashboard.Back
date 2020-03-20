@@ -12,6 +12,6 @@ namespace BusinessLogic.Services.Contracts.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public CategoryDto ParentCategory { get; set; }
-        public ICollection<CategoryDto> ChildCategories { get; set; }
+        public ICollection<CategoryDto> Childs { get; set; }
     }
 }
