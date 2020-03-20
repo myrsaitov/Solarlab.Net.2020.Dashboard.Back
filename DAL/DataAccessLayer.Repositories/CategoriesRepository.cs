@@ -12,7 +12,7 @@ namespace DataAccess.Repositories
 {
     public class CategoriesRepository : ICategoryRepository
     {
-       private readonly Context.Context _context;
+        private readonly Context.Context _context;
         DbSet<Category> _dbSet;
 
         public CategoriesRepository(Context.Context context)
@@ -69,7 +69,7 @@ namespace DataAccess.Repositories
         public async Task Update(Category item)
         {
             _context.Entry(item).State = EntityState.Modified;
-           await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>

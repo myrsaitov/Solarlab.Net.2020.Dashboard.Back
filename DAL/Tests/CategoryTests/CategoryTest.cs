@@ -16,7 +16,7 @@ namespace CategoryTests
         private readonly IMapper _mapper;
         private Mock<ICategoryRepository> categoryRepositoryMock = new Mock<ICategoryRepository>();
         private ICategoryService _categoryService;
-       
+
         public CategoryTest()
         {
             var mockMapper = new MapperConfiguration(cfg =>
@@ -30,17 +30,17 @@ namespace CategoryTests
                 Id = 1,
                 Name = "АвтоМото",
             };
-           
+
             //Настройка moq - объекта
             categoryRepositoryMock.Setup(_ => _.GetById(It.IsAny<int>())).ReturnsAsync(category);
             categoryRepositoryMock.Setup(_ => _.Delete(It.IsAny<int>()));
-            _categoryService = new BusinessLogic.Services.CategoryService (
+            _categoryService = new BusinessLogic.Services.CategoryService(
                 _mapper,
                 categoryRepositoryMock.Object);
         }
 
 
-        
+
 
     }
 }

@@ -18,9 +18,9 @@ namespace BusinessLogic.Services
     {
         private readonly IMapper _mapper;
         private readonly ICategoryRepository _categoryRepository;
-        
 
-        public CategoryService (IMapper mapper, ICategoryRepository categoryRepository)
+
+        public CategoryService(IMapper mapper, ICategoryRepository categoryRepository)
         {
             _mapper = mapper;
             _categoryRepository = categoryRepository;
@@ -29,7 +29,7 @@ namespace BusinessLogic.Services
         public async Task<OperationResult<bool>> Create(CategoryDto categoryDto)
         {
             try
-            {   
+            {
                 if (categoryDto == null)
                 {
                     throw new ArgumentNullException(nameof(categoryDto));
@@ -66,7 +66,7 @@ namespace BusinessLogic.Services
 
                 return OperationResult<ICollection<CategoryDto>>.Failed(new[] { e.Message });
             }
-            
+
 
             return OperationResult<ICollection<CategoryDto>>.Ok(entitiesDto);
         }
@@ -85,11 +85,11 @@ namespace BusinessLogic.Services
                 categoryDto = _mapper.Map<CategoryDto>(entity);
 
             }
-            catch (Exception e )
+            catch (Exception e)
             {
                 return OperationResult<CategoryDto>.Failed(new[] { e.Message });
             }
-            
+
             return OperationResult<CategoryDto>.Ok(categoryDto);
         }
 
