@@ -2,10 +2,19 @@
 
 namespace DataAccess.Context.Migrations
 {
-    public partial class AdvertisementWereAdded : Migration
+    public partial class CommentariesWereAdded : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<string>(
+                name: "Body",
+                table: "Advertisements",
+                maxLength: 2048,
+                nullable: true,
+                oldClrType: typeof(string),
+                oldType: "nvarchar(max)",
+                oldNullable: true);
+
             migrationBuilder.AddColumn<int>(
                 name: "CategoryId",
                 table: "Advertisements",
@@ -23,7 +32,7 @@ namespace DataAccess.Context.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Body = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(maxLength: 2048, nullable: true),
                     ParentAdvertisementId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
@@ -76,6 +85,15 @@ namespace DataAccess.Context.Migrations
             migrationBuilder.DropColumn(
                 name: "Title",
                 table: "Advertisements");
+
+            migrationBuilder.AlterColumn<string>(
+                name: "Body",
+                table: "Advertisements",
+                type: "nvarchar(max)",
+                nullable: true,
+                oldClrType: typeof(string),
+                oldMaxLength: 2048,
+                oldNullable: true);
         }
     }
 }

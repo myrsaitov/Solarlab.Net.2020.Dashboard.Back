@@ -42,7 +42,8 @@ namespace DataAccess.Context.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Body")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
@@ -118,7 +119,8 @@ namespace DataAccess.Context.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Body")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
 
                     b.Property<int?>("ParentAdvertisementId")
                         .HasColumnType("int");

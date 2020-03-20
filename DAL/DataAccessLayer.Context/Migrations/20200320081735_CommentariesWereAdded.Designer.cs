@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Context.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20200319214026_AdvertisementWereAdded")]
-    partial class AdvertisementWereAdded
+    [Migration("20200320081735_CommentariesWereAdded")]
+    partial class CommentariesWereAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,7 +44,8 @@ namespace DataAccess.Context.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Body")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
 
                     b.Property<int?>("CategoryId")
                         .HasColumnType("int");
@@ -120,7 +121,8 @@ namespace DataAccess.Context.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Body")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
 
                     b.Property<int?>("ParentAdvertisementId")
                         .HasColumnType("int");
