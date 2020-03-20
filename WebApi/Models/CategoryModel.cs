@@ -1,0 +1,37 @@
+﻿using DataAccess.Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace WebApi.Models
+{
+    public class CategoryModel
+    {
+        /// <summary>
+        /// id категории
+        /// </summary>
+        public int Id { get; set; }
+
+        /// <summary>
+        /// Название категории
+        /// </summary>
+
+        public string Name { get; set; }
+
+        /// <summary>
+        /// ключ для связи с родительской категорией
+        /// </summary>
+        public int? ParentCategoryId { get; set; }
+
+        /// <summary>
+        /// Родительская категория
+        /// </summary>
+        public virtual Category ParentCategory { get; set; }
+
+        /// <summary>
+        /// Подкатегории родительской категории
+        /// </summary>
+        public virtual ICollection<Category> Childs { get; set; }
+    }
+}
