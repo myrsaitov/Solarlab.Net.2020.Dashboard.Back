@@ -75,9 +75,10 @@ namespace WebApi
 
             app.UseAuthorization();
 
+            
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllers(); // подключаем маршрутизацию на контроллеры
             });
   
         }

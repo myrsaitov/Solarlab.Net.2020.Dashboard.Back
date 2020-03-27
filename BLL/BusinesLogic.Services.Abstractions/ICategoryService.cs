@@ -30,7 +30,7 @@ namespace BusinessLogic.Services.Abstractions
         /// </summary>
         /// <param name="categoryDto"></param>
         /// <returns></returns>
-        Task<OperationResult<bool>> Create(CategoryDto categoryDto);
+        Task<OperationResult<bool>> Create(CategoryCreateDto categoryDto);
 
         /// <summary>
         /// Удаление категории

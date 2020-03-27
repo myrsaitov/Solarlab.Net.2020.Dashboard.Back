@@ -13,6 +13,9 @@ namespace BusinessLogic.Services.Mapping
         { 
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
+            CreateMap<CategoryCreateDto, Category>()
+            .ForMember(d => d.ParentCategory, map => map.Ignore())
+            .ForMember(d => d.Childs, map => map.Ignore());
         }
     }
 }

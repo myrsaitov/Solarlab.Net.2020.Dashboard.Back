@@ -26,7 +26,7 @@ namespace BusinessLogic.Services
             _categoryRepository = categoryRepository;
         }
 
-        public async Task<OperationResult<bool>> Create(CategoryDto categoryDto)
+        public async Task<OperationResult<bool>> Create(CategoryCreateDto categoryDto)
         {
             try
             {   
@@ -34,7 +34,15 @@ namespace BusinessLogic.Services
                 {
                     throw new ArgumentNullException(nameof(categoryDto));
                 }
-
+                if (categoryDto.ParentCategoryId.HasValue)
+                {
+                    var parentCategory = await _categoryRepository.GetById(categoryDto.ParentCategoryId.Value);
+                    if (parentCategory == null)
+                    {
+                        throw new Exception($"Родительская категория с идентификатором {categoryDto.ParentCategoryId} не найдена.");
+                    }
+                }
+                
                 Category entity = _mapper.Map<Category>(categoryDto);
                 await _categoryRepository.Add(entity);
             }
@@ -112,8 +120,11 @@ namespace BusinessLogic.Services
         public async Task<OperationResult<bool>> Delete(int id)
         {
             try
-            {
-                await _categoryRepository.Delete(id);
+            {              
+                Category category = await _categoryRepository.GetById(id);
+                CategoryDto entity = _mapper.Map<CategoryDto>(category);
+                await _categoryRepository.Delete(entity.Id);
+                
             }
             catch (Exception e)
             {
