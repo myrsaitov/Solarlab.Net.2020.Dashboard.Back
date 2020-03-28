@@ -13,7 +13,19 @@ namespace WebApi.Mappings
     {
         public ApiMappingsProfile ()
         {
-            CreateMap<CategoryModel, CategoryDto>();  
+            CreateMap<CategoryCreateModel, CategoryDto>()
+            .ForMember(d => d.ParentCategory, map => map.Ignore())
+            .ForMember(d => d.Childs, map => map.Ignore());
+
+            CreateMap<CategoryCreateModel, CategoryCreateDto>();
+
+            CreateMap<CategoryDto, CategoryGetModel>();
+
+            CreateMap<CategoryDto, CategoryChildGetModel>();
+
+            CreateMap<CategoryUpdateModel, CategoryDto>()
+            .ForMember(d => d.ParentCategory, map => map.Ignore())
+            .ForMember(d => d.Childs, map => map.Ignore());
         }
     }
 }

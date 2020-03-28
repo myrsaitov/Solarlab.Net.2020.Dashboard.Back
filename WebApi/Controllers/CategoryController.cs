@@ -28,9 +28,9 @@ namespace WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CategoryModel categoryModel)
+        public async Task<IActionResult> Create(CategoryCreateModel categoryModel)
         {
-            var operationResult = await _categoryService.Create(_mapper.Map<CategoryDto>(categoryModel));
+            var operationResult = await _categoryService.Create(_mapper.Map<CategoryCreateDto>(categoryModel));
             if (!operationResult.Success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
@@ -38,30 +38,52 @@ namespace WebApi.Controllers
             return Ok(operationResult.Result);
         }
 
-        [HttpGet("List/{page}/{pageSize}/{categoryId}")]
+        [HttpGet("List/{page}/{pageSize}")]
         public async Task<ActionResult> GetPaged(int page, int pageSize)
         {
-            var operationResult = await _categoryService.GetPaged(page, pageSize);
-            if (!operationResult.Success)
+            OperationResult <ICollection<CategoryDto>> operationResult;
+            ICollection <CategoryGetModel> categoryGetModel;
+            try
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+                operationResult = await _categoryService.GetPaged (page, pageSize);
+                if (!operationResult.Success)
+
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+                }
+                categoryGetModel = _mapper.Map<ICollection<CategoryGetModel>>(operationResult.Result);
             }
-            return Ok(operationResult.Result);
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+            return Ok(categoryGetModel);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
-            var operationResult = await _categoryService.GetById(id);
-            if (!operationResult.Success)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+            OperationResult<CategoryDto> operationResult;
+            CategoryGetModel categoryGetModel;
+            try 
+            { 
+                operationResult = await _categoryService.GetById(id);
+                if (!operationResult.Success)
+
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+                }
+                categoryGetModel = _mapper.Map<CategoryGetModel>(operationResult.Result);
             }
-            return Ok(operationResult.Result);
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+            return Ok(categoryGetModel);
         }
 
         [HttpPut]
-        public async Task<ActionResult> Update(CategoryModel categoryModel)
+        public async Task<ActionResult> Update(CategoryUpdateModel categoryModel)
         {
 
             var operationResult = await _categoryService.Update(_mapper.Map<CategoryDto>(categoryModel));
@@ -78,9 +100,10 @@ namespace WebApi.Controllers
             var operationResult = await _categoryService.Delete(id);
             if (!operationResult.Success)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+              return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
             }
             return Ok(operationResult.Result);
+
         }
     }
 }

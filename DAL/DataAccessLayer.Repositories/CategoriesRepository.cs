@@ -34,7 +34,8 @@ namespace DataAccess.Repositories
         /// <returns></returns>
         public async Task<Category> GetById(int categoryId)
         {
-            return await _context.Set<Category>().FindAsync(categoryId);
+            return await _context.Set<Category>()
+                .Include(c=>c.Childs).SingleOrDefaultAsync(c=>c.Id == categoryId);
         }
 
         /// <summary>
@@ -54,6 +55,7 @@ namespace DataAccess.Repositories
         public async Task Add(Category category)
         {
             await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
         }
 
         public async Task Remove(Category item)
@@ -82,6 +84,7 @@ namespace DataAccess.Repositories
         {
             var skip = (page - 1) * pageSize;
             return await _context.Categories
+                .Include(c=>c.Childs)
                 .AsNoTracking()
                 .Skip(skip)
                 .Take(pageSize)
@@ -98,7 +101,8 @@ namespace DataAccess.Repositories
             var category = await _context.Categories.FindAsync(categoryId);
             if (category != null)
             {
-                _context.Categories.Remove(category);
+                await Remove(category);
+
             }
         }
 
