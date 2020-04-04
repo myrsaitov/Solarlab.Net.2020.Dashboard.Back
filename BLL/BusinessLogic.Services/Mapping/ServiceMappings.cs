@@ -10,7 +10,18 @@ namespace BusinessLogic.Services.Mapping
     public class ServiceMappings : Profile
     {
         public ServiceMappings()
-        { 
+        {
+            CreateMap<Tag, TagDto>();
+            CreateMap<Comment, CommentDto>();
+            CreateMap<Advertisement, AdvertisementDto>();
+            CreateMap<CommentDto, Comment>()
+                .ForMember(d => d.CommentDate, opt => opt.Ignore());
+            CreateMap<AdvertisementDto, Advertisement>()
+                .ForMember(d => d.Id, opt => opt.Ignore())
+                .ForMember(d => d.Tags, opt => opt.Ignore())
+                .ForMember(d => d.Comments, opt => opt.Ignore())
+                .ForMember(d => d.Category, opt => opt.Ignore());
+
             CreateMap<Category, CategoryDto>();
             CreateMap<CategoryDto, Category>();
             CreateMap<CategoryCreateDto, Category>()
