@@ -18,7 +18,7 @@ namespace CategoryTests
         public void Create_Should_Succsessfully_Create_Category()
         {
             //Arrange
-            BusinessLogic.Services.Contracts.Models.CategoryCreateDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryDto();
+            BusinessLogic.Services.Contracts.Models.CategoryCreateDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryCreateDto();
 
             //Act
             var result = _categoryService.Create (emptyNameCategory);
@@ -31,7 +31,7 @@ namespace CategoryTests
         public void Create_Should_Return_Error_If_Repository_Throws_Exception()
         {
             //Arrange
-            BusinessLogic.Services.Contracts.Models.CategoryCreateDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryDto();
+            BusinessLogic.Services.Contracts.Models.CategoryCreateDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryCreateDto();
             categoryRepositoryMock.Setup(_ => _.Add(It.IsAny<Category>())).Throws<Exception>();
 
             //Act
