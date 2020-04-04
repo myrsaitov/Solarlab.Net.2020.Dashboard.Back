@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories
 {
-    public class CommentsRepository : ICommentsRepository
+    public class CommentsRepository : ICommentRepository
     {
         private readonly Context.Context _context;
         DbSet<Comment> _dbSet;
