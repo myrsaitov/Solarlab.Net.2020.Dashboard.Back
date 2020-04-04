@@ -6,50 +6,57 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Abstractions
 {
+    /// <summary>
+    /// Интерфейс репозитория объявлений
+    /// </summary>
     public interface IAdvertisementRepository
     {
-
-
-
         /// <summary>
-        /// Получить по идентификатору
+        /// Получить все объявления
         /// </summary>
-        /// <param name="advertisementId">Идентификатор сущности</param>
         /// <returns></returns>
-        Task<Advertisement> GetById(int advertisementId);
-
-
+        Task<ICollection<Advertisement>> GetAll();
 
         /// <summary>
-        /// Добавить 
-        /// </summary>
-        /// <param name="advertisement">Сущность для добавления</param>
-        /// <returns></returns>
-        Task Add(Advertisement advertisement);
-
-        /// <summary>
-        /// Обновить 
-        /// </summary>
-        /// <param name="advertisement">Сущность для обновления</param>
-        /// <returns></returns>
-        Task Update(Advertisement advertisement);
-
-        /// <summary>
-        /// Удалить категорию
-        /// </summary>
-        /// <param name="advertisementId">Идентификатор категории для удаления</param>
-        /// <returns></returns>
-        Task Delete(int advertisementId);
-
-        /// <summary>
-        /// Получить постранично
+        /// Получить объявления постранично
         /// </summary>
         /// <param name="page">Номер страницы</param>
         /// <param name="pageSize">Количество записей на странице</param>
         /// <returns></returns>
         Task<ICollection<Advertisement>> GetPaged(int page, int pageSize);
 
+        /// <summary>
+        /// Получить объявления попадающие в категрии постранично
+        /// </summary>
+        /// <param name="categoriesId">Набор идентификаторов категорий</param>
+        /// <param name="page">Номер страницы</param>
+        /// <param name="pageSize">Количество записей на странице</param>
+        /// <returns></returns>
+        Task<ICollection<Advertisement>> GetPaged(int[] categoriesId, int page, int pageSize);
 
+        /// <summary>
+        /// Получить объявление по идентификатору
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        Task<Advertisement> GetById(int id);
 
+        /// <summary>
+        /// Добавить объявление
+        /// </summary>
+        /// <param name="advertisement">Сущность для добавления</param>
+        Task Add(Advertisement advertisement);
+
+        /// <summary>
+        /// Обновить объявление
+        /// </summary>
+        /// <param name="advertisement">Сущность для обновления</param>
+        Task Update(Advertisement advertisement);
+
+        /// <summary>
+        /// Удалить объявление
+        /// </summary>
+        /// <param name="id">Идентификатор сущности для удаления</param>
+        Task Delete(int id);
     }
 }

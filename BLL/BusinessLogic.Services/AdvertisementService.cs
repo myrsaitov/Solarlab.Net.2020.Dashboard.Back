@@ -65,7 +65,7 @@ namespace BusinessLogic.Services
             {
                 Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
                 await _advertisementRepository.Add(entity);
-                await _unitOfWork.SaveChanges();
+
             }
             catch (Exception e)
             {
