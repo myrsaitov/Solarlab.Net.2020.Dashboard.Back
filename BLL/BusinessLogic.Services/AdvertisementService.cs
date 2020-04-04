@@ -123,7 +123,6 @@ namespace BusinessLogic.Services
                 advert.Comments.Add(comment);
 
                 await _advertisementRepository.Update(advert);
-                await _unitOfWork.SaveChanges();
                 return OperationResult<bool>.Ok(true);
             }
         }
