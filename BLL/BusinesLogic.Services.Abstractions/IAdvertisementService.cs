@@ -3,7 +3,7 @@ using BusinessLogic.Services.Contracts.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace BusinesLogic.Services.Abstractions
+namespace BusinessLogic.Services.Abstractions
 {
 
     /// <summary>
