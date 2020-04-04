@@ -5,7 +5,10 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BusinessLogic.Services.Validators
-{
+{    
+    /// <summary>
+     /// Валидатор CommentDto
+     /// </summary>
     public class CommentDtoValidator : AbstractValidator<CommentDto>
     {
         public CommentDtoValidator()

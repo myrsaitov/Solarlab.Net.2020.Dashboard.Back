@@ -31,8 +31,53 @@ namespace DataAccess.Repositories
 
         #region IAdvertisementRepository implementation
 
+        /// <summary>
+        /// Получить все объявления
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ICollection<Advertisement>> GetAll()
+        {
+            return await _dbContext.Advertisements.AsNoTracking().ToArrayAsync();
+        }
 
+        /// <summary>
+        /// Получить объявления постранично
+        /// </summary>
+        /// <param name="page">Номер страницы</param>
+        /// <param name="pageSize">Количество записей на странице</param>
+        /// <returns></returns>
+        public async Task<ICollection<Advertisement>> GetPaged(int page, int pageSize)
+        {
+            var skip = (page - 1) * pageSize;
+            return await _dbContext.Advertisements
+                .Include(x => x.Comments)
+                .Include(x => x.Category)
+                //.Include(x => x.Category.ChildCategories)
+                .Include(x => x.Category.ParentCategory)
+                .Include(x => x.Tags)
+                .AsNoTracking()
+                .Skip(skip)
+                .Take(pageSize)
+                .ToArrayAsync();
+        }
 
+        /// <summary>
+        /// Получить объявления попадающие в категрии постранично
+        /// </summary>
+        /// <param name="categoriesId">Набор идентификаторов категорий</param>
+        /// <param name="page">Номер страницы</param>
+        /// <param name="pageSize">Количество записей на странице</param>
+        /// <returns></returns>
+        public async Task<ICollection<Advertisement>> GetPaged(int[] categoriesId, int page, int pageSize)
+        {
+            var skip = (page - 1) * pageSize;
+            return await _dbContext.Advertisements
+                .AsNoTracking()
+                .Where(x => categoriesId.Contains(x.Category.Id))
+                .Skip(skip)
+                .Take(pageSize).ToArrayAsync();
+
+        }
 
         /// <summary>
         /// Получить объявление по идентификатору
@@ -41,8 +86,9 @@ namespace DataAccess.Repositories
         /// <returns></returns>
         public async Task<Advertisement> GetById(int id)
         {
-            ////// include используем при отключенном lazyloading
+            //// include
             //return _dbContext.Advertisements
+            //    .Include(x => x.Comments)
             //    .Include(x => x.Category)
             //    .SingleOrDefault(x => x.Id == id);
             //without include use only with lazyloading
@@ -79,16 +125,6 @@ namespace DataAccess.Repositories
             {
                 _dbContext.Advertisements.Remove(entity);
             }
-        }
-
-        public async Task<ICollection<Advertisement>> GetPaged(int pageNum, int pageSize)
-        {
-            var skip = (pageNum - 1) * pageSize;
-            return await _dbContext.Advertisements
-                .AsNoTracking()
-                .Skip(skip)
-                .Take(pageSize)
-                .ToArrayAsync();
         }
 
 

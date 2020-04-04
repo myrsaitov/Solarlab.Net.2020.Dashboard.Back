@@ -5,13 +5,14 @@ using BusinessLogic.Services.Contracts.Models;
 using BusinessLogic.Services.Validators;
 using DataAccess.Entities;
 using DataAccess.Repositories.Abstractions;
-using FluentValidation;
+using FluentValidation.Results;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ValidationResult = FluentValidation.Results.ValidationResult;
 
 namespace BusinessLogic.Services
 {

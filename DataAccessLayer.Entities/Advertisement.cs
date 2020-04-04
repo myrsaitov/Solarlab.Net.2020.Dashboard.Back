@@ -28,6 +28,12 @@ namespace DataAccess.Entities
         /// </summary>
         public virtual Category Category { get; set; }
 
+
+        /// <summary>
+        /// Комментарии
+        /// </summary>
+        public virtual ICollection<Comment> Comments { get; set; }
+
         /// <summary>
         /// Теги
         /// </summary>
