@@ -24,5 +24,11 @@ namespace DataAccess.Entities
         /// Объявление, к которому дан коментарий
         /// </summary>
         public virtual Advertisement ParentAdvertisement { get; set; }
+
+
+        /// <summary>
+        /// Дата и время комментария (UTC)
+        /// </summary>
+        public DateTime CommentDate { get; set; }
     }
 }

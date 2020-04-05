@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Text;
 
-namespace DataAccess.Entities
+namespace BusinessLogic.Services.Contracts.Models
 {
-    public class Advertisement
+    public class AdvertisementDto
     {
         /// <summary>
         /// Идентификатор
@@ -14,30 +14,26 @@ namespace DataAccess.Entities
         /// <summary>
         /// Заголовок
         /// </summary>
-        [MaxLength(256)]
         public string Title { get; set; }
 
         /// <summary>
-        /// Само объявление
+        /// Тело объявления
         /// </summary>
-        [MaxLength(2048)]
         public string Body { get; set; }
 
         /// <summary>
-        /// Категория
+        /// Раздел (категория) объявления
         /// </summary>
-        public virtual Category Category { get; set; }
-
+        public CategoryDto Category { get; set; }
 
         /// <summary>
         /// Комментарии
         /// </summary>
-        public virtual ICollection<Comment> Comments { get; set; }
+        public ICollection<CommentDto> Comments { get; set; }
 
         /// <summary>
         /// Теги
         /// </summary>
-        public virtual ICollection<AdvertTag> Tags { get; set; }
-
+        public ICollection<TagDto> Tags { get; set; }
     }
 }

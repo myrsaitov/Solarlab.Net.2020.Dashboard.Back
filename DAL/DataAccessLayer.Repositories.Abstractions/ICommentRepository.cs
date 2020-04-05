@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Abstractions
 {
-    public interface ICommentsRepository
+    public interface ICommentRepository
     {
 
 
