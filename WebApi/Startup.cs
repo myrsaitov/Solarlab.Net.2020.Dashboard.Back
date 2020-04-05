@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using BusinesLogic.Services.Abstractions;
+using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services;
 using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services.Mapping;
