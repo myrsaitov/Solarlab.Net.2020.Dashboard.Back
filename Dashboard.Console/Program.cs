@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using BusinesLogic.Services.Abstractions;
+using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services;
 using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services.Mapping;
