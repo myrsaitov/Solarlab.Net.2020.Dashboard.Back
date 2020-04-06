@@ -17,17 +17,17 @@ namespace BusinessLogic.Services.Mapping
             CreateMap<Tag, TagDto>();
             CreateMap<Category, CategoryDto>()
                 .ForMember(d => d.Childs, opt => opt.Ignore());
-            CreateMap<Comment, CommentDto>();
+            //CreateMap<Comment, CommentDto>();
 
             CreateMap<Advertisement, AdvertisementDto>()
                 .ForMember(d => d.Tags, opt => opt.Ignore());
 
-            CreateMap<CommentDto, Comment>()
-                .ForMember(d => d.CommentDate, opt => opt.Ignore());
+           // CreateMap<CommentDto, Comment>()
+                //.ForMember(d => d.CommentDate, opt => opt.Ignore());
             CreateMap<AdvertisementDto, Advertisement>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.Tags, opt => opt.Ignore())
-                .ForMember(d => d.Comments, opt => opt.Ignore())
+                //.ForMember(d => d.Comments, opt => opt.Ignore())
                 .ForMember(d => d.Category, opt => opt.Ignore());
 
             

@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services;
-using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services.Mapping;
 using DataAccess.Context;
 using DataAccess.Repositories;
