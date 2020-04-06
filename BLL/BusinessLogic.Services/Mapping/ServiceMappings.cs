@@ -7,6 +7,9 @@ using System.Text;
 
 namespace BusinessLogic.Services.Mapping
 {
+    /// <summary>
+    /// Профиль автомаппера.
+    /// </summary>
     public class ServiceMappings : Profile
     {
         public ServiceMappings()
