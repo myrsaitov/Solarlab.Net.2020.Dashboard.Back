@@ -16,7 +16,8 @@ namespace BusinessLogic.Services.Mapping
         {
             CreateMap<Tag, TagDto>();
             CreateMap<Comment, CommentDto>();
-            CreateMap<Advertisement, AdvertisementDto>();
+            CreateMap<Advertisement, AdvertisementDto>()
+                .ForMember(d => d.Tags, opt => opt.Ignore());
             CreateMap<CommentDto, Comment>()
                 .ForMember(d => d.CommentDate, opt => opt.Ignore());
             CreateMap<AdvertisementDto, Advertisement>()
