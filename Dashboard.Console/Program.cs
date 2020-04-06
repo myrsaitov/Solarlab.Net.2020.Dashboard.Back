@@ -21,8 +21,8 @@ namespace Dashboard.Console
             var services = new ServiceCollection();
             Installer.ConfigureDbContext(services);
 
-            //services.AddAutoMapper(typeof(ServiceMappings));
-            services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
+            services.AddAutoMapper(typeof(ServiceMappings));
+            //services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
 
             var serviceProvider = services
                 .AddTransient<IAdvertisementService, AdvertisementService>()
