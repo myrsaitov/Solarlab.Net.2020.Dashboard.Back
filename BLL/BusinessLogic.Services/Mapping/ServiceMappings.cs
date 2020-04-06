@@ -15,9 +15,13 @@ namespace BusinessLogic.Services.Mapping
         public ServiceMappings()
         {
             CreateMap<Tag, TagDto>();
+            CreateMap<Category, CategoryDto>()
+                .ForMember(d => d.Childs, opt => opt.Ignore());
             CreateMap<Comment, CommentDto>();
+
             CreateMap<Advertisement, AdvertisementDto>()
                 .ForMember(d => d.Tags, opt => opt.Ignore());
+
             CreateMap<CommentDto, Comment>()
                 .ForMember(d => d.CommentDate, opt => opt.Ignore());
             CreateMap<AdvertisementDto, Advertisement>()
@@ -26,8 +30,10 @@ namespace BusinessLogic.Services.Mapping
                 .ForMember(d => d.Comments, opt => opt.Ignore())
                 .ForMember(d => d.Category, opt => opt.Ignore());
 
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryDto, Category>();
+            
+            CreateMap<CategoryDto, Category>()
+                .ForMember(d => d.Childs, opt => opt.Ignore());
+
             CreateMap<CategoryCreateDto, Category>()
             .ForMember(d => d.ParentCategory, map => map.Ignore())
             .ForMember(d => d.Childs, map => map.Ignore());
