@@ -2,18 +2,17 @@
 using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services.Contracts;
 using BusinessLogic.Services.Contracts.Models;
-using BusinessLogic.Services.Validators;
 using DataAccess.Entities;
 using DataAccess.Repositories.Abstractions;
-using FluentValidation;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace BusinessLogic.Services
 {
+    /// <summary>
+    /// Реализация сервиса работы с категориями
+    /// </summary>
     public class CategoryService : ICategoryService
     {
         private readonly IMapper _mapper;
