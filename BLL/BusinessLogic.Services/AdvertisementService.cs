@@ -1,18 +1,33 @@
-﻿using AutoMapper;
-using BusinessLogic.Services.Abstractions;
+﻿using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services.Contracts;
 using BusinessLogic.Services.Contracts.Models;
 using BusinessLogic.Services.Validators;
-using DataAccess.Entities;
 using DataAccess.Repositories.Abstractions;
-using FluentValidation.Results;
+using DataAccess.Entities;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ValidationResult = FluentValidation.Results.ValidationResult;
+using FluentValidation.Results;
+
+
+//using Academy.Business.Abstractions;
+//using Academy.Business.Contracts;
+//using Academy.Business.Contracts.Models;
+//using Academy.Business.Services.Validators;
+//using Academy.DataAccess.Abstractions;
+//using Academy.DataAccess.Entities;
+//using AutoMapper;
+//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using FluentValidation.Results;
+
+
+
+
 
 namespace BusinessLogic.Services
 {
