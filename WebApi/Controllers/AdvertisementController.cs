@@ -34,6 +34,25 @@ namespace WebApi.Controllers
         }
 
 
+
+        /// <summary>
+        /// Получить объявление
+        /// </summary>
+        /// <param name="id">идентификатор</param>
+        /// <returns>IActionResult</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
+        {
+            var operationResult = await _advertisementService.GetById(id);
+            if (!operationResult.Success)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+            }
+            return Ok(operationResult.Result);
+        }
+
+
+
         /// <summary>
         /// Создать
         /// </summary>
@@ -57,35 +76,20 @@ namespace WebApi.Controllers
 
 
 
-
-
-        /// <summary>
-        /// Получить объявление
-        /// </summary>
-        /// <param name="id">идентификатор</param>
-        /// <returns>IActionResult</returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
-        {
-            var operationResult = await _advertisementService.GetById(id);
-            if (!operationResult.Success)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-            }
-            return Ok(operationResult.Result);
-        }
-
-
-
         /// <summary>
         /// Удалить объявление
         /// </summary>
         /// <param name="id">идентификтор</param>
         /// <returns>IActionResult</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete([Range(1, Int32.MaxValue)]int id)
+        public async Task<ActionResult> Delete([Range(1, Int32.MaxValue)]int id)
         {
-            return Ok(); //TODO: закончить
+            var operationResult = await _advertisementService.Delete(id);
+            if (!operationResult.Success)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+            }
+            return Ok(operationResult.Result);
         }
 
         /// <summary>
@@ -123,5 +127,8 @@ namespace WebApi.Controllers
         {
             return Ok(); //TODO: закончить
         }
+
+
+        
     }
 }
