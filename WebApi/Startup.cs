@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AutoMapper;
 using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services;
 using BusinessLogic.Services.Mapping;
+using DataAccess.Repositories.Abstractions;
 using DataAccess.Context;
 using DataAccess.Repositories;
-using DataAccess.Repositories.Abstractions;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -34,7 +34,6 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });

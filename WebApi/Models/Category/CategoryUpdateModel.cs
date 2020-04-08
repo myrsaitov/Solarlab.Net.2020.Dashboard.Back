@@ -1,4 +1,5 @@
 ﻿using DataAccess.Entities;
+using WebApi.Models.Tags;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

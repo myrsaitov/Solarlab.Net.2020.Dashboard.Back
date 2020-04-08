@@ -102,6 +102,7 @@ namespace DataAccess.Repositories
         public async Task Add(Advertisement advertisement)
         {
             await _dbContext.Advertisements.AddAsync(advertisement);
+            await _dbContext.SaveChangesAsync();
         }
 
         /// <summary>

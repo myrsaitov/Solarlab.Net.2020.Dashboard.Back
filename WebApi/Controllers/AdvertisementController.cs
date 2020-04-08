@@ -33,21 +33,6 @@ namespace WebApi.Controllers
             _mapper = mapper;
         }
 
-        /// <summary>
-        /// Получить объявление
-        /// </summary>
-        /// <param name="id">идентификатор</param>
-        /// <returns>IActionResult</returns>
-        [HttpGet("{id}")]
-        public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
-        {
-            var operationResult = await _advertisementService.GetById(id);
-            if (!operationResult.Success)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-            }
-            return Ok(operationResult.Result);
-        }
 
         /// <summary>
         /// Создать
@@ -64,6 +49,33 @@ namespace WebApi.Controllers
             }
             return Ok(operationResult.Result);
         }
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// Получить объявление
+        /// </summary>
+        /// <param name="id">идентификатор</param>
+        /// <returns>IActionResult</returns>
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
+        {
+            var operationResult = await _advertisementService.GetById(id);
+            if (!operationResult.Success)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
+            }
+            return Ok(operationResult.Result);
+        }
+
+
 
         /// <summary>
         /// Удалить объявление

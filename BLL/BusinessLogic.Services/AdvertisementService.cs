@@ -74,6 +74,8 @@ namespace BusinessLogic.Services
             return OperationResult<AdvertisementDto>.Ok(_mapper.Map<AdvertisementDto>(entity));
         }
 
+
+        /*
         /// <inheritdoc />
         public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
         {
@@ -89,6 +91,44 @@ namespace BusinessLogic.Services
             }
             return OperationResult<bool>.Ok(true);
         }
+
+    */
+
+
+
+
+        public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
+        {
+            try
+            {
+                if (advertisementDto == null)
+                {
+                    throw new ArgumentNullException(nameof(advertisementDto));
+                }
+
+
+                Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
+                await _advertisementRepository.Add(entity);
+            }
+            catch (Exception e)
+            {
+                return OperationResult<bool>.Failed(new[] { e.Message });
+            }
+            return OperationResult<bool>.Ok(true);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <inheritdoc />
         public async Task<OperationResult<bool>> Update(AdvertisementDto advertisementDto)
