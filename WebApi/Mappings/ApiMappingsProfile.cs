@@ -76,7 +76,7 @@ namespace WebApi.Mappings
 
 
             CreateMap<CommentModel, CommentDto>();
-            CreateMap<LoginModel, TagDto>();
+            CreateMap<TagModel, TagDto>();
 
 
 

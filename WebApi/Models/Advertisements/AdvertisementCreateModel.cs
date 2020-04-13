@@ -33,6 +33,6 @@ namespace WebApi.Models.Advertisements
         /// <summary>
         /// Теги
         /// </summary>
-        public ICollection<LoginModel> Tags { get; set; }
+        public ICollection<TagModel> Tags { get; set; }
     }
 }
