@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.Contracts\Common.Contracts.csproj" />
     <ProjectReference Include="..\..\DAL\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
     <ProjectReference Include="..\BusinesLogic.Services.Abstractions\BusinessLogic.Services.Abstractions.csproj" />
   </ItemGroup>

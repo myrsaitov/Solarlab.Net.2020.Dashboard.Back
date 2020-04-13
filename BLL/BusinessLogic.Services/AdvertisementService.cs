@@ -10,21 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FluentValidation.Results;
-
-
-//using Academy.Business.Abstractions;
-//using Academy.Business.Contracts;
-//using Academy.Business.Contracts.Models;
-//using Academy.Business.Services.Validators;
-//using Academy.DataAccess.Abstractions;
-//using Academy.DataAccess.Entities;
-//using AutoMapper;
-//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Threading.Tasks;
-//using FluentValidation.Results;
-
+using BusinessLogic.Contracts.CustomExceptions;
 
 
 
@@ -71,6 +57,10 @@ namespace BusinessLogic.Services
         public async Task<OperationResult<AdvertisementDto>> GetById(int id)
         {
             Advertisement entity = await _advertisementRepository.GetById(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException(id, "Объявление");
+            }
             return OperationResult<AdvertisementDto>.Ok(_mapper.Map<AdvertisementDto>(entity));
         }
 
