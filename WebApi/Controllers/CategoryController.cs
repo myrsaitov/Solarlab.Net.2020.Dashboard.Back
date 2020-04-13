@@ -11,9 +11,11 @@ using DataAccess.Repositories.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : ControllerBase
@@ -37,7 +39,7 @@ namespace WebApi.Controllers
             }
             return Ok(operationResult.Result);
         }
-
+        [AllowAnonymous]
         [HttpGet("List/{page}/{pageSize}")]
         public async Task<ActionResult> GetPaged(int page, int pageSize)
         {
@@ -60,6 +62,7 @@ namespace WebApi.Controllers
             return Ok(categoryGetModel);
         }
 
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<ActionResult> Get(int id)
         {
