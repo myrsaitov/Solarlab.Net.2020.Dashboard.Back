@@ -44,6 +44,7 @@ namespace WebApi.Controllers
         public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
         {
             var operationResult = await _advertisementService.GetById(id);
+            //return await ProcessOperationResult(async () => await _advertisementService.GetById(id));
             if (!operationResult.Success)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
