@@ -1,10 +1,10 @@
-﻿using System;
-using DataAccess.Entities;
+﻿using DataAccess.Entities;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Context
 {
-    public class Context:DbContext
+    public class Context: IdentityDbContext<ApplicationUser>
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
@@ -13,6 +13,8 @@ namespace DataAccess.Context
 
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Tag> Tags { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -30,7 +32,28 @@ namespace DataAccess.Context
                 .WithMany(t => t.Advertisements)
                 .HasForeignKey(pt => pt.TagId);
 
-            var categories = new Category[]
+
+
+            var advertisements = new[]
+            {
+                new Advertisement
+                {
+                    Id = 1,
+                    Title = "Объявление 1",
+                    Body = "Описание объявления 1"
+                },
+                new Advertisement
+                {
+                    Id = 2,
+                    Title = "Объявление 2",
+                    Body = "Описание объявления 2"
+                }
+            };
+
+
+
+
+            var categories = new[]
            {
                 new Category
                 {

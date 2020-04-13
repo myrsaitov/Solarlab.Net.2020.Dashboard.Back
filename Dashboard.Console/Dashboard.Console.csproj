@@ -35,7 +35,6 @@
     <ProjectReference Include="..\BLL\BusinessLogic.Services\BusinessLogic.Services.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Context\DataAccess.Context.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\DAL\DataAccessLayer.Repositories\DataAccess.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

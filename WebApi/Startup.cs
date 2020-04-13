@@ -28,7 +28,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using WebApi.Mappings;
 
-namespace Academy.WebApi
+namespace WebApi
 {
     public class Startup
     {

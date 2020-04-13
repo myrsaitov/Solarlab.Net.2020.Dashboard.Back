@@ -6,7 +6,7 @@ using BusinessLogic.Services;
 using BusinessLogic.Services.Mapping;
 using DataAccess.Repositories.Abstractions;
 using DataAccess.Context;
-using DataAccess.Repositories;
+using DataAccess.Context.Repositories;
 using AutoMapper;
 using Microsoft.Extensions.DependencyInjection;
 
