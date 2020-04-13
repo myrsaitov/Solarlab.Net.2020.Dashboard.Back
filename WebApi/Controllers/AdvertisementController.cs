@@ -22,12 +22,12 @@ namespace WebApi.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class AdvertisementController : ControllerBase
+    public class AbvertisementController : ControllerBase
     {
         readonly IAdvertisementService _advertisementService;
         readonly IMapper _mapper;
 
-        public AdvertisementController(IAdvertisementService advertisementService, IMapper mapper)
+        public AbvertisementController(IAdvertisementService advertisementService, IMapper mapper)
         {
             _advertisementService = advertisementService;
             _mapper = mapper;
