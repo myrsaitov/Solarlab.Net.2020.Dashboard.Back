@@ -5,7 +5,7 @@ namespace WebApi.Models.Identity
     /// <summary>
     /// Модель входа пользователя
     /// </summary>
-    public class LoginModel
+    public class IdentityDataInitializer
     {
         [Required]
         [EmailAddress]

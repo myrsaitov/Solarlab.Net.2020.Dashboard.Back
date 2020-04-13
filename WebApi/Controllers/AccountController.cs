@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] LoginModel model)
+        public async Task<IActionResult> Login([FromBody] IdentityDataInitializer model)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
 
