@@ -14,11 +14,11 @@ namespace WebApi.Controllers
     [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoriesController : BaseController
+    public class CategoryController : BaseController
     {
         private readonly ICategoryService _categoryService;
 
-        public CategoriesController(
+        public CategoryController(
             ICategoryService categoryService,
             IMapper mapper) : base(mapper)
         {

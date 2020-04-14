@@ -77,35 +77,35 @@
             <param name="commentModel">модель коментария</param>
             <returns>IActionResult</returns>
         </member>
-        <member name="M:WebApi.Controllers.CategoriesController.Get(System.Int32)">
+        <member name="M:WebApi.Controllers.CategoryController.Get(System.Int32)">
             <summary>
             Получить категорию
             </summary>
             <param name="id">идентификатор</param>
             <returns>IActionResult</returns>
         </member>
-        <member name="M:WebApi.Controllers.CategoriesController.Create(WebApi.Models.CategoryCreateModel)">
+        <member name="M:WebApi.Controllers.CategoryController.Create(WebApi.Models.CategoryCreateModel)">
             <summary>
             Создать категорию
             </summary>
             <param name="model">модель</param>
             <returns>IActionResult</returns>
         </member>
-        <member name="M:WebApi.Controllers.CategoriesController.Delete(System.Int32)">
+        <member name="M:WebApi.Controllers.CategoryController.Delete(System.Int32)">
             <summary>
             Удалить категорию 
             </summary>
             <param name="id">идентификатор</param>
             <returns>IActionResult</returns>
         </member>
-        <member name="M:WebApi.Controllers.CategoriesController.Update(WebApi.Models.Categories.CategoryUpdateModel)">
+        <member name="M:WebApi.Controllers.CategoryController.Update(WebApi.Models.Categories.CategoryUpdateModel)">
             <summary>
             Обновить категорию
             </summary>
             <param name="model">модель</param>
             <returns>IActionResult</returns>
         </member>
-        <member name="M:WebApi.Controllers.CategoriesController.GatPaged(System.Int32,System.Int32)">
+        <member name="M:WebApi.Controllers.CategoryController.GatPaged(System.Int32,System.Int32)">
             <summary>
             Получить постраничный список
             </summary>
