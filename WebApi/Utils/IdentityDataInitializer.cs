@@ -13,8 +13,11 @@ namespace WebApi.Utils
 
         public static void SeedData(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            /// Проверяет, существует ли роль юзера и администратор, если не существует, то он их создает
             SeedRoles(roleManager);
+            /// Ищет админ, если не находит, то создает его. То же самое с юзером
             SeedUsers(userManager);
+            /// Usermanager - уровень бизнес-логики, поэтому в дале пароли храним так
         }
 
         private static void SeedUsers(UserManager<ApplicationUser> userManager)

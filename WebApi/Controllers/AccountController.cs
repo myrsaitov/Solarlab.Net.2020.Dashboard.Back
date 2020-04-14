@@ -19,7 +19,7 @@ namespace WebApi.Controllers
     /// <summary>
     /// Контролер логина и регистрации пользователя
     /// </summary>
-    [Authorize]
+    [Authorize(Roles = "User")]
     [Route("api/[controller]")]
     public class AccountController : BaseController
     {
@@ -99,7 +99,9 @@ namespace WebApi.Controllers
         [HttpGet("secure-data")]
         public IActionResult GetSecuredData()
         {
-            return Ok("Secured data " + User.FindFirst(JwtRegisteredClaimNames.Sub).Value);
+            // Вызывает ошибку
+            //return Ok("Secured data " + User.FindFirst(JwtRegisteredClaimNames.Sub).Value);
+            return Ok("Secured data " + User.FindFirst(ClaimTypes.NameIdentifier).Value);
         }
 
         private void AddErrors(IdentityResult result)

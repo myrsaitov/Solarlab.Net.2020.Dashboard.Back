@@ -11,7 +11,10 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-    [Authorize(Roles = "Administrator")]
+    //Все методы будут доступны только администратору
+    //[Authorize(Roles = "Administrator")] 
+
+    [Authorize(Roles = "User")]
     [Route("api/[controller]")]
     [ApiController]
     public class CategoryController : BaseController

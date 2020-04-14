@@ -100,6 +100,9 @@ namespace WebApi
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
             UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
+            ///cкроссдоменность
+            ///обычно при разработке
+            ///в продакшене не надо
             app.UseCors(builder => builder
                 .AllowAnyOrigin()
                 .AllowAnyHeader()
