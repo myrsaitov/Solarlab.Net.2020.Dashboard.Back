@@ -21,9 +21,11 @@ namespace WebApi
 
         public static void Main(string[] args)
         {
+            CreateHostBuilder(args).Build().Run();
+            
             Log.Logger = new LoggerConfiguration()
              .ReadFrom.Configuration(Configuration)
-             .Enrich.WithProperty("App Name", "IT Academy 2020")
+             .Enrich.WithProperty("App Name", "IT Academy 2020 Team 8")
              .CreateLogger();
             try
             {
@@ -41,6 +43,7 @@ namespace WebApi
             {
                 Log.CloseAndFlush();
             }
+            
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

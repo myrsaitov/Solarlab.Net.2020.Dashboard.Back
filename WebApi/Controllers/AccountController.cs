@@ -12,7 +12,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-using Academy.WebApi.Controllers;
+using WebApi.Controllers;
 
 namespace WebApi.Controllers
 {

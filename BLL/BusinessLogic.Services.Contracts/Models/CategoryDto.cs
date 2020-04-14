@@ -5,14 +5,13 @@ using System.Text;
 namespace BusinessLogic.Services.Contracts.Models
 {
     /// <summary>
-    /// Категория, объект передачи данных
+    /// Категория. Транспортный объект.
     /// </summary>
     public class CategoryDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public CategoryDto ParentCategory { get; set; }
-        public int? ParentCategoryId { get; set; }
         public ICollection<CategoryDto> Childs { get; set; }
     }
 }

@@ -12,8 +12,8 @@ using DataAccess.Repositories.Abstractions;
 using DataAccess.Entities;
 using DataAccess.Context;
 using DataAccess.Repositories;
-using Academy.WebApi.Mapping;
-using Academy.WebApi.Utils;
+using WebApi.Mapping;
+using WebApi.Utils;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -137,13 +137,12 @@ namespace WebApi
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                //cfg.AddProfile<AdvertisementMapProfile>();
-                cfg.AddProfile<ApiMappingsProfile>();
+                cfg.AddProfile<AdvertisementMapProfile>();
                 cfg.AddProfile<ApplicationUserMapProfile>();
-               // cfg.AddProfile<TagMapProfile>();
-                //cfg.AddProfile<CommentMapProfile>();
-               // cfg.AddProfile<CategoryMapProfile>();
-                //cfg.AddProfile<ServiceMappingsProfile>();
+                cfg.AddProfile<TagMapProfile>();
+                cfg.AddProfile<CommentMapProfile>();
+                cfg.AddProfile<CategoryMapProfile>();
+                cfg.AddProfile<ServiceMappings>();
             });
             configuration.AssertConfigurationIsValid();
             return configuration;

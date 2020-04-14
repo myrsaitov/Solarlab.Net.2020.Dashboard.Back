@@ -1,0 +1,207 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WebApi</name>
+    </assembly>
+    <members>
+        <member name="T:WebApi.Controllers.AccountController">
+            <summary>
+            Контролер логина и регистрации пользователя
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.AccountController.Login(WebApi.Models.Identity.IdentityDataInitializer)">
+            <summary>
+            Вход пользователя в систему, получение JWT-токена
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.AccountController.Logout">
+            <summary>
+            Выход пользователя из системы
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.AccountController.Register(WebApi.Models.Identity.RegisterModel)">
+            <summary>
+            Регистрация нового пользователя
+            </summary>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.AccountController.GetSecuredData">
+            <summary>
+            Тестовый метод для получения данных авторизованного пользователя
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:WebApi.Controllers.AbvertisementController">
+            <summary>
+            Контроллер объявлений
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Get(System.Int32)">
+            <summary>
+            Получить объявление
+            </summary>
+            <param name="id">идентификатор</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Create(WebApi.Models.Advertisements.AdvertisementCreateModel)">
+            <summary>
+            Создать
+            </summary>
+            <param name="advertisementModel">модель объявления</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Delete(System.Int32)">
+            <summary>
+            Удалить объявление
+            </summary>
+            <param name="id">идентификтор</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.GetPaged(System.Int32,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Получить список объявлений
+            </summary>
+            <param name="page">страница</param>
+            <param name="pageSize">размер страницы</param>
+            <param name="categoryId">идентификатор категории</param>
+            <returns></returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.AddComment(WebApi.Models.Comments.CommentModel)">
+            <summary>
+            Добавить коментарий
+            </summary>
+            <param name="commentModel">модель коментария</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Get(System.Int32)">
+            <summary>
+            Получить категорию
+            </summary>
+            <param name="id">идентификатор</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Create(WebApi.Models.CategoryCreateModel)">
+            <summary>
+            Создать категорию
+            </summary>
+            <param name="model">модель</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Delete(System.Int32)">
+            <summary>
+            Удалить категорию 
+            </summary>
+            <param name="id">идентификатор</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.Update(WebApi.Models.Categories.CategoryUpdateModel)">
+            <summary>
+            Обновить категорию
+            </summary>
+            <param name="model">модель</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.CategoriesController.GatPaged(System.Int32,System.Int32)">
+            <summary>
+            Получить постраничный список
+            </summary>
+            <param name="page">номер страницы</param>
+            <param name="pageSize">объем страницы</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.Title">
+            <summary>
+            Заголовок
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.Body">
+            <summary>
+            Тело объявления
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.CategoryId">
+            <summary>
+            Раздел (категория) объявления
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.Tags">
+            <summary>
+            Теги
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementUpdateModel.Id">
+            <summary>
+            Идентификатор
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.AdvertisementGetModel.Title">
+            <summary>
+            Заголовок
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.AdvertisementGetModel.Body">
+            <summary>
+            Тело объявления
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.AdvertisementGetModel.CategoryId">
+            <summary>
+            Идентификатор категории
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.AdvertisementGetModel.Tags">
+            <summary>
+            Теги
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Comments.AddCommentModel.Body">
+            <summary>
+            Текст комментария
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Comments.AddCommentModel.CommentDate">
+            <summary>
+            Дата и время комментария (UTC)
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Comments.CommentModel.Id">
+            <summary>
+            Идентификатор комментария
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Comments.CommentModel.Body">
+            <summary>
+            Текст комментария
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Comments.CommentModel.CommentDate">
+            <summary>
+            Дата и время комментария (UTC)
+            </summary>
+        </member>
+        <member name="T:WebApi.Models.Identity.IdentityDataInitializer">
+            <summary>
+            Модель входа пользователя
+            </summary>
+        </member>
+        <member name="T:WebApi.Models.Identity.RegisterModel">
+            <summary>
+            Модель регистрации пользователя в системе
+            </summary>
+        </member>
+        <member name="T:WebApi.Models.Tags.TagModel">
+            <summary>
+            Тег. Транспортный объект.
+            </summary>
+        </member>
+        <member name="T:WebApi.Utils.IdentityDataInitializer">
+            <summary>
+            Инициализация ролей и пользователей в системе
+            </summary>
+        </member>
+    </members>
+</doc>

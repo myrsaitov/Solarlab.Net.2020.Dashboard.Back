@@ -1,112 +1,88 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using BusinessLogic.Services.Abstractions;
 using AutoMapper;
-using BusinessLogic.Services.Abstractions;
-using BusinessLogic.Services.Contracts;
-using BusinessLogic.Services.Contracts.Models;
-using DataAccess.Entities;
-using DataAccess.Repositories.Abstractions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using WebApi.Models;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
+using BusinessLogic.Services.Contracts.Models;
+using WebApi.Models.Categories;
 using Microsoft.AspNetCore.Authorization;
+using WebApi.Models;
 
 namespace WebApi.Controllers
 {
     [Authorize(Roles = "Administrator")]
     [Route("api/[controller]")]
     [ApiController]
-    public class CategoryController : ControllerBase
+    public class CategoriesController : BaseController
     {
-        private readonly IMapper _mapper;
         private readonly ICategoryService _categoryService;
 
-        public CategoryController (IMapper mapper, ICategoryService categoryService)
+        public CategoriesController(
+            ICategoryService categoryService,
+            IMapper mapper) : base(mapper)
         {
-            _mapper = mapper;
             _categoryService = categoryService;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create(CategoryCreateModel categoryModel)
-        {
-            var operationResult = await _categoryService.Create(_mapper.Map<CategoryCreateDto>(categoryModel));
-            if (!operationResult.Success)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-            }
-            return Ok(operationResult.Result);
-        }
-        [AllowAnonymous]
-        [HttpGet("List/{page}/{pageSize}")]
-        public async Task<ActionResult> GetPaged(int page, int pageSize)
-        {
-            OperationResult <ICollection<CategoryDto>> operationResult;
-            ICollection <CategoryGetModel> categoryGetModel;
-            try
-            {
-                operationResult = await _categoryService.GetPaged (page, pageSize);
-                if (!operationResult.Success)
-
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-                }
-                categoryGetModel = _mapper.Map<ICollection<CategoryGetModel>>(operationResult.Result);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
-            return Ok(categoryGetModel);
-        }
-
+        /// <summary>
+        /// Получить категорию
+        /// </summary>
+        /// <param name="id">идентификатор</param>
+        /// <returns>IActionResult</returns>
         [AllowAnonymous]
         [HttpGet("{id}")]
-        public async Task<ActionResult> Get(int id)
+        public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
         {
-            OperationResult<CategoryDto> operationResult;
-            CategoryGetModel categoryGetModel;
-            try 
-            { 
-                operationResult = await _categoryService.GetById(id);
-                if (!operationResult.Success)
-
-                {
-                    return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-                }
-                categoryGetModel = _mapper.Map<CategoryGetModel>(operationResult.Result);
-            }
-            catch (Exception e)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
-            }
-            return Ok(categoryGetModel);
+            return ProcessOperationResult(await _categoryService.GetById(id));
         }
 
-        [HttpPut]
-        public async Task<ActionResult> Update(CategoryUpdateModel categoryModel)
+        /// <summary>
+        /// Создать категорию
+        /// </summary>
+        /// <param name="model">модель</param>
+        /// <returns>IActionResult</returns>
+        [HttpPost]
+        public async Task<IActionResult> Create([Required] CategoryCreateModel model)
         {
-
-            var operationResult = await _categoryService.Update(_mapper.Map<CategoryDto>(categoryModel));
-            if (!operationResult.Success)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-            }
-            return Ok(operationResult.Result);
+            return ProcessOperationResult(await _categoryService.Create(Mapper.Map<CategoryCreateDto>(model)));
         }
 
+        /// <summary>
+        /// Удалить категорию 
+        /// </summary>
+        /// <param name="id">идентификатор</param>
+        /// <returns>IActionResult</returns>
         [HttpDelete("{id}")]
-        public async Task<ActionResult> Delete(int id)
+        public async Task<IActionResult> Delete([Range(1, Int32.MaxValue)]int id)
         {
-            var operationResult = await _categoryService.Delete(id);
-            if (!operationResult.Success)
-            {
-              return StatusCode(StatusCodes.Status500InternalServerError, operationResult.GetErrors());
-            }
-            return Ok(operationResult.Result);
+            return ProcessOperationResult(await _categoryService.Delete(id));
+        }
 
+        /// <summary>
+        /// Обновить категорию
+        /// </summary>
+        /// <param name="model">модель</param>
+        /// <returns>IActionResult</returns>
+        [HttpPut]
+        public async Task<IActionResult> Update([Required] CategoryUpdateModel model)
+        {
+            return ProcessOperationResult(await _categoryService.Update(Mapper.Map<CategoryUpdateDto>(model)));
+        }
+
+        /// <summary>
+        /// Получить постраничный список
+        /// </summary>
+        /// <param name="page">номер страницы</param>
+        /// <param name="pageSize">объем страницы</param>
+        /// <returns>IActionResult</returns>
+        [AllowAnonymous]
+        [HttpGet("list")]
+        public async Task<IActionResult> GatPaged(
+            [FromQuery, Required, Range(1, Int32.MaxValue)]int page,
+            [FromQuery, Required, Range(1, Int32.MaxValue)]int pageSize)
+        {
+            return ProcessOperationResult(await _categoryService.GetPaged(page, pageSize));
         }
     }
 }

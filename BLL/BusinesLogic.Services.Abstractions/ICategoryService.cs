@@ -42,7 +42,7 @@ namespace BusinessLogic.Services.Abstractions
         /// </summary>
         /// <param name="categoryDto"></param>
         /// <returns></returns>
-        Task<OperationResult<bool>> Update(CategoryDto categoryDto);
+        Task<OperationResult<bool>> Update(CategoryUpdateDto categoryDto);
 
 
     }

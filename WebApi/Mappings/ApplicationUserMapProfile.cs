@@ -2,7 +2,7 @@
 using WebApi.Models.Identity;
 using AutoMapper;
 
-namespace Academy.WebApi.Mapping
+namespace WebApi.Mapping
 {
     public class ApplicationUserMapProfile : Profile
     {

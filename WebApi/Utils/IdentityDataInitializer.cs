@@ -1,7 +1,7 @@
 ﻿using DataAccess.Entities;
 using Microsoft.AspNetCore.Identity;
 
-namespace Academy.WebApi.Utils
+namespace WebApi.Utils
 {
     /// <summary>
     /// Инициализация ролей и пользователей в системе

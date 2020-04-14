@@ -7,7 +7,7 @@ using Serilog;
 using System;
 using System.Threading.Tasks;
 
-namespace Academy.WebApi.Controllers
+namespace WebApi.Controllers
 {
     public class BaseController : ControllerBase
     {

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\$(Configuration)\WebApi.xml</DocumentationFile>
+    <DocumentationFile>C:\WORK\WebApi\WebApi.xml</DocumentationFile>
   </PropertyGroup>
   
   

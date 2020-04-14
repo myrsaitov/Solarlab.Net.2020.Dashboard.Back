@@ -29,7 +29,7 @@ namespace DataAccess.Context
                     ///.UseLazyLoadingProxies() // lazy loading
                     .UseSqlServer(config.GetConnectionString("AdvertDb")))
                 .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
-                .AddTransient<ICategoryRepository, CategoriesRepository>();
+                .AddTransient<ICategoryRepository, CategoryRepository>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()

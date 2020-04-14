@@ -15,37 +15,32 @@ namespace BusinessLogic.Services.Mapping
         public ServiceMappings()
         {
 
-            //From Lera
 
-            CreateMap<Category, CategoryDto>();
-            CreateMap<CategoryDto, Category>();
-            CreateMap<CategoryCreateDto, Category>()
-            .ForMember(d => d.ParentCategory, map => map.Ignore())
-            .ForMember(d => d.Childs, map => map.Ignore());
-
-
-
-
-            // From ClassWork
 
             CreateMap<Tag, TagDto>();
-            //CreateMap<Category, CategoryDto>()
-            //.ForMember(d => d.ChildCategories, opt => opt.Ignore());
+            CreateMap<AdvertTag, TagDto>()
+                .ForMember(d => d.Id, opt => opt.MapFrom(m => m.TagId))
+                .ForMember(d => d.TagText, opt => opt.MapFrom(m => m.Tag.TagText));
+            CreateMap<Category, CategoryDto>();
             CreateMap<Comment, CommentDto>();
             CreateMap<Advertisement, AdvertisementDto>()
-                 .ForMember(d => d.Tags, opt => opt.Ignore());
+                .ForMember(d => d.CategoryId, opt => opt.MapFrom(s => s.Category != null ? s.Category.Id : (int?)null));
             CreateMap<CommentDto, Comment>()
-                .ForMember(d => d.CommentDate, opt => opt.Ignore())
-                .ForMember(d => d.ParentAdvertisement, opt => opt.Ignore());
+                .ForMember(d => d.CommentDate, opt => opt.Ignore());
             CreateMap<AdvertisementDto, Advertisement>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.Tags, opt => opt.Ignore())
                 .ForMember(d => d.Comments, opt => opt.Ignore())
                 .ForMember(d => d.Category, opt => opt.Ignore());
-            // CreateMap<CategoryDto, Category>()
-            //.ForMember(d => d.Childs, opt => opt.Ignore());
-
-
+            CreateMap<CategoryDto, Category>();
+            CreateMap<CategoryCreateDto, Category>()
+                .ForMember(d => d.Id, opt => opt.Ignore())
+                .ForMember(d => d.Childs, opt => opt.Ignore())
+                .ForMember(d => d.ParentCategory, opt => opt.Ignore());
+            CreateMap<CategoryUpdateDto, Category>()
+                .ForMember(d => d.Id, opt => opt.Ignore())
+                .ForMember(d => d.Childs, opt => opt.Ignore())
+                .ForMember(d => d.ParentCategory, opt => opt.Ignore());
 
 
         }
