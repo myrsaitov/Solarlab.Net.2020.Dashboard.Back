@@ -4,6 +4,56 @@
         <name>WebApi</name>
     </assembly>
     <members>
+        <member name="T:WebApi.Controllers.AbvertisementController">
+            <summary>
+            Контроллер объявлений
+            </summary>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Get(System.Int32)">
+            <summary>
+            Получить объявление
+            </summary>
+            <param name="id">идентификатор</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Create(WebApi.Models.Advertisements.AdvertisementCreateModel)">
+            <summary>
+            Создать объявление
+            </summary>
+            <param name="model">модель</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Delete(System.Int32)">
+            <summary>
+            Удалить объявление 
+            </summary>
+            <param name="id">идентификатор</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.Update(WebApi.Models.Advertisements.AdvertisementUpdateModel)">
+            <summary>
+            Обновить объявление
+            </summary>
+            <param name="model">модель</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.GatPaged(System.Int32,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Получить постраничный список
+            </summary>
+            <param name="page">номер страницы</param>
+            <param name="pageSize">объем страницы</param>
+            <param name="categoryId">идентификатор страницы</param>
+            <returns>IActionResult</returns>
+        </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.AddComment(System.Int32,WebApi.Models.Comments.AddCommentModel)">
+            <summary>
+            Добавать комментарий
+            </summary>
+            <param name="advertisementId">идентификатор объявления</param>
+            <param name="model">модель комментария</param>
+            <returns>IActionResult</returns>
+        </member>
         <member name="T:WebApi.Controllers.AccountController">
             <summary>
             Контролер логина и регистрации пользователя
@@ -34,48 +84,6 @@
             Тестовый метод для получения данных авторизованного пользователя
             </summary>
             <returns></returns>
-        </member>
-        <member name="T:WebApi.Controllers.AbvertisementController">
-            <summary>
-            Контроллер объявлений
-            </summary>
-        </member>
-        <member name="M:WebApi.Controllers.AbvertisementController.Get(System.Int32)">
-            <summary>
-            Получить объявление
-            </summary>
-            <param name="id">идентификатор</param>
-            <returns>IActionResult</returns>
-        </member>
-        <member name="M:WebApi.Controllers.AbvertisementController.Create(WebApi.Models.Advertisements.AdvertisementCreateModel)">
-            <summary>
-            Создать
-            </summary>
-            <param name="advertisementModel">модель объявления</param>
-            <returns>IActionResult</returns>
-        </member>
-        <member name="M:WebApi.Controllers.AbvertisementController.Delete(System.Int32)">
-            <summary>
-            Удалить объявление
-            </summary>
-            <param name="id">идентификтор</param>
-            <returns>IActionResult</returns>
-        </member>
-        <member name="M:WebApi.Controllers.AbvertisementController.GetPaged(System.Int32,System.Int32,System.Nullable{System.Int32})">
-            <summary>
-            Получить список объявлений
-            </summary>
-            <param name="page">страница</param>
-            <param name="pageSize">размер страницы</param>
-            <param name="categoryId">идентификатор категории</param>
-            <returns></returns>
-        </member>
-        <member name="M:WebApi.Controllers.AbvertisementController.AddComment(WebApi.Models.Comments.CommentModel)">
-            <summary>
-            Добавить коментарий
-            </summary>
-            <param name="commentModel">модель коментария</param>
-            <returns>IActionResult</returns>
         </member>
         <member name="M:WebApi.Controllers.CategoryController.Get(System.Int32)">
             <summary>
