@@ -20,7 +20,7 @@ namespace WebApi.Controllers
     /// Контролер логина и регистрации пользователя
     /// </summary>
     [Authorize(Roles = "User")]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class AccountController : BaseController
     {
         private readonly IUserService _userService;

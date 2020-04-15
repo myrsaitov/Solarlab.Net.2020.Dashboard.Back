@@ -20,7 +20,7 @@ namespace WebApi.Controllers
     /// <summary>
     /// Контроллер объявлений
     /// </summary>
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class AbvertisementController : BaseController
     {

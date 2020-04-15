@@ -15,7 +15,7 @@ namespace WebApi.Controllers
     //[Authorize(Roles = "Administrator")] 
 
     [Authorize(Roles = "User")]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     [ApiController]
     public class CategoryController : BaseController
     {
