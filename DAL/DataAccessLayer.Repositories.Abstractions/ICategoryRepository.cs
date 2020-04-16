@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Repositories.Abstractions
 {
+    /// <summary>
+    /// Интерфейс репозитория категорий
+    /// </summary>
     public interface ICategoryRepository
     {
         /// <summary>

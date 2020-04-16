@@ -27,7 +27,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,7 +35,6 @@
     <ProjectReference Include="..\BLL\BusinessLogic.Services\BusinessLogic.Services.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Context\DataAccess.Context.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\DAL\DataAccessLayer.Repositories\DataAccess.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

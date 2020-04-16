@@ -19,7 +19,7 @@ namespace CategoryTests
         public void Update_Should_Succsessfully_Update_Category()
         {
             //Arrange
-            BusinessLogic.Services.Contracts.Models.CategoryDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryDto();
+            BusinessLogic.Services.Contracts.Models.CategoryUpdateDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryUpdateDto();
 
             //Act
             var result = _categoryService.Update (emptyNameCategory);
@@ -32,7 +32,7 @@ namespace CategoryTests
         public void Update_Should_Return_Error_If_Repository_Throws_Exception()
         {
             //Arrange
-            BusinessLogic.Services.Contracts.Models.CategoryDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryDto();
+            BusinessLogic.Services.Contracts.Models.CategoryUpdateDto emptyNameCategory = new BusinessLogic.Services.Contracts.Models.CategoryUpdateDto();
             categoryRepositoryMock.Setup(_ => _.Update(It.IsAny<Category>())).Throws<Exception>();
 
             //Act
@@ -46,7 +46,7 @@ namespace CategoryTests
         public void Update_Should_Return_Error_If_Argument_Is_Null()
         {
             //Arrange
-            BusinessLogic.Services.Contracts.Models.CategoryDto emptyNameCategory = null;
+            BusinessLogic.Services.Contracts.Models.CategoryUpdateDto emptyNameCategory = null;
 
             //Act
             var result = _categoryService.Update(emptyNameCategory);

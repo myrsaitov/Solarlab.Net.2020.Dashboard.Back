@@ -26,7 +26,7 @@ namespace DataAccess.Repositories.Abstractions
         Task<ICollection<Advertisement>> GetPaged(int page, int pageSize);
 
         /// <summary>
-        /// Получить объявления попадающие в категрии постранично
+        /// Получить объявления попадающие в категории постранично
         /// </summary>
         /// <param name="categoriesId">Набор идентификаторов категорий</param>
         /// <param name="page">Номер страницы</param>

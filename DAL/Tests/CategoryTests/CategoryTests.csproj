@@ -21,7 +21,6 @@
     <ProjectReference Include="..\..\..\BLL\BusinessLogic.Services\BusinessLogic.Services.csproj" />
     <ProjectReference Include="..\..\..\DataAccessLayer.Entities\DataAccess.Entities.csproj" />
     <ProjectReference Include="..\..\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\..\DataAccessLayer.Repositories\DataAccess.Repositories.csproj" />
   </ItemGroup>
 
 </Project>

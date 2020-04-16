@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BusinessLogic.Services.Contracts;
 using BusinessLogic.Services.Contracts.Models;
@@ -44,7 +42,7 @@ namespace BusinessLogic.Services.Abstractions
         /// </summary>
         /// <param name="categoryDto"></param>
         /// <returns></returns>
-        Task<OperationResult<bool>> Update(CategoryDto categoryDto);
+        Task<OperationResult<bool>> Update(CategoryUpdateDto categoryDto);
 
 
     }

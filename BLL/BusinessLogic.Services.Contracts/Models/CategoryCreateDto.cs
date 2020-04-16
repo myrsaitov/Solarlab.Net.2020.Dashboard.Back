@@ -1,12 +1,9 @@
 ﻿namespace BusinessLogic.Services.Contracts.Models
 {
     /// <summary>
-    /// Категория, объект передачи данных
+    /// ДТО создания категории
     /// </summary>
-    public class CategoryCreateDto
+    public class CategoryCreateDto : BaseCategoryComposeDto
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public int? ParentCategoryId { get; set; }
     }
 }

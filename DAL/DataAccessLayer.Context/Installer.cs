@@ -5,6 +5,12 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using DataAccess.Repositories.Abstractions;
+using DataAccess.Entities;
+using DataAccess.Context.Repositories;
+using DataAccess.Repositories;
+using Microsoft.AspNetCore.Identity;
+
 
 
 namespace DataAccess.Context
@@ -20,8 +26,14 @@ namespace DataAccess.Context
 
             services
                 .AddDbContext<Context>(o => o
-                   // .UseLazyLoadingProxies() // lazy loading
-                .UseSqlServer(config.GetConnectionString("AdvertDb")));
+                    ///.UseLazyLoadingProxies() // lazy loading
+                    .UseSqlServer(config.GetConnectionString("AdvertDb")))
+                .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
+                .AddTransient<ICategoryRepository, CategoryRepository>();
+
+            services.AddDefaultIdentity<ApplicationUser>()
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<Context>();
         }
     }
 }

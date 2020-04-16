@@ -1,18 +1,19 @@
-﻿using AutoMapper;
-using BusinessLogic.Services.Abstractions;
+﻿using BusinessLogic.Services.Abstractions;
 using BusinessLogic.Services.Contracts;
 using BusinessLogic.Services.Contracts.Models;
 using BusinessLogic.Services.Validators;
-using DataAccess.Entities;
 using DataAccess.Repositories.Abstractions;
-using FluentValidation.Results;
+using DataAccess.Entities;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using ValidationResult = FluentValidation.Results.ValidationResult;
+using FluentValidation.Results;
+using BusinessLogic.Contracts.CustomExceptions;
+
+
+
 
 namespace BusinessLogic.Services
 {
@@ -56,9 +57,15 @@ namespace BusinessLogic.Services
         public async Task<OperationResult<AdvertisementDto>> GetById(int id)
         {
             Advertisement entity = await _advertisementRepository.GetById(id);
+            if (entity == null)
+            {
+                throw new EntityNotFoundException(id, "Объявление");
+            }
             return OperationResult<AdvertisementDto>.Ok(_mapper.Map<AdvertisementDto>(entity));
         }
 
+
+        /*
         /// <inheritdoc />
         public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
         {
@@ -74,6 +81,44 @@ namespace BusinessLogic.Services
             }
             return OperationResult<bool>.Ok(true);
         }
+
+    */
+
+
+
+
+        public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
+        {
+            try
+            {
+                if (advertisementDto == null)
+                {
+                    throw new ArgumentNullException(nameof(advertisementDto));
+                }
+
+
+                Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
+                await _advertisementRepository.Add(entity);
+            }
+            catch (Exception e)
+            {
+                return OperationResult<bool>.Failed(new[] { e.Message });
+            }
+            return OperationResult<bool>.Ok(true);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /// <inheritdoc />
         public async Task<OperationResult<bool>> Update(AdvertisementDto advertisementDto)

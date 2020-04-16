@@ -26,6 +26,11 @@ namespace BusinessLogic.Services.Contracts.Models
         /// </summary>
         public CategoryDto Category { get; set; }
 
+
+        /// <summary>
+        /// Идентификатор категории
+        /// </summary>
+        public int? CategoryId { get; set; }
         /// <summary>
         /// Комментарии
         /// </summary>
