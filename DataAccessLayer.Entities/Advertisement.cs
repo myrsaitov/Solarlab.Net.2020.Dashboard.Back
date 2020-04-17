@@ -23,6 +23,13 @@ namespace DataAccess.Entities
         [MaxLength(2048)]
         public string Body { get; set; }
 
+
+
+        /// <summary>
+        /// Идентификатор категории
+        /// </summary>
+        public int? CategoryId { get; set; }
+
         /// <summary>
         /// Категория
         /// </summary>
