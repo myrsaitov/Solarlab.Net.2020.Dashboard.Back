@@ -137,7 +137,7 @@
             Тело объявления
             </summary>
         </member>
-        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.eMail">
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.email">
             <summary>
             Пользователь, создавший объявление
             </summary>
@@ -172,7 +172,7 @@
             Тело объявления
             </summary>
         </member>
-        <member name="P:WebApi.Models.AdvertisementGetModel.eMail">
+        <member name="P:WebApi.Models.AdvertisementGetModel.email">
             <summary>
             Пользователь, создавший объявление
             </summary>

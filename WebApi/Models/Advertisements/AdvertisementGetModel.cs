@@ -24,7 +24,7 @@ namespace WebApi.Models
         /// <summary>
         /// Пользователь, создавший объявление
         /// </summary>
-        public string eMail { get; set; }
+        public string email { get; set; }
 
         /// <summary>
         /// Идентификатор удаления
