@@ -23,8 +23,8 @@ namespace BusinessLogic.Services.Mapping
                 .ForMember(d => d.TagText, opt => opt.MapFrom(m => m.Tag.TagText));
             CreateMap<Category, CategoryDto>();
             CreateMap<Comment, CommentDto>();
-            CreateMap<Advertisement, AdvertisementDto>()
-                .ForMember(d => d.CategoryId, opt => opt.MapFrom(s => s.Category != null ? s.Category.Id : (int?)null));
+            CreateMap<Advertisement, AdvertisementDto>();
+                //.ForMember(d => d.CategoryId, opt => opt.MapFrom(s => s.Category != null ? s.Category.Id : (int?)null));
             CreateMap<CommentDto, Comment>()
                 .ForMember(d => d.CommentDate, opt => opt.Ignore());
             CreateMap<AdvertisementDto, Advertisement>()
