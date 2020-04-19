@@ -104,6 +104,17 @@ namespace WebApi.Controllers
             return Ok("Secured data " + User.FindFirst(ClaimTypes.NameIdentifier).Value);
         }
 
+        /// <summary>
+        /// Получить имя авторизированного пользователя 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("username")]
+        public IActionResult GetUserName()
+        {
+            //return Ok(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return Ok(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        }
+
         private void AddErrors(IdentityResult result)
         {
             foreach (var error in result.Errors)

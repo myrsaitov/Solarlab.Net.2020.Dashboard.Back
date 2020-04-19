@@ -16,6 +16,16 @@ namespace WebApi.Models.Advertisements
         /// Тело объявления
         /// </summary>
         public string Body { get; set; }
+       
+        /// <summary>
+        /// Пользователь, создавший объявление
+        /// </summary>
+        public string email { get; set; }
+
+        /// <summary>
+        /// Идентификатор удаления
+        /// </summary>
+        public bool Deleted { get; set; }
 
         /// <summary>
         /// Раздел (категория) объявления

@@ -19,8 +19,8 @@ namespace WebApi.Mappings
             CreateMap<AdvertisementCreateModel, AdvertisementDto>()
                 .ForMember(s => s.Id, map => map.Ignore())
                 .ForMember(s => s.Comments, map => map.Ignore())
-                .ForMember(s => s.Category, map => map.Ignore())
-                .ForMember(s => s.CategoryId, map => map.MapFrom(m => m.CategoryId));
+                .ForMember(s => s.Category, map => map.Ignore());
+               // .ForMember(s => s.CategoryId, map => map.MapFrom(m => m.CategoryId));
             CreateMap<AdvertisementUpdateModel, AdvertisementDto>()
                 .ForMember(s => s.Comments, map => map.Ignore())
                 .ForMember(s => s.Category, map => map.Ignore())

@@ -7,6 +7,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20200413213330_AddIdentity.cs" />
     <Compile Remove="Migrations\20200413213330_AddIdentity.Designer.cs" />
+    <Compile Remove="Migrations\20200419194028_UserEmailsToAdvWereAdded.cs" />
+    <Compile Remove="Migrations\20200419194028_UserEmailsToAdvWereAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200419194149_UserEmailsToAdvWereAdded.cs" />
+    <Compile Remove="Migrations\20200419194149_UserEmailsToAdvWereAdded.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
