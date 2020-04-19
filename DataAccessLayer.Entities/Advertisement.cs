@@ -24,6 +24,16 @@ namespace DataAccess.Entities
         public string Body { get; set; }
 
 
+        /// <summary>
+        /// Пользователь, создавший объявление
+        /// </summary>
+        [MaxLength(32)]
+        public string eMail { get; set; }
+
+        /// <summary>
+        /// Идентификатор удаления
+        /// </summary>
+        public bool Deleted { get; set; }
 
         /// <summary>
         /// Идентификатор категории

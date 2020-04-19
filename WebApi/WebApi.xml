@@ -85,6 +85,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:WebApi.Controllers.AccountController.GetUserName">
+            <summary>
+            Получить имя авторизированного пользователя 
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:WebApi.Controllers.CategoryController.Get(System.Int32)">
             <summary>
             Получить категорию
@@ -131,6 +137,16 @@
             Тело объявления
             </summary>
         </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.eMail">
+            <summary>
+            Пользователь, создавший объявление
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.Advertisements.AdvertisementModel.Deleted">
+            <summary>
+            Идентификатор удаления
+            </summary>
+        </member>
         <member name="P:WebApi.Models.Advertisements.AdvertisementModel.CategoryId">
             <summary>
             Раздел (категория) объявления
@@ -154,6 +170,16 @@
         <member name="P:WebApi.Models.AdvertisementGetModel.Body">
             <summary>
             Тело объявления
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.AdvertisementGetModel.eMail">
+            <summary>
+            Пользователь, создавший объявление
+            </summary>
+        </member>
+        <member name="P:WebApi.Models.AdvertisementGetModel.Deleted">
+            <summary>
+            Идентификатор удаления
             </summary>
         </member>
         <member name="P:WebApi.Models.AdvertisementGetModel.CategoryId">
