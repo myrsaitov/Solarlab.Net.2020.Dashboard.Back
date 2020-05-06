@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 
 namespace DataAccess.Entities
@@ -9,19 +10,11 @@ namespace DataAccess.Entities
     /// </summary>
     public class Tag
     {
-        /// <summary>
-        /// id тэга
-        /// </summary>
         public int Id { get; set; }
-
-        /// <summary>
-        /// текст тэга
-        /// </summary>
+        
+        [MaxLength(32)]
         public string TagText { get; set; }
 
-       /// <summary>
-       /// Объявления
-       /// </summary>
         public virtual ICollection<AdvertTag> Advertisements { get; set; }
     }
 }

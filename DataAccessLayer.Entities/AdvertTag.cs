@@ -6,6 +6,7 @@ namespace DataAccess.Entities
 {
     /// <summary>
     /// Cущность для связи Many-to-Many Advertisement-Tag
+    /// https://metanit.com/sharp/entityframework/3.8.php
     /// </summary>
     public class AdvertTag
     {

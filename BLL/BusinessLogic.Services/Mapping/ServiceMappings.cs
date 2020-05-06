@@ -14,22 +14,37 @@ namespace BusinessLogic.Services.Mapping
     {
         public ServiceMappings()
         {
+            CreateMap<TagDto, Tag>()
+                .ForMember(d => d.Id, opt => opt.Ignore())
+                .ForMember(d => d.Advertisements, opt => opt.Ignore());
+                
+
+            CreateMap<TagDto,AdvertTag>()
+                .ForMember(d => d.TagId, opt => opt.MapFrom(m => m.Id))
+                .ForPath(d => d.Tag.TagText, opt => opt.MapFrom(m => m.TagText))
+                .ForMember(d => d.AdvertId, opt => opt.Ignore())
+                .ForMember(d => d.Advertisement, opt => opt.Ignore());
+
+            //.ForPath нужно для вложенностей d.Tag.TagText
+            //https://stackoverflow.com/questions/46034426/how-to-map-nested-child-object-properties-in-automapper
 
 
 
-            CreateMap<Tag, TagDto>();
+
+
             CreateMap<AdvertTag, TagDto>()
                 .ForMember(d => d.Id, opt => opt.MapFrom(m => m.TagId))
                 .ForMember(d => d.TagText, opt => opt.MapFrom(m => m.Tag.TagText));
             CreateMap<Category, CategoryDto>();
             CreateMap<Comment, CommentDto>();
-            CreateMap<Advertisement, AdvertisementDto>();
+            CreateMap<Advertisement, AdvertisementDto>()
+                .ForMember(d => d.Tags, opt => opt.Ignore());
                 //.ForMember(d => d.CategoryId, opt => opt.MapFrom(s => s.Category != null ? s.Category.Id : (int?)null));
             CreateMap<CommentDto, Comment>()
                 .ForMember(d => d.CommentDate, opt => opt.Ignore());
             CreateMap<AdvertisementDto, Advertisement>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
-                .ForMember(d => d.Tags, opt => opt.Ignore())
+                .ForMember(d => d.AdvertTags, opt => opt.Ignore())
                 .ForMember(d => d.Comments, opt => opt.Ignore())
                 .ForMember(d => d.Category, opt => opt.Ignore());
             CreateMap<CategoryDto, Category>();
@@ -41,6 +56,8 @@ namespace BusinessLogic.Services.Mapping
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.Childs, opt => opt.Ignore())
                 .ForMember(d => d.ParentCategory, opt => opt.Ignore());
+
+
 
 
         }
