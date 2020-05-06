@@ -11,6 +11,8 @@
     <Compile Remove="Migrations\20200419194028_UserEmailsToAdvWereAdded.Designer.cs" />
     <Compile Remove="Migrations\20200419194149_UserEmailsToAdvWereAdded.cs" />
     <Compile Remove="Migrations\20200419194149_UserEmailsToAdvWereAdded.Designer.cs" />
+    <Compile Remove="Migrations\20200505233007_TagsWereAdded_2.cs" />
+    <Compile Remove="Migrations\20200505233007_TagsWereAdded_2.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

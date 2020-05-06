@@ -24,16 +24,19 @@ namespace BusinessLogic.Services
     {
         private readonly IMapper _mapper;
         private readonly IAdvertisementRepository _advertisementRepository;
-        private readonly ICategoryRepository _CategoryRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly ITagRepository _tagRepository;
 
         public AdvertisementService(
             IMapper mapper,
             IAdvertisementRepository advertisementRepository,
-            ICategoryRepository CategoryRepository)
+            ICategoryRepository categoryRepository,
+            ITagRepository tagRepository)
         {
             _mapper = mapper;
             _advertisementRepository = advertisementRepository;
-            _CategoryRepository = CategoryRepository;
+            _categoryRepository = categoryRepository;
+            _tagRepository = tagRepository;
         }
 
         /// <inheritdoc />
@@ -42,7 +45,7 @@ namespace BusinessLogic.Services
             ICollection<Advertisement> entities;
             if (categoryId.HasValue)
             {
-                var categories = await _CategoryRepository.GetAllChildIds(categoryId.Value);
+                var categories = await _categoryRepository.GetAllChildIds(categoryId.Value);
                 categories.Add(categoryId.Value);
                 entities = await _advertisementRepository.GetPaged(categories.ToArray(), page, pageSize);
             }
@@ -65,27 +68,6 @@ namespace BusinessLogic.Services
         }
 
 
-        /*
-        /// <inheritdoc />
-        public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
-        {
-            try
-            {
-                Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
-                await _advertisementRepository.Add(entity);
-
-            }
-            catch (Exception e)
-            {
-                return OperationResult<bool>.Failed(new[] { e.Message });
-            }
-            return OperationResult<bool>.Ok(true);
-        }
-
-    */
-
-
-
 
         public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
         {
@@ -96,9 +78,14 @@ namespace BusinessLogic.Services
                     throw new ArgumentNullException(nameof(advertisementDto));
                 }
 
+                foreach (var tagDto in advertisementDto.Tags)
+                {
+                    await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                }
 
                 Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
                 await _advertisementRepository.Add(entity);
+
             }
             catch (Exception e)
             {

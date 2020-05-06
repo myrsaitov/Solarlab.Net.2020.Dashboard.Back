@@ -18,13 +18,17 @@ namespace DataAccess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
+            
+            //Many-To-Many
             modelBuilder.Entity<AdvertTag>()
             .HasKey(t => new { t.AdvertId, t.TagId });
-
+            
+           
+            
+            
             modelBuilder.Entity<AdvertTag>()
                 .HasOne(pt => pt.Advertisement)
-                .WithMany(p => p.Tags)
+                .WithMany(p => p.AdvertTags)
                 .HasForeignKey(pt => pt.AdvertId);
 
             modelBuilder.Entity<AdvertTag>()

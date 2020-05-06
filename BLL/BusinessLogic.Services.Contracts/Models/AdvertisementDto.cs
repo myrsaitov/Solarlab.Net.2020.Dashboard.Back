@@ -50,5 +50,6 @@ namespace BusinessLogic.Services.Contracts.Models
         /// Теги
         /// </summary>
         public ICollection<TagDto> Tags { get; set; }
+
     }
 }

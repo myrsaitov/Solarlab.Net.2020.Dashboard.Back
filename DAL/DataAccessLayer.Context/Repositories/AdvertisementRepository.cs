@@ -63,7 +63,7 @@ namespace DataAccess.Context.Repositories
                 .Include(x => x.Category)
                 //.Include(x => x.Category.ChildCategories)
                // .Include(x => x.Category.ParentCategory)
-                .Include(x => x.Tags)
+                .Include(x => x.AdvertTags)
                 .AsNoTracking()
                 .Skip(skip)
                 .Take(pageSize)
