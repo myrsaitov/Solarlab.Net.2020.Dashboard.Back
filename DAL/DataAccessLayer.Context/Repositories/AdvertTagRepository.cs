@@ -11,27 +11,27 @@ using System.Threading.Tasks;
 namespace DataAccess.Context.Repositories
 {
 
-    public class TagRepository : ITagRepository
+    public class AdvertTagRepository : IAdvertTagRepository
     {
         #region Private fields
 
         private readonly Context _dbContext;
-        DbSet<Tag> _dbSet;
+        DbSet<AdvertTag> _dbSet;
         #endregion
 
         #region Ctor
 
-        public TagRepository(Context dbContext)
+        public AdvertTagRepository(Context dbContext)
         {
             _dbContext = dbContext;
-            _dbSet = dbContext.Set<Tag>();
+            _dbSet = dbContext.Set<AdvertTag>();
         }
 
 
         #endregion
 
-        #region ITagRepository implementation
-        public void Create(Tag item)
+        #region IAdvertTagRepository implementation
+        public void Create(AdvertTag item)
         {
             _dbSet.Add(item);
             _dbContext.SaveChanges();
@@ -44,9 +44,9 @@ namespace DataAccess.Context.Repositories
         /// Получить все объявления
         /// </summary>
         /// <returns></returns>
-        public async Task<ICollection<Tag>> GetAll()
+        public async Task<ICollection<AdvertTag>> GetAll()
         {
-            return await _dbContext.Tags.AsNoTracking().ToArrayAsync();
+            return await _dbContext.AdvertTags.AsNoTracking().ToArrayAsync();
         }
 
 
@@ -55,40 +55,38 @@ namespace DataAccess.Context.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Tag> GetById(int id)
+        public async Task<AdvertTag> GetById(int id)
         {
             //// include
-            //return _dbContext.Tags
+            //return _dbContext.AdvertTags
             //    .Include(x => x.Comments)
             //    .Include(x => x.Category)
             //    .SingleOrDefault(x => x.Id == id);
             //without include use only with lazyloading
-            return await _dbContext.Tags.FindAsync(id);
+            return await _dbContext.AdvertTags.FindAsync(id);
         }
 
         /// <summary>
         /// Добавить объявление
         /// </summary>
         /// <param name="tag">Сущность для добавления</param>
-        public async Task<int> Add(Tag tag)
+        public async Task Add(AdvertTag tag)
         {
-            await _dbContext.Tags.AddAsync(tag);
+            await _dbContext.AdvertTags.AddAsync(tag);
             await _dbContext.SaveChangesAsync();
-
-            return tag.Id;
         }
 
         /// <summary>
         /// Обновить объявление
         /// </summary>
         /// <param name="tag">Сущность для обновления</param>
-        /*public Task Update(Tag tag)
+        /*public Task Update(AdvertTag tag)
         {
-            _dbContext.Tags.Update(tag);
+            _dbContext.AdvertTags.Update(tag);
             return Task.CompletedTask;
         }*/
 
-        public async Task Update(Tag item)
+        public async Task Update(AdvertTag item)
         {
             _dbContext.Entry(item).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
@@ -102,11 +100,11 @@ namespace DataAccess.Context.Repositories
         /// <param name="id">Идентификатор сущности для удаления</param>
         public async Task Delete(int id)
         {
-            var entity = await _dbContext.Tags.FindAsync(id);
+            var entity = await _dbContext.AdvertTags.FindAsync(id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
-                _dbContext.Tags.Remove(entity);
+                _dbContext.AdvertTags.Remove(entity);
                 await _dbContext.SaveChangesAsync();
             }
         }

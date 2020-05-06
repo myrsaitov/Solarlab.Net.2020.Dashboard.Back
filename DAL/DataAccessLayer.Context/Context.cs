@@ -15,6 +15,9 @@ namespace DataAccess.Context
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<AdvertTag> AdvertTags { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

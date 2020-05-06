@@ -26,12 +26,14 @@ namespace BusinessLogic.Services
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ITagRepository _tagRepository;
+        private readonly IAdvertTagRepository _adverttagRepository;
 
         public AdvertisementService(
             IMapper mapper,
             IAdvertisementRepository advertisementRepository,
             ICategoryRepository categoryRepository,
-            ITagRepository tagRepository)
+            ITagRepository tagRepository,
+            IAdvertTagRepository adverttagRepository)
         {
             _mapper = mapper;
             _advertisementRepository = advertisementRepository;
@@ -78,9 +80,15 @@ namespace BusinessLogic.Services
                     throw new ArgumentNullException(nameof(advertisementDto));
                 }
 
+                //AdvertTag _adverttag;
+                //_adverttag.AdvertId
+                //await _advertagRepository.Add();
+                int dbId;
+
                 foreach (var tagDto in advertisementDto.Tags)
                 {
-                    await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                    dbId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                    
                 }
 
                 Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
