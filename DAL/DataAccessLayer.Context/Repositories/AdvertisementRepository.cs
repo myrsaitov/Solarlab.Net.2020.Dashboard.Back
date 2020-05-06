@@ -95,12 +95,6 @@ namespace DataAccess.Context.Repositories
         /// <returns></returns>
         public async Task<Advertisement> GetById(int id)
         {
-            //// include
-            //return _dbContext.Advertisements
-            //    .Include(x => x.Comments)
-            //    .Include(x => x.Category)
-            //    .SingleOrDefault(x => x.Id == id);
-            //without include use only with lazyloading
             return await _dbContext.Advertisements.FindAsync(id);
         }
 

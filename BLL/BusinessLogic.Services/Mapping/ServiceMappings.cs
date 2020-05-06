@@ -14,6 +14,8 @@ namespace BusinessLogic.Services.Mapping
     {
         public ServiceMappings()
         {
+            CreateMap<Tag, TagDto>();
+
             CreateMap<TagDto, Tag>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.Advertisements, opt => opt.Ignore());

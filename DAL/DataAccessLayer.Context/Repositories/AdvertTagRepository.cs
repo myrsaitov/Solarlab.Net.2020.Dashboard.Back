@@ -55,7 +55,7 @@ namespace DataAccess.Context.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<AdvertTag> GetById(int id)
+        public async Task<List<AdvertTag>> GetById(int id)
         {
             //// include
             //return _dbContext.AdvertTags
@@ -63,7 +63,11 @@ namespace DataAccess.Context.Repositories
             //    .Include(x => x.Category)
             //    .SingleOrDefault(x => x.Id == id);
             //without include use only with lazyloading
-            return await _dbContext.AdvertTags.FindAsync(id);
+
+
+            return await _dbContext.AdvertTags.Where(x => x.AdvertId == id).ToListAsync();
+            
+            //return await _dbContext.AdvertTags.FindAsync(id);
         }
 
         /// <summary>

@@ -64,12 +64,44 @@ namespace BusinessLogic.Services
         /// <inheritdoc />
         public async Task<OperationResult<AdvertisementDto>> GetById(int id)
         {
-            Advertisement entity = await _advertisementRepository.GetById(id);
-            if (entity == null)
+            AdvertisementDto entityDto;
+
+            try
             {
-                throw new EntityNotFoundException(id, "Объявление");
+
+                Advertisement entity = await _advertisementRepository.GetById(id);
+
+                if (entity == null)
+                {
+                    throw new EntityNotFoundException(id, "Объявление");
+                }
+
+                entityDto = _mapper.Map<AdvertisementDto>(entity);
+
+                var entityAdvertTag = await _adverttagRepository.GetById(id);
+
+                int TagIndex = 0;
+
+
+                Tag _tagentity;
+                TagDto _tagdtoentity;
+
+                entityDto.Tags = new List<TagDto>();
+
+                foreach (var advtag in entityAdvertTag)
+                {
+                    TagIndex = advtag.TagId;
+                    _tagentity = await _tagRepository.GetById(TagIndex);
+                    _tagdtoentity = _mapper.Map<TagDto>(_tagentity);
+                    entityDto.Tags.Add(_tagdtoentity);
+                }
             }
-            return OperationResult<AdvertisementDto>.Ok(_mapper.Map<AdvertisementDto>(entity));
+            catch (Exception e)
+            {
+                return OperationResult<AdvertisementDto>.Failed(new[] {e.Message});
+            }
+
+            return OperationResult<AdvertisementDto>.Ok(entityDto);
         }
 
 
