@@ -20,9 +20,11 @@ namespace BusinessLogic.Services.Mapping
                 
 
             CreateMap<TagDto,AdvertTag>()
-                .ForMember(d => d.TagId, opt => opt.MapFrom(m => m.Id))
-                .ForPath(d => d.Tag.TagText, opt => opt.MapFrom(m => m.TagText))
+                //.ForMember(d => d.TagId, opt => opt.MapFrom(m => m.Id))
+                //.ForPath(d => d.Tag.TagText, opt => opt.MapFrom(m => m.TagText))
+                .ForMember(d => d.TagId, opt => opt.Ignore())
                 .ForMember(d => d.AdvertId, opt => opt.Ignore())
+                .ForMember(d => d.Tag, opt => opt.Ignore())
                 .ForMember(d => d.Advertisement, opt => opt.Ignore());
 
             //.ForPath нужно для вложенностей d.Tag.TagText

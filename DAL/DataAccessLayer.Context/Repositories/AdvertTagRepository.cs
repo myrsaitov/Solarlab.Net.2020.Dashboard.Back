@@ -76,15 +76,7 @@ namespace DataAccess.Context.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-        /// <summary>
-        /// Обновить объявление
-        /// </summary>
-        /// <param name="tag">Сущность для обновления</param>
-        /*public Task Update(AdvertTag tag)
-        {
-            _dbContext.AdvertTags.Update(tag);
-            return Task.CompletedTask;
-        }*/
+
 
         public async Task Update(AdvertTag item)
         {

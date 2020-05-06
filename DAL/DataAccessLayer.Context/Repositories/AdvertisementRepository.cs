@@ -108,10 +108,11 @@ namespace DataAccess.Context.Repositories
         /// Добавить объявление
         /// </summary>
         /// <param name="advertisement">Сущность для добавления</param>
-        public async Task Add(Advertisement advertisement)
+        public async Task<int> Add(Advertisement advertisement)
         {
             await _dbContext.Advertisements.AddAsync(advertisement);
             await _dbContext.SaveChangesAsync();
+            return advertisement.Id;
         }
 
         /// <summary>

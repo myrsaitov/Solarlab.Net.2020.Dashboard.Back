@@ -45,7 +45,7 @@ namespace DataAccess.Repositories.Abstractions
         /// Добавить объявление
         /// </summary>
         /// <param name="advertisement">Сущность для добавления</param>
-        Task Add(Advertisement advertisement);
+        Task<int> Add(Advertisement advertisement);
 
         /// <summary>
         /// Обновить объявление

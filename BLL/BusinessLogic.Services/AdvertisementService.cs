@@ -28,6 +28,8 @@ namespace BusinessLogic.Services
         private readonly ITagRepository _tagRepository;
         private readonly IAdvertTagRepository _adverttagRepository;
 
+        
+
         public AdvertisementService(
             IMapper mapper,
             IAdvertisementRepository advertisementRepository,
@@ -39,6 +41,7 @@ namespace BusinessLogic.Services
             _advertisementRepository = advertisementRepository;
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
+            _adverttagRepository = adverttagRepository;
         }
 
         /// <inheritdoc />
@@ -80,19 +83,23 @@ namespace BusinessLogic.Services
                     throw new ArgumentNullException(nameof(advertisementDto));
                 }
 
-                //AdvertTag _adverttag;
-                //_adverttag.AdvertId
-                //await _advertagRepository.Add();
-                int dbId;
-
-                foreach (var tagDto in advertisementDto.Tags)
-                {
-                    dbId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
-                    
-                }
+             
 
                 Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
-                await _advertisementRepository.Add(entity);
+                int dvertisement_dbId = await _advertisementRepository.Add(entity);
+
+                
+                
+                
+                var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
+                _adverttag.AdvertId = dvertisement_dbId;
+
+                int tag_dbId;
+                foreach (var tagDto in advertisementDto.Tags)
+                {
+                    _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                    await _adverttagRepository.Add(_adverttag);
+                }
 
             }
             catch (Exception e)
