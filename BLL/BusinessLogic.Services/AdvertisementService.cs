@@ -123,16 +123,20 @@ namespace BusinessLogic.Services
                 
                 
                 
-                var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
-                _adverttag.AdvertId = dvertisement_dbId;
 
-                int tag_dbId;
-                foreach (var tagDto in advertisementDto.Tags)
+                // Если из UI пришли tag, иначе ничего не делаем
+                if(advertisementDto.Tags.Count()  > 0)
                 {
-                    _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
-                    await _adverttagRepository.Add(_adverttag);
-                }
+                    var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
+                    _adverttag.AdvertId = dvertisement_dbId;
 
+                    int tag_dbId;
+                    foreach (var tagDto in advertisementDto.Tags)
+                    {
+                        _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                        await _adverttagRepository.Add(_adverttag);
+                    }
+                }
             }
             catch (Exception e)
             {
