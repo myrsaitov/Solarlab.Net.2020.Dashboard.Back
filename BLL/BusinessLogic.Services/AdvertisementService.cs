@@ -106,7 +106,7 @@ namespace BusinessLogic.Services
 
 
 
-        public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
+        public async Task<OperationResult<bool>>Create(AdvertisementDto advertisementDto)
         {
             try
             {
@@ -114,15 +114,8 @@ namespace BusinessLogic.Services
                 {
                     throw new ArgumentNullException(nameof(advertisementDto));
                 }
-
-             
-
                 Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
                 int dvertisement_dbId = await _advertisementRepository.Add(entity);
-
-                
-                
-                
 
                 // Если из UI пришли tag, иначе ничего не делаем
                 if(advertisementDto.Tags.Count()  > 0)
