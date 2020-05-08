@@ -123,7 +123,7 @@ namespace BusinessLogic.Services
                     var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
                     _adverttag.AdvertId = dvertisement_dbId;
 
-                    int tag_dbId;
+                    //int tag_dbId;
                     foreach (var tagDto in advertisementDto.Tags)
                     {
                         _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
@@ -159,7 +159,35 @@ namespace BusinessLogic.Services
                 var advert = await _advertisementRepository.GetById(advertisementDto.Id);
                 _mapper.Map<AdvertisementDto, Advertisement>(advertisementDto, advert);
 
+                //Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
+
+
+                // int dvertisement_dbId = await _advertisementRepository.Add(entity);
+                int dvertisement_dbId = advertisementDto.Id;
+
+
+                // Удаляем старые связи
+                await _adverttagRepository.Delete(dvertisement_dbId);
+
+
+                // Если из UI пришли tag, иначе ничего не делаем
+                if (advertisementDto.Tags.Count() > 0)
+                {
+                    var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
+                    _adverttag.AdvertId = dvertisement_dbId;
+
+                    //int tag_dbId;
+                    foreach (var tagDto in advertisementDto.Tags)
+                    {
+                        _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                        await _adverttagRepository.Add(_adverttag);
+                    }
+                }
+
+
                 await _advertisementRepository.Update(advert);
+                //await _advertisementRepository.Update(entity);
+
             }
             catch (Exception e)
             {
@@ -173,6 +201,9 @@ namespace BusinessLogic.Services
         {
             try
             {
+                // Удаляем старые связи
+                await _adverttagRepository.Delete(id);
+
                 await _advertisementRepository.Delete(id);
             }
             catch (Exception e)

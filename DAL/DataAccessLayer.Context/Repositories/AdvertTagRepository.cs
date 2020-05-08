@@ -96,13 +96,26 @@ namespace DataAccess.Context.Repositories
         /// <param name="id">Идентификатор сущности для удаления</param>
         public async Task Delete(int id)
         {
-            var entity = await _dbContext.AdvertTags.FindAsync(id);
-            if (entity != null)
+            //var entity = await _dbContext.AdvertTags.FindAsync(id);
+
+
+            var entityList = await _dbContext.AdvertTags.Where(x => x.AdvertId == id).ToListAsync();
+
+
+
+
+            foreach (var entity in entityList)
             {
-                _dbSet.Remove(entity);
-                _dbContext.AdvertTags.Remove(entity);
-                await _dbContext.SaveChangesAsync();
+                if (entity != null)
+                {
+                    _dbSet.Remove(entity);
+                    _dbContext.AdvertTags.Remove(entity);
+                    await _dbContext.SaveChangesAsync();
+                }
             }
+
+
+
         }
 
 
