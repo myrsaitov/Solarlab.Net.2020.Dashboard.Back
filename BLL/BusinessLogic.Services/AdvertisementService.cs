@@ -242,15 +242,10 @@ namespace BusinessLogic.Services
             try
             {
 
-                //Advertisement entity = await _advertisementRepository.GetById(36);
-
                 Advertisement entity = new Advertisement();
 
-               entityDto = _mapper.Map<AdvertisementDto>(entity);
+                entityDto = _mapper.Map<AdvertisementDto>(entity);
 
-               // var entityAdvertTag = await _adverttagRepository.GetById(36);
-
-               // int TagIndex = 0;
 
 
                // Tag _tagentity;
@@ -262,7 +257,7 @@ namespace BusinessLogic.Services
                 entityDto.Tags = new List<TagDto>();
                 foreach (var alltag in TagsEnt)
                 {
-                    TagCount = 1;
+                    TagCount = await _adverttagRepository.GetTagsCountById(alltag.Id); ;
                     alltag.TagText += "("+ TagCount + ")";
                     _tagdtoentity = _mapper.Map<TagDto>(alltag);
                     entityDto.Tags.Add(_tagdtoentity);

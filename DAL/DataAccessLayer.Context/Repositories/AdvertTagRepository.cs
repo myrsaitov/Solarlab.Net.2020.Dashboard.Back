@@ -118,7 +118,18 @@ namespace DataAccess.Context.Repositories
 
         }
 
+        public async Task<int> GetTagsCountById(int id)
+        {
 
+
+            List<AdvertTag> TagList = new List<AdvertTag>();
+
+            TagList = await _dbContext.AdvertTags.Where(x => x.TagId == id).ToListAsync();
+
+            return TagList.Count;
+
+            //return await _dbContext.AdvertTags.FindAsync(id);
+        }
         #endregion
     }
 }
