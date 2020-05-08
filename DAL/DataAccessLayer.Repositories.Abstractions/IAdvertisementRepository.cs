@@ -59,6 +59,6 @@ namespace DataAccess.Repositories.Abstractions
         /// <param name="id">Идентификатор сущности для удаления</param>
         Task Delete(int id);
 
-        Task<Advertisement> GetAllTags();
+
     }
 }
