@@ -95,12 +95,6 @@ namespace DataAccess.Context.Repositories
         /// <returns></returns>
         public async Task<Advertisement> GetById(int id)
         {
-            //// include
-            //return _dbContext.Advertisements
-            //    .Include(x => x.Comments)
-            //    .Include(x => x.Category)
-            //    .SingleOrDefault(x => x.Id == id);
-            //without include use only with lazyloading
             return await _dbContext.Advertisements.FindAsync(id);
         }
 
@@ -108,10 +102,11 @@ namespace DataAccess.Context.Repositories
         /// Добавить объявление
         /// </summary>
         /// <param name="advertisement">Сущность для добавления</param>
-        public async Task Add(Advertisement advertisement)
+        public async Task<int> Add(Advertisement advertisement)
         {
             await _dbContext.Advertisements.AddAsync(advertisement);
             await _dbContext.SaveChangesAsync();
+            return advertisement.Id;
         }
 
         /// <summary>
@@ -147,7 +142,10 @@ namespace DataAccess.Context.Repositories
             }
         }
 
-
+        public async Task<Advertisement> GetAllTags()
+        {
+            return await _dbContext.Advertisements.FindAsync(36);
+        }
         #endregion
     }
 }

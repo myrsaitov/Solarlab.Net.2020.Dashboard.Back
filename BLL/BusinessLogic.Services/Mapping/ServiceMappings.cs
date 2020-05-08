@@ -14,15 +14,19 @@ namespace BusinessLogic.Services.Mapping
     {
         public ServiceMappings()
         {
+            CreateMap<Tag, TagDto>();
+
             CreateMap<TagDto, Tag>()
                 .ForMember(d => d.Id, opt => opt.Ignore())
                 .ForMember(d => d.Advertisements, opt => opt.Ignore());
                 
 
             CreateMap<TagDto,AdvertTag>()
-                .ForMember(d => d.TagId, opt => opt.MapFrom(m => m.Id))
-                .ForPath(d => d.Tag.TagText, opt => opt.MapFrom(m => m.TagText))
+                //.ForMember(d => d.TagId, opt => opt.MapFrom(m => m.Id))
+                //.ForPath(d => d.Tag.TagText, opt => opt.MapFrom(m => m.TagText))
+                .ForMember(d => d.TagId, opt => opt.Ignore())
                 .ForMember(d => d.AdvertId, opt => opt.Ignore())
+                .ForMember(d => d.Tag, opt => opt.Ignore())
                 .ForMember(d => d.Advertisement, opt => opt.Ignore());
 
             //.ForPath нужно для вложенностей d.Tag.TagText

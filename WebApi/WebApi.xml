@@ -54,6 +54,11 @@
             <param name="model">модель комментария</param>
             <returns>IActionResult</returns>
         </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.GetAllTags">
+            <summary>
+            Получить полный список тагов всех объявлений
+            </summary>
+        </member>
         <member name="T:WebApi.Controllers.AccountController">
             <summary>
             Контролер логина и регистрации пользователя

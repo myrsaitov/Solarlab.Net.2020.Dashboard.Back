@@ -24,6 +24,8 @@ namespace BusinessLogic.Services.Abstractions
         /// <returns>OperationResult</returns>
         Task<OperationResult<AdvertisementDto>> GetById(int id);
 
+        Task<OperationResult<AdvertisementDto>> GetAllTags();
+
         /// <summary>
         /// Создание объявления
         /// </summary>

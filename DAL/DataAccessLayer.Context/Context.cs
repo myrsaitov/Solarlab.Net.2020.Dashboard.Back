@@ -15,6 +15,9 @@ namespace DataAccess.Context
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
+
+        public DbSet<AdvertTag> AdvertTags { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -89,6 +92,11 @@ namespace DataAccess.Context
                     Id = 6,
                     Name = "Косметика",
                 },
+                    new Category
+               {
+                     Id = 7,
+                        Name = "Животные",
+               },
            };
             modelBuilder.Entity<Category>().HasData(categories);
         }

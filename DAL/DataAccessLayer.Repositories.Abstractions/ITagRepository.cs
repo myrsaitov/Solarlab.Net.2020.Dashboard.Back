@@ -10,7 +10,7 @@ namespace DataAccess.Repositories.Abstractions
     {
         Task<ICollection<Tag>> GetAll();
         Task<Tag> GetById(int tagId);
-        Task Add(Tag tag);
+        Task<int> Add(Tag tag);
         Task Update(Tag tag);
         Task Delete(int tagId);
     }

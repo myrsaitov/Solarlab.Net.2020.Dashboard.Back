@@ -30,6 +30,7 @@ namespace Dashboard.Console
                 .AddTransient<ICategoryRepository, CategoryRepository>()
                 .AddTransient<ICommentRepository, CommentsRepository>()
                 .AddTransient<ITagRepository, TagRepository>()
+                .AddTransient<IAdvertTagRepository, AdvertTagRepository>()
                 .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
                 .BuildServiceProvider();
             System.Console.WriteLine("Hello World!");

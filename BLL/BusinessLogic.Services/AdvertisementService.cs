@@ -26,17 +26,22 @@ namespace BusinessLogic.Services
         private readonly IAdvertisementRepository _advertisementRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ITagRepository _tagRepository;
+        private readonly IAdvertTagRepository _adverttagRepository;
+
+        
 
         public AdvertisementService(
             IMapper mapper,
             IAdvertisementRepository advertisementRepository,
             ICategoryRepository categoryRepository,
-            ITagRepository tagRepository)
+            ITagRepository tagRepository,
+            IAdvertTagRepository adverttagRepository)
         {
             _mapper = mapper;
             _advertisementRepository = advertisementRepository;
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
+            _adverttagRepository = adverttagRepository;
         }
 
         /// <inheritdoc />
@@ -59,17 +64,49 @@ namespace BusinessLogic.Services
         /// <inheritdoc />
         public async Task<OperationResult<AdvertisementDto>> GetById(int id)
         {
-            Advertisement entity = await _advertisementRepository.GetById(id);
-            if (entity == null)
+            AdvertisementDto entityDto;
+
+            try
             {
-                throw new EntityNotFoundException(id, "Объявление");
+
+                Advertisement entity = await _advertisementRepository.GetById(id);
+
+                if (entity == null)
+                {
+                    throw new EntityNotFoundException(id, "Объявление");
+                }
+
+                entityDto = _mapper.Map<AdvertisementDto>(entity);
+
+                var entityAdvertTag = await _adverttagRepository.GetById(id);
+
+                int TagIndex = 0;
+
+
+                Tag _tagentity;
+                TagDto _tagdtoentity;
+
+                entityDto.Tags = new List<TagDto>();
+
+                foreach (var advtag in entityAdvertTag)
+                {
+                    TagIndex = advtag.TagId;
+                    _tagentity = await _tagRepository.GetById(TagIndex);
+                    _tagdtoentity = _mapper.Map<TagDto>(_tagentity);
+                    entityDto.Tags.Add(_tagdtoentity);
+                }
             }
-            return OperationResult<AdvertisementDto>.Ok(_mapper.Map<AdvertisementDto>(entity));
+            catch (Exception e)
+            {
+                return OperationResult<AdvertisementDto>.Failed(new[] {e.Message});
+            }
+
+            return OperationResult<AdvertisementDto>.Ok(entityDto);
         }
 
+  
 
-
-        public async Task<OperationResult<bool>> Create(AdvertisementDto advertisementDto)
+        public async Task<OperationResult<bool>>Create(AdvertisementDto advertisementDto)
         {
             try
             {
@@ -77,15 +114,22 @@ namespace BusinessLogic.Services
                 {
                     throw new ArgumentNullException(nameof(advertisementDto));
                 }
-
-                foreach (var tagDto in advertisementDto.Tags)
-                {
-                    await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
-                }
-
                 Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
-                await _advertisementRepository.Add(entity);
+                int dvertisement_dbId = await _advertisementRepository.Add(entity);
 
+                // Если из UI пришли tag, иначе ничего не делаем
+                if(advertisementDto.Tags.Count()  > 0)
+                {
+                    var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
+                    _adverttag.AdvertId = dvertisement_dbId;
+
+                    //int tag_dbId;
+                    foreach (var tagDto in advertisementDto.Tags)
+                    {
+                        _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                        await _adverttagRepository.Add(_adverttag);
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -115,7 +159,35 @@ namespace BusinessLogic.Services
                 var advert = await _advertisementRepository.GetById(advertisementDto.Id);
                 _mapper.Map<AdvertisementDto, Advertisement>(advertisementDto, advert);
 
+                //Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
+
+
+                // int dvertisement_dbId = await _advertisementRepository.Add(entity);
+                int dvertisement_dbId = advertisementDto.Id;
+
+
+                // Удаляем старые связи
+                await _adverttagRepository.Delete(dvertisement_dbId);
+
+
+                // Если из UI пришли tag, иначе ничего не делаем
+                if (advertisementDto.Tags.Count() > 0)
+                {
+                    var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
+                    _adverttag.AdvertId = dvertisement_dbId;
+
+                    //int tag_dbId;
+                    foreach (var tagDto in advertisementDto.Tags)
+                    {
+                        _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
+                        await _adverttagRepository.Add(_adverttag);
+                    }
+                }
+
+
                 await _advertisementRepository.Update(advert);
+                //await _advertisementRepository.Update(entity);
+
             }
             catch (Exception e)
             {
@@ -129,6 +201,9 @@ namespace BusinessLogic.Services
         {
             try
             {
+                // Удаляем старые связи
+                await _adverttagRepository.Delete(id);
+
                 await _advertisementRepository.Delete(id);
             }
             catch (Exception e)
@@ -159,5 +234,45 @@ namespace BusinessLogic.Services
                 return OperationResult<bool>.Ok(true);
             }
         }
+
+        public async Task<OperationResult<AdvertisementDto>> GetAllTags()
+        {
+            AdvertisementDto entityDto;
+
+            try
+            {
+
+                //Advertisement entity = await _advertisementRepository.GetById(36);
+
+                Advertisement entity = new Advertisement();
+
+               entityDto = _mapper.Map<AdvertisementDto>(entity);
+
+               // var entityAdvertTag = await _adverttagRepository.GetById(36);
+
+               // int TagIndex = 0;
+
+
+               // Tag _tagentity;
+                TagDto _tagdtoentity;
+
+                ICollection<Tag> TagsEnt;
+                TagsEnt = await _tagRepository.GetAll();
+                entityDto.Tags = new List<TagDto>();
+                foreach (var alltag in TagsEnt)
+                {
+                    _tagdtoentity = _mapper.Map<TagDto>(alltag);
+                    entityDto.Tags.Add(_tagdtoentity);
+                }
+            }
+            catch (Exception e)
+            {
+                return OperationResult<AdvertisementDto>.Failed(new[] { e.Message });
+            }
+
+            return OperationResult<AdvertisementDto>.Ok(entityDto);
+        }
+
+
     }
 }

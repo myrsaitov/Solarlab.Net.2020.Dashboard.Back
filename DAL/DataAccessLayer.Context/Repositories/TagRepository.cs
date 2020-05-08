@@ -37,24 +37,11 @@ namespace DataAccess.Context.Repositories
             _dbContext.SaveChanges();
         }
 
-
-
-
-        /// <summary>
-        /// Получить все объявления
-        /// </summary>
-        /// <returns></returns>
         public async Task<ICollection<Tag>> GetAll()
         {
             return await _dbContext.Tags.AsNoTracking().ToArrayAsync();
         }
 
-
-        /// <summary>
-        /// Получить объявление по идентификатору
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
         public async Task<Tag> GetById(int id)
         {
             //// include
@@ -66,25 +53,24 @@ namespace DataAccess.Context.Repositories
             return await _dbContext.Tags.FindAsync(id);
         }
 
-        /// <summary>
-        /// Добавить объявление
-        /// </summary>
-        /// <param name="tag">Сущность для добавления</param>
-        public async Task Add(Tag tag)
+        public async Task<int> Add(Tag tag)
         {
-            await _dbContext.Tags.AddAsync(tag);
-            await _dbContext.SaveChangesAsync();
-        }
+            var StrFind = tag.TagText;
 
-        /// <summary>
-        /// Обновить объявление
-        /// </summary>
-        /// <param name="tag">Сущность для обновления</param>
-        /*public Task Update(Tag tag)
-        {
-            _dbContext.Tags.Update(tag);
-            return Task.CompletedTask;
-        }*/
+            var tagFind = await _dbContext.Tags.Where(x => x.TagText == StrFind).ToListAsync();
+
+            if(tagFind.Count == 0)
+            { 
+                await _dbContext.Tags.AddAsync(tag);
+                await _dbContext.SaveChangesAsync();
+
+                return tag.Id;
+            }
+            else
+            {
+                return tagFind.Last().Id;
+            }
+        }
 
         public async Task Update(Tag item)
         {
@@ -92,12 +78,6 @@ namespace DataAccess.Context.Repositories
             await _dbContext.SaveChangesAsync();
         }
 
-
-
-        /// <summary>
-        /// Удалить объявление
-        /// </summary>
-        /// <param name="id">Идентификатор сущности для удаления</param>
         public async Task Delete(int id)
         {
             var entity = await _dbContext.Tags.FindAsync(id);

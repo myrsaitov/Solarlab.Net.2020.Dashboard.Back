@@ -30,7 +30,8 @@ namespace DataAccess.Context
                     .UseSqlServer(config.GetConnectionString("AdvertDb")))
                 .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
                 .AddTransient<ICategoryRepository, CategoryRepository>()
-                .AddTransient<ITagRepository, TagRepository>();
+                .AddTransient<ITagRepository, TagRepository>()
+                .AddTransient<IAdvertTagRepository, AdvertTagRepository>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()
