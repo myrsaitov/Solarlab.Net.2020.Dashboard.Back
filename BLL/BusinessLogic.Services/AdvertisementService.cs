@@ -255,12 +255,15 @@ namespace BusinessLogic.Services
 
                // Tag _tagentity;
                 TagDto _tagdtoentity;
+                int TagCount;
 
                 ICollection<Tag> TagsEnt;
                 TagsEnt = await _tagRepository.GetAll();
                 entityDto.Tags = new List<TagDto>();
                 foreach (var alltag in TagsEnt)
                 {
+                    TagCount = 1;
+                    alltag.TagText += "("+ TagCount + ")";
                     _tagdtoentity = _mapper.Map<TagDto>(alltag);
                     entityDto.Tags.Add(_tagdtoentity);
                 }
