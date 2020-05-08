@@ -142,7 +142,10 @@ namespace DataAccess.Context.Repositories
             }
         }
 
-
+        public async Task<Advertisement> GetAllTags()
+        {
+            return await _dbContext.Advertisements.FindAsync(36);
+        }
         #endregion
     }
 }

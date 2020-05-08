@@ -106,5 +106,15 @@ namespace WebApi.Controllers
         {
             return ProcessOperationResult(await _advertisementService.AddComment(advertisementId, Mapper.Map<CommentDto>(model)));
         }
+
+        /// <summary>
+        /// Получить полный список тагов всех объявлений
+        /// </summary>
+        [HttpGet("GetAllTags")]
+        public async Task<IActionResult> GetAllTags()
+        {
+            return await ProcessOperationResult(async () => await _advertisementService.GetAllTags());
+        }
+
     }
 }

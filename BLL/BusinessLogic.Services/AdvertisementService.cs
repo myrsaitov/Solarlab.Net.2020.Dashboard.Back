@@ -104,7 +104,7 @@ namespace BusinessLogic.Services
             return OperationResult<AdvertisementDto>.Ok(entityDto);
         }
 
-
+  
 
         public async Task<OperationResult<bool>>Create(AdvertisementDto advertisementDto)
         {
@@ -234,5 +234,45 @@ namespace BusinessLogic.Services
                 return OperationResult<bool>.Ok(true);
             }
         }
+
+        public async Task<OperationResult<AdvertisementDto>> GetAllTags()
+        {
+            AdvertisementDto entityDto;
+
+            try
+            {
+
+                //Advertisement entity = await _advertisementRepository.GetById(36);
+
+                Advertisement entity = new Advertisement();
+
+               entityDto = _mapper.Map<AdvertisementDto>(entity);
+
+               // var entityAdvertTag = await _adverttagRepository.GetById(36);
+
+               // int TagIndex = 0;
+
+
+               // Tag _tagentity;
+                TagDto _tagdtoentity;
+
+                ICollection<Tag> TagsEnt;
+                TagsEnt = await _tagRepository.GetAll();
+                entityDto.Tags = new List<TagDto>();
+                foreach (var alltag in TagsEnt)
+                {
+                    _tagdtoentity = _mapper.Map<TagDto>(alltag);
+                    entityDto.Tags.Add(_tagdtoentity);
+                }
+            }
+            catch (Exception e)
+            {
+                return OperationResult<AdvertisementDto>.Failed(new[] { e.Message });
+            }
+
+            return OperationResult<AdvertisementDto>.Ok(entityDto);
+        }
+
+
     }
 }
