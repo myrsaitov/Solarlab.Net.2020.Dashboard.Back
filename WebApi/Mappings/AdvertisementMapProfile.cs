@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Services.Contracts.Models;
-using WebApi.Models.Advertisements;
+using WebApi.Models.MyEvents;
 using WebApi.Models.Tags;
 using WebApi.Models.Comments;
 using DataAccess.Entities;
@@ -12,16 +12,16 @@ using WebApi.Models;
 
 namespace WebApi.Mappings
 {
-    public class AdvertisementMapProfile : Profile
+    public class MyEventMapProfile : Profile
     {
-        public AdvertisementMapProfile()
+        public MyEventMapProfile()
         {
-            CreateMap<AdvertisementCreateModel, AdvertisementDto>()
+            CreateMap<MyEventCreateModel, MyEventDto>()
                 .ForMember(s => s.Id, map => map.Ignore())
                 .ForMember(s => s.Comments, map => map.Ignore())
                 .ForMember(s => s.Category, map => map.Ignore());
                // .ForMember(s => s.CategoryId, map => map.MapFrom(m => m.CategoryId));
-            CreateMap<AdvertisementUpdateModel, AdvertisementDto>()
+            CreateMap<MyEventUpdateModel, MyEventDto>()
                 .ForMember(s => s.Comments, map => map.Ignore())
                 .ForMember(s => s.Category, map => map.Ignore())
                 .ForMember(s => s.CategoryId, map => map.MapFrom(m => m.CategoryId));

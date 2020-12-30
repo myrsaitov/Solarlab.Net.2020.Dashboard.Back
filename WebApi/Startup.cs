@@ -91,7 +91,7 @@ namespace WebApi
             Installer.ConfigureDbContext(services);
 
             services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()))
-                .AddTransient<IAdvertisementService, AdvertisementService>()
+                .AddTransient<IMyEventService, MyEventService>()
                 .AddTransient<ICategoryService, CategoryService>()
                 .AddTransient<IUserService, UserService>();
         }
@@ -140,7 +140,7 @@ namespace WebApi
         {
             var configuration = new MapperConfiguration(cfg =>
             {
-                cfg.AddProfile<AdvertisementMapProfile>();
+                cfg.AddProfile<MyEventMapProfile>();
                 cfg.AddProfile<ApplicationUserMapProfile>();
                 cfg.AddProfile<TagMapProfile>();
                 cfg.AddProfile<CommentMapProfile>();

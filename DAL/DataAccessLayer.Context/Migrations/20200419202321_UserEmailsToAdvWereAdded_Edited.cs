@@ -8,7 +8,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "eMail",
-                table: "Advertisements",
+                table: "MyEvents",
                 newName: "email");
         }
 
@@ -16,7 +16,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.RenameColumn(
                 name: "email",
-                table: "Advertisements",
+                table: "MyEvents",
                 newName: "eMail");
         }
     }

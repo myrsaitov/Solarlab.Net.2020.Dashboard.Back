@@ -20,65 +20,65 @@ namespace BusinessLogic.Services
     /// <summary>
     /// Реализация сервиса работы с объявлениями
     /// </summary>
-    public class AdvertisementService : IAdvertisementService
+    public class MyEventService : IMyEventService
     {
         private readonly IMapper _mapper;
-        private readonly IAdvertisementRepository _advertisementRepository;
+        private readonly IMyEventRepository _myeventRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly ITagRepository _tagRepository;
-        private readonly IAdvertTagRepository _adverttagRepository;
+        private readonly IMyEventTagRepository _adverttagRepository;
 
         
 
-        public AdvertisementService(
+        public MyEventService(
             IMapper mapper,
-            IAdvertisementRepository advertisementRepository,
+            IMyEventRepository myeventRepository,
             ICategoryRepository categoryRepository,
             ITagRepository tagRepository,
-            IAdvertTagRepository adverttagRepository)
+            IMyEventTagRepository adverttagRepository)
         {
             _mapper = mapper;
-            _advertisementRepository = advertisementRepository;
+            _myeventRepository = myeventRepository;
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
             _adverttagRepository = adverttagRepository;
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult<ICollection<AdvertisementDto>>> GetPaged(int? categoryId, int page, int pageSize)
+        public async Task<OperationResult<ICollection<MyEventDto>>> GetPaged(int? categoryId, int page, int pageSize)
         {
-            ICollection<Advertisement> entities;
+            ICollection<MyEvent> entities;
             if (categoryId.HasValue)
             {
                 var categories = await _categoryRepository.GetAllChildIds(categoryId.Value);
                 categories.Add(categoryId.Value);
-                entities = await _advertisementRepository.GetPaged(categories.ToArray(), page, pageSize);
+                entities = await _myeventRepository.GetPaged(categories.ToArray(), page, pageSize);
             }
             else
             {
-                entities = await _advertisementRepository.GetPaged(page, pageSize);
+                entities = await _myeventRepository.GetPaged(page, pageSize);
             }
-            return OperationResult<ICollection<AdvertisementDto>>.Ok(_mapper.Map<ICollection<AdvertisementDto>>(entities));
+            return OperationResult<ICollection<MyEventDto>>.Ok(_mapper.Map<ICollection<MyEventDto>>(entities));
         }
 
         /// <inheritdoc />
-        public async Task<OperationResult<AdvertisementDto>> GetById(int id)
+        public async Task<OperationResult<MyEventDto>> GetById(int id)
         {
-            AdvertisementDto entityDto;
+            MyEventDto entityDto;
 
             try
             {
 
-                Advertisement entity = await _advertisementRepository.GetById(id);
+                MyEvent entity = await _myeventRepository.GetById(id);
 
                 if (entity == null)
                 {
                     throw new EntityNotFoundException(id, "Объявление");
                 }
 
-                entityDto = _mapper.Map<AdvertisementDto>(entity);
+                entityDto = _mapper.Map<MyEventDto>(entity);
 
-                var entityAdvertTag = await _adverttagRepository.GetById(id);
+                var entityMyEventTag = await _adverttagRepository.GetById(id);
 
                 int TagIndex = 0;
 
@@ -88,7 +88,7 @@ namespace BusinessLogic.Services
 
                 entityDto.Tags = new List<TagDto>();
 
-                foreach (var advtag in entityAdvertTag)
+                foreach (var advtag in entityMyEventTag)
                 {
                     TagIndex = advtag.TagId;
                     _tagentity = await _tagRepository.GetById(TagIndex);
@@ -98,33 +98,33 @@ namespace BusinessLogic.Services
             }
             catch (Exception e)
             {
-                return OperationResult<AdvertisementDto>.Failed(new[] {e.Message});
+                return OperationResult<MyEventDto>.Failed(new[] {e.Message});
             }
 
-            return OperationResult<AdvertisementDto>.Ok(entityDto);
+            return OperationResult<MyEventDto>.Ok(entityDto);
         }
 
   
 
-        public async Task<OperationResult<bool>>Create(AdvertisementDto advertisementDto)
+        public async Task<OperationResult<bool>>Create(MyEventDto myeventDto)
         {
             try
             {
-                if (advertisementDto == null)
+                if (myeventDto == null)
                 {
-                    throw new ArgumentNullException(nameof(advertisementDto));
+                    throw new ArgumentNullException(nameof(myeventDto));
                 }
-                Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
-                int dvertisement_dbId = await _advertisementRepository.Add(entity);
+                MyEvent entity = _mapper.Map<MyEvent>(myeventDto);
+                int dvertisement_dbId = await _myeventRepository.Add(entity);
 
                 // Если из UI пришли tag, иначе ничего не делаем
-                if(advertisementDto.Tags.Count()  > 0)
+                if(myeventDto.Tags.Count()  > 0)
                 {
-                    var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
-                    _adverttag.AdvertId = dvertisement_dbId;
+                    var _adverttag = _mapper.Map<MyEventTag>(myeventDto.Tags.Last());
+                    _adverttag.MyEventId = dvertisement_dbId;
 
                     //int tag_dbId;
-                    foreach (var tagDto in advertisementDto.Tags)
+                    foreach (var tagDto in myeventDto.Tags)
                     {
                         _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
                         await _adverttagRepository.Add(_adverttag);
@@ -152,18 +152,18 @@ namespace BusinessLogic.Services
 
 
         /// <inheritdoc />
-        public async Task<OperationResult<bool>> Update(AdvertisementDto advertisementDto)
+        public async Task<OperationResult<bool>> Update(MyEventDto myeventDto)
         {
             try
             {
-                var advert = await _advertisementRepository.GetById(advertisementDto.Id);
-                _mapper.Map<AdvertisementDto, Advertisement>(advertisementDto, advert);
+                var advert = await _myeventRepository.GetById(myeventDto.Id);
+                _mapper.Map<MyEventDto, MyEvent>(myeventDto, advert);
 
-                //Advertisement entity = _mapper.Map<Advertisement>(advertisementDto);
+                //MyEvent entity = _mapper.Map<MyEvent>(myeventDto);
 
 
-                // int dvertisement_dbId = await _advertisementRepository.Add(entity);
-                int dvertisement_dbId = advertisementDto.Id;
+                // int dvertisement_dbId = await _myeventRepository.Add(entity);
+                int dvertisement_dbId = myeventDto.Id;
 
 
                 // Удаляем старые связи
@@ -171,13 +171,13 @@ namespace BusinessLogic.Services
 
 
                 // Если из UI пришли tag, иначе ничего не делаем
-                if (advertisementDto.Tags.Count() > 0)
+                if (myeventDto.Tags.Count() > 0)
                 {
-                    var _adverttag = _mapper.Map<AdvertTag>(advertisementDto.Tags.Last());
-                    _adverttag.AdvertId = dvertisement_dbId;
+                    var _adverttag = _mapper.Map<MyEventTag>(myeventDto.Tags.Last());
+                    _adverttag.MyEventId = dvertisement_dbId;
 
                     //int tag_dbId;
-                    foreach (var tagDto in advertisementDto.Tags)
+                    foreach (var tagDto in myeventDto.Tags)
                     {
                         _adverttag.TagId = await _tagRepository.Add(_mapper.Map<Tag>(tagDto));
                         await _adverttagRepository.Add(_adverttag);
@@ -185,8 +185,8 @@ namespace BusinessLogic.Services
                 }
 
 
-                await _advertisementRepository.Update(advert);
-                //await _advertisementRepository.Update(entity);
+                await _myeventRepository.Update(advert);
+                //await _myeventRepository.Update(entity);
 
             }
             catch (Exception e)
@@ -204,7 +204,7 @@ namespace BusinessLogic.Services
                 // Удаляем старые связи
                 await _adverttagRepository.Delete(id);
 
-                await _advertisementRepository.Delete(id);
+                await _myeventRepository.Delete(id);
             }
             catch (Exception e)
             {
@@ -227,24 +227,24 @@ namespace BusinessLogic.Services
                 Comment comment = _mapper.Map<Comment>(commentDto);
                 comment.CommentDate = DateTime.UtcNow;
 
-                var advert = await _advertisementRepository.GetById(id);
+                var advert = await _myeventRepository.GetById(id);
                 advert.Comments.Add(comment);
 
-                await _advertisementRepository.Update(advert);
+                await _myeventRepository.Update(advert);
                 return OperationResult<bool>.Ok(true);
             }
         }
 
-        public async Task<OperationResult<AdvertisementDto>> GetAllTags()
+        public async Task<OperationResult<MyEventDto>> GetAllTags()
         {
-            AdvertisementDto entityDto;
+            MyEventDto entityDto;
 
             try
             {
 
-                Advertisement entity = new Advertisement();
+                MyEvent entity = new MyEvent();
 
-                entityDto = _mapper.Map<AdvertisementDto>(entity);
+                entityDto = _mapper.Map<MyEventDto>(entity);
 
 
 
@@ -265,44 +265,44 @@ namespace BusinessLogic.Services
             }
             catch (Exception e)
             {
-                return OperationResult<AdvertisementDto>.Failed(new[] { e.Message });
+                return OperationResult<MyEventDto>.Failed(new[] { e.Message });
             }
 
-            return OperationResult<AdvertisementDto>.Ok(entityDto);
+            return OperationResult<MyEventDto>.Ok(entityDto);
         }
 
 
-        public async Task<OperationResult<ICollection<AdvertisementDto>>> GetTagPaged(int? TagId, int page, int pageSize)
+        public async Task<OperationResult<ICollection<MyEventDto>>> GetTagPaged(int? TagId, int page, int pageSize)
         {
-            ICollection<AdvertisementDto> entities;
+            ICollection<MyEventDto> entities;
 
-            entities = new List<AdvertisementDto>();
+            entities = new List<MyEventDto>();
 
             if (TagId.HasValue)
             {
-                var entityAdvertTag = await _adverttagRepository.GetAdvById(TagId); ;
+                var entityMyEventTag = await _adverttagRepository.GetAdvById(TagId); ;
                
 
-                Advertisement entity = new Advertisement();
-                AdvertisementDto entityDto;
+                MyEvent entity = new MyEvent();
+                MyEventDto entityDto;
 
-               // List<AdvertisementDto> TagAdvertCol;
+               // List<MyEventDto> TagMyEventCol;
 
-               // TagAdvertCol = new List<AdvertisementDto>();
+               // TagMyEventCol = new List<MyEventDto>();
 
-                foreach (var advtag in entityAdvertTag)
+                foreach (var advtag in entityMyEventTag)
                 {
-                    entity = await _advertisementRepository.GetById(advtag.AdvertId);
-                    entityDto = _mapper.Map<AdvertisementDto>(entity);
+                    entity = await _myeventRepository.GetById(advtag.MyEventId);
+                    entityDto = _mapper.Map<MyEventDto>(entity);
                     entities.Add(entityDto);
                 }
 
             }
             else
             {
-                //entities = await _advertisementRepository.GetPaged(page, pageSize);
+                //entities = await _myeventRepository.GetPaged(page, pageSize);
             }
-            return OperationResult<ICollection<AdvertisementDto>>.Ok(_mapper.Map<ICollection<AdvertisementDto>>(entities));
+            return OperationResult<ICollection<MyEventDto>>.Ok(_mapper.Map<ICollection<MyEventDto>>(entities));
         }
 
 

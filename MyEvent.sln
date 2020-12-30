@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Services.Abst
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLogic.Services", "BLL\BusinessLogic.Services\BusinessLogic.Services.csproj", "{A1ACFC89-7E21-4FBC-9003-8C926782A5B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dashboard.Console", "Dashboard.Console\Dashboard.Console.csproj", "{FF3BDE84-22DE-4005-85EA-5026189A8FBD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyEvent.Console", "Dashboard.Console\MyEvent.Console.csproj", "{FF3BDE84-22DE-4005-85EA-5026189A8FBD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Context", "DAL\DataAccessLayer.Context\DataAccess.Context.csproj", "{A545341C-E71B-44EE-B704-B7C6C2E64EFA}"
 	ProjectSection(ProjectDependencies) = postProject

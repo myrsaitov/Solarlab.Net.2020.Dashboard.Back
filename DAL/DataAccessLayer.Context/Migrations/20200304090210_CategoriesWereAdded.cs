@@ -7,7 +7,7 @@ namespace DataAccess.Context.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Advertisements",
+                name: "MyEvents",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -16,7 +16,7 @@ namespace DataAccess.Context.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Advertisements", x => x.Id);
+                    table.PrimaryKey("PK_MyEvents", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -61,7 +61,7 @@ namespace DataAccess.Context.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Advertisements");
+                name: "MyEvents");
 
             migrationBuilder.DropTable(
                 name: "Categories");

@@ -19,53 +19,6 @@ namespace DataAccess.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
-                {
-                    b.Property<int>("AdvertId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TagId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AdvertId", "TagId");
-
-                    b.HasIndex("TagId");
-
-                    b.ToTable("AdvertTags");
-                });
-
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Body")
-                        .HasColumnType("nvarchar(2048)")
-                        .HasMaxLength(2048);
-
-                    b.Property<int?>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(256)")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("email")
-                        .HasColumnType("nvarchar(32)")
-                        .HasMaxLength(32);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.ToTable("Advertisements");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
@@ -205,9 +158,6 @@ namespace DataAccess.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdvertisementId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Body")
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
@@ -215,11 +165,61 @@ namespace DataAccess.Context.Migrations
                     b.Property<DateTime>("CommentDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int?>("MyEventId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertisementId");
+                    b.HasIndex("MyEventId");
 
                     b.ToTable("Comments");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Body")
+                        .HasColumnType("nvarchar(2048)")
+                        .HasMaxLength(2048);
+
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Deleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("email")
+                        .HasColumnType("nvarchar(32)")
+                        .HasMaxLength(32);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("MyEvents");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
+                {
+                    b.Property<int>("MyEventId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MyEventId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("MyEventTags");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Tag", b =>
@@ -369,28 +369,6 @@ namespace DataAccess.Context.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
-                {
-                    b.HasOne("DataAccess.Entities.Advertisement", "Advertisement")
-                        .WithMany("AdvertTags")
-                        .HasForeignKey("AdvertId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataAccess.Entities.Tag", "Tag")
-                        .WithMany("Advertisements")
-                        .HasForeignKey("TagId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
-                {
-                    b.HasOne("DataAccess.Entities.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId");
-                });
-
             modelBuilder.Entity("DataAccess.Entities.Category", b =>
                 {
                     b.HasOne("DataAccess.Entities.Category", "ParentCategory")
@@ -400,9 +378,31 @@ namespace DataAccess.Context.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Comment", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Advertisement", null)
+                    b.HasOne("DataAccess.Entities.MyEvent", null)
                         .WithMany("Comments")
-                        .HasForeignKey("AdvertisementId");
+                        .HasForeignKey("MyEventId");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
+                {
+                    b.HasOne("DataAccess.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+                });
+
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
+                {
+                    b.HasOne("DataAccess.Entities.MyEvent", "MyEvent")
+                        .WithMany("MyEventTags")
+                        .HasForeignKey("MyEventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataAccess.Entities.Tag", "Tag")
+                        .WithMany("MyEvents")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

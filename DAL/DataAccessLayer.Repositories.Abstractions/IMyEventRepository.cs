@@ -9,13 +9,13 @@ namespace DataAccess.Repositories.Abstractions
     /// <summary>
     /// Интерфейс репозитория объявлений
     /// </summary>
-    public interface IAdvertisementRepository
+    public interface IMyEventRepository
     {
         /// <summary>
         /// Получить все объявления
         /// </summary>
         /// <returns></returns>
-        Task<ICollection<Advertisement>> GetAll();
+        Task<ICollection<MyEvent>> GetAll();
 
         /// <summary>
         /// Получить объявления постранично
@@ -23,7 +23,7 @@ namespace DataAccess.Repositories.Abstractions
         /// <param name="page">Номер страницы</param>
         /// <param name="pageSize">Количество записей на странице</param>
         /// <returns></returns>
-        Task<ICollection<Advertisement>> GetPaged(int page, int pageSize);
+        Task<ICollection<MyEvent>> GetPaged(int page, int pageSize);
 
         /// <summary>
         /// Получить объявления попадающие в категории постранично
@@ -32,26 +32,26 @@ namespace DataAccess.Repositories.Abstractions
         /// <param name="page">Номер страницы</param>
         /// <param name="pageSize">Количество записей на странице</param>
         /// <returns></returns>
-        Task<ICollection<Advertisement>> GetPaged(int[] categoriesId, int page, int pageSize);
+        Task<ICollection<MyEvent>> GetPaged(int[] categoriesId, int page, int pageSize);
 
         /// <summary>
         /// Получить объявление по идентификатору
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<Advertisement> GetById(int id);
+        Task<MyEvent> GetById(int id);
 
         /// <summary>
         /// Добавить объявление
         /// </summary>
-        /// <param name="advertisement">Сущность для добавления</param>
-        Task<int> Add(Advertisement advertisement);
+        /// <param name="myevent">Сущность для добавления</param>
+        Task<int> Add(MyEvent myevent);
 
         /// <summary>
         /// Обновить объявление
         /// </summary>
-        /// <param name="advertisement">Сущность для обновления</param>
-        Task Update(Advertisement advertisement);
+        /// <param name="myevent">Сущность для обновления</param>
+        Task Update(MyEvent myevent);
 
         /// <summary>
         /// Удалить объявление

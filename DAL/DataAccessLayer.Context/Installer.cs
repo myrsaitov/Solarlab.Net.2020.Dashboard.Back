@@ -27,11 +27,11 @@ namespace DataAccess.Context
             services
                 .AddDbContext<Context>(o => o
                     ///.UseLazyLoadingProxies() // lazy loading
-                    .UseSqlServer(config.GetConnectionString("AdvertDb")))
-                .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
+                    .UseSqlServer(config.GetConnectionString("MyEventDb")))
+                .AddTransient<IMyEventRepository, MyEventRepository>()
                 .AddTransient<ICategoryRepository, CategoryRepository>()
                 .AddTransient<ITagRepository, TagRepository>()
-                .AddTransient<IAdvertTagRepository, AdvertTagRepository>();
+                .AddTransient<IMyEventTagRepository, MyEventTagRepository>();
 
             services.AddDefaultIdentity<ApplicationUser>()
                 .AddRoles<IdentityRole>()

@@ -11,27 +11,27 @@ using System.Threading.Tasks;
 namespace DataAccess.Context.Repositories
 {
 
-    public class AdvertTagRepository : IAdvertTagRepository
+    public class MyEventTagRepository : IMyEventTagRepository
     {
         #region Private fields
 
         private readonly Context _dbContext;
-        DbSet<AdvertTag> _dbSet;
+        DbSet<MyEventTag> _dbSet;
         #endregion
 
         #region Ctor
 
-        public AdvertTagRepository(Context dbContext)
+        public MyEventTagRepository(Context dbContext)
         {
             _dbContext = dbContext;
-            _dbSet = dbContext.Set<AdvertTag>();
+            _dbSet = dbContext.Set<MyEventTag>();
         }
 
 
         #endregion
 
-        #region IAdvertTagRepository implementation
-        public void Create(AdvertTag item)
+        #region IMyEventTagRepository implementation
+        public void Create(MyEventTag item)
         {
             _dbSet.Add(item);
             _dbContext.SaveChanges();
@@ -44,9 +44,9 @@ namespace DataAccess.Context.Repositories
         /// Получить все объявления
         /// </summary>
         /// <returns></returns>
-        public async Task<ICollection<AdvertTag>> GetAll()
+        public async Task<ICollection<MyEventTag>> GetAll()
         {
-            return await _dbContext.AdvertTags.AsNoTracking().ToArrayAsync();
+            return await _dbContext.MyEventTags.AsNoTracking().ToArrayAsync();
         }
 
 
@@ -55,34 +55,34 @@ namespace DataAccess.Context.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<List<AdvertTag>> GetById(int id)
+        public async Task<List<MyEventTag>> GetById(int id)
         {
             //// include
-            //return _dbContext.AdvertTags
+            //return _dbContext.MyEventTags
             //    .Include(x => x.Comments)
             //    .Include(x => x.Category)
             //    .SingleOrDefault(x => x.Id == id);
             //without include use only with lazyloading
 
 
-            return await _dbContext.AdvertTags.Where(x => x.AdvertId == id).ToListAsync();
+            return await _dbContext.MyEventTags.Where(x => x.MyEventId == id).ToListAsync();
             
-            //return await _dbContext.AdvertTags.FindAsync(id);
+            //return await _dbContext.MyEventTags.FindAsync(id);
         }
 
         /// <summary>
         /// Добавить объявление
         /// </summary>
         /// <param name="tag">Сущность для добавления</param>
-        public async Task Add(AdvertTag tag)
+        public async Task Add(MyEventTag tag)
         {
-            await _dbContext.AdvertTags.AddAsync(tag);
+            await _dbContext.MyEventTags.AddAsync(tag);
             await _dbContext.SaveChangesAsync();
         }
 
 
 
-        public async Task Update(AdvertTag item)
+        public async Task Update(MyEventTag item)
         {
             _dbContext.Entry(item).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
@@ -96,10 +96,10 @@ namespace DataAccess.Context.Repositories
         /// <param name="id">Идентификатор сущности для удаления</param>
         public async Task Delete(int id)
         {
-            //var entity = await _dbContext.AdvertTags.FindAsync(id);
+            //var entity = await _dbContext.MyEventTags.FindAsync(id);
 
 
-            var entityList = await _dbContext.AdvertTags.Where(x => x.AdvertId == id).ToListAsync();
+            var entityList = await _dbContext.MyEventTags.Where(x => x.MyEventId == id).ToListAsync();
 
 
 
@@ -109,7 +109,7 @@ namespace DataAccess.Context.Repositories
                 if (entity != null)
                 {
                     _dbSet.Remove(entity);
-                    _dbContext.AdvertTags.Remove(entity);
+                    _dbContext.MyEventTags.Remove(entity);
                     await _dbContext.SaveChangesAsync();
                 }
             }
@@ -122,31 +122,31 @@ namespace DataAccess.Context.Repositories
         {
 
 
-            List<AdvertTag> TagList = new List<AdvertTag>();
+            List<MyEventTag> TagList = new List<MyEventTag>();
 
-            TagList = await _dbContext.AdvertTags.Where(x => x.TagId == id).ToListAsync();
+            TagList = await _dbContext.MyEventTags.Where(x => x.TagId == id).ToListAsync();
 
             return TagList.Count;
 
-            //return await _dbContext.AdvertTags.FindAsync(id);
+            //return await _dbContext.MyEventTags.FindAsync(id);
         }
 
 
 
 
-        public async Task<List<AdvertTag>> GetAdvById(int? id)
+        public async Task<List<MyEventTag>> GetAdvById(int? id)
         {
             //// include
-            //return _dbContext.AdvertTags
+            //return _dbContext.MyEventTags
             //    .Include(x => x.Comments)
             //    .Include(x => x.Category)
             //    .SingleOrDefault(x => x.Id == id);
             //without include use only with lazyloading
 
 
-            return await _dbContext.AdvertTags.Where(x => x.TagId == id).ToListAsync();
+            return await _dbContext.MyEventTags.Where(x => x.TagId == id).ToListAsync();
 
-            //return await _dbContext.AdvertTags.FindAsync(id);
+            //return await _dbContext.MyEventTags.FindAsync(id);
         }
 
         #endregion

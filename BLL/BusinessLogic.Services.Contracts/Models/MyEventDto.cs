@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BusinessLogic.Services.Contracts.Models
 {
-    public class AdvertisementDto
+    public class MyEventDto
     {
         /// <summary>
         /// Идентификатор

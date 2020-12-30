@@ -15,6 +15,6 @@ namespace DataAccess.Entities
         [MaxLength(32)]
         public string TagText { get; set; }
 
-        public virtual ICollection<AdvertTag> Advertisements { get; set; }
+        public virtual ICollection<MyEventTag> MyEvents { get; set; }
     }
 }

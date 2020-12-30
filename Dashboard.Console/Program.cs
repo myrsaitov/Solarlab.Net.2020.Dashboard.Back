@@ -25,13 +25,13 @@ namespace Dashboard.Console
             //services.AddSingleton<IMapper>(new Mapper(GetMapperConfiguration()));
 
             var serviceProvider = services
-                .AddTransient<IAdvertisementService, AdvertisementService>()
+                .AddTransient<IMyEventService, MyEventService>()
                 .AddTransient<ICategoryService, CategoryService>()
                 .AddTransient<ICategoryRepository, CategoryRepository>()
                 .AddTransient<ICommentRepository, CommentsRepository>()
                 .AddTransient<ITagRepository, TagRepository>()
-                .AddTransient<IAdvertTagRepository, AdvertTagRepository>()
-                .AddTransient<IAdvertisementRepository, AdvertisementRepository>()
+                .AddTransient<IMyEventTagRepository, MyEventTagRepository>()
+                .AddTransient<IMyEventRepository, MyEventRepository>()
                 .BuildServiceProvider();
             System.Console.WriteLine("Hello World!");
             var P = serviceProvider.GetService<Context>();

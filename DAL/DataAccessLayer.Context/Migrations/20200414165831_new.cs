@@ -7,32 +7,32 @@ namespace DataAccess.Context.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Comments_Advertisements_ParentAdvertisementId",
+                name: "FK_Comments_MyEvents_ParentMyEventId",
                 table: "Comments");
 
             migrationBuilder.DropIndex(
-                name: "IX_Comments_ParentAdvertisementId",
+                name: "IX_Comments_ParentMyEventId",
                 table: "Comments");
 
             migrationBuilder.DropColumn(
-                name: "ParentAdvertisementId",
+                name: "ParentMyEventId",
                 table: "Comments");
 
             migrationBuilder.AddColumn<int>(
-                name: "AdvertisementId",
+                name: "MyEventId",
                 table: "Comments",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_AdvertisementId",
+                name: "IX_Comments_MyEventId",
                 table: "Comments",
-                column: "AdvertisementId");
+                column: "MyEventId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Comments_Advertisements_AdvertisementId",
+                name: "FK_Comments_MyEvents_MyEventId",
                 table: "Comments",
-                column: "AdvertisementId",
-                principalTable: "Advertisements",
+                column: "MyEventId",
+                principalTable: "MyEvents",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
@@ -40,33 +40,33 @@ namespace DataAccess.Context.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Comments_Advertisements_AdvertisementId",
+                name: "FK_Comments_MyEvents_MyEventId",
                 table: "Comments");
 
             migrationBuilder.DropIndex(
-                name: "IX_Comments_AdvertisementId",
+                name: "IX_Comments_MyEventId",
                 table: "Comments");
 
             migrationBuilder.DropColumn(
-                name: "AdvertisementId",
+                name: "MyEventId",
                 table: "Comments");
 
             migrationBuilder.AddColumn<int>(
-                name: "ParentAdvertisementId",
+                name: "ParentMyEventId",
                 table: "Comments",
                 type: "int",
                 nullable: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ParentAdvertisementId",
+                name: "IX_Comments_ParentMyEventId",
                 table: "Comments",
-                column: "ParentAdvertisementId");
+                column: "ParentMyEventId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Comments_Advertisements_ParentAdvertisementId",
+                name: "FK_Comments_MyEvents_ParentMyEventId",
                 table: "Comments",
-                column: "ParentAdvertisementId",
-                principalTable: "Advertisements",
+                column: "ParentMyEventId",
+                principalTable: "MyEvents",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Restrict);
         }
