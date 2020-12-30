@@ -9,47 +9,47 @@ namespace DataAccess.Context
         public Context(DbContextOptions<Context> options) : base(options)
         {
         }
-        public DbSet<Advertisement> Advertisements { get; set; }
+        public DbSet<MyEvent> MyEvents { get; set; }
 
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Tag> Tags { get; set; }
 
-        public DbSet<AdvertTag> AdvertTags { get; set; }
+        public DbSet<MyEventTag> MyEventTags { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             
             //Many-To-Many
-            modelBuilder.Entity<AdvertTag>()
-            .HasKey(t => new { t.AdvertId, t.TagId });
+            modelBuilder.Entity<MyEventTag>()
+            .HasKey(t => new { t.MyEventId, t.TagId });
             
            
             
             
-            modelBuilder.Entity<AdvertTag>()
-                .HasOne(pt => pt.Advertisement)
-                .WithMany(p => p.AdvertTags)
-                .HasForeignKey(pt => pt.AdvertId);
+            modelBuilder.Entity<MyEventTag>()
+                .HasOne(pt => pt.MyEvent)
+                .WithMany(p => p.MyEventTags)
+                .HasForeignKey(pt => pt.MyEventId);
 
-            modelBuilder.Entity<AdvertTag>()
+            modelBuilder.Entity<MyEventTag>()
                 .HasOne(pt => pt.Tag)
-                .WithMany(t => t.Advertisements)
+                .WithMany(t => t.MyEvents)
                 .HasForeignKey(pt => pt.TagId);
 
 
 
-            var advertisements = new[]
+            var myevents = new[]
             {
-                new Advertisement
+                new MyEvent
                 {
                     Id = 1,
                     Title = "Объявление 1",
                     Body = "Описание объявления 1"
                 },
-                new Advertisement
+                new MyEvent
                 {
                     Id = 2,
                     Title = "Объявление 2",

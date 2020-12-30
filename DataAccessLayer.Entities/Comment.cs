@@ -23,7 +23,7 @@ namespace DataAccess.Entities
         /// <summary>
         /// Объявление, к которому дан коментарий
         /// </summary>
-       // public virtual Advertisement ParentAdvertisement { get; set; }
+       // public virtual MyEvent ParentMyEvent { get; set; }
 
 
         /// <summary>

@@ -11,27 +11,27 @@ using System.Threading.Tasks;
 namespace DataAccess.Context.Repositories
 {
  
-    public class AdvertisementRepository : IAdvertisementRepository
+    public class MyEventRepository : IMyEventRepository
     {
         #region Private fields
 
         private readonly Context _dbContext;
-        DbSet<Advertisement> _dbSet;
+        DbSet<MyEvent> _dbSet;
         #endregion
 
         #region Ctor
 
-        public AdvertisementRepository(Context dbContext)
+        public MyEventRepository(Context dbContext)
         {
             _dbContext = dbContext;
-            _dbSet = dbContext.Set<Advertisement>();
+            _dbSet = dbContext.Set<MyEvent>();
         }
 
 
         #endregion
 
-        #region IAdvertisementRepository implementation
-        public void Create(Advertisement item)
+        #region IMyEventRepository implementation
+        public void Create(MyEvent item)
         {
             _dbSet.Add(item);
             _dbContext.SaveChanges();
@@ -44,9 +44,9 @@ namespace DataAccess.Context.Repositories
         /// Получить все объявления
         /// </summary>
         /// <returns></returns>
-        public async Task<ICollection<Advertisement>> GetAll()
+        public async Task<ICollection<MyEvent>> GetAll()
         {
-            return await _dbContext.Advertisements.AsNoTracking().ToArrayAsync();
+            return await _dbContext.MyEvents.AsNoTracking().ToArrayAsync();
         }
 
         /// <summary>
@@ -55,15 +55,15 @@ namespace DataAccess.Context.Repositories
         /// <param name="page">Номер страницы</param>
         /// <param name="pageSize">Количество записей на странице</param>
         /// <returns></returns>
-        public async Task<ICollection<Advertisement>> GetPaged(int page, int pageSize)
+        public async Task<ICollection<MyEvent>> GetPaged(int page, int pageSize)
         {
             var skip = (page - 1) * pageSize;
-            return await _dbContext.Advertisements
+            return await _dbContext.MyEvents
                 .Include(x => x.Comments)
                 .Include(x => x.Category)
                 //.Include(x => x.Category.ChildCategories)
                // .Include(x => x.Category.ParentCategory)
-                .Include(x => x.AdvertTags)
+                .Include(x => x.MyEventTags)
                 .AsNoTracking()
                 .Skip(skip)
                 .Take(pageSize)
@@ -76,10 +76,10 @@ namespace DataAccess.Context.Repositories
         /// <param name="page">Номер страницы</param>
         /// <param name="pageSize">Количество записей на странице</param>
         /// <returns></returns>
-        public async Task<ICollection<Advertisement>> GetPaged(int[] categoriesId, int page, int pageSize)
+        public async Task<ICollection<MyEvent>> GetPaged(int[] categoriesId, int page, int pageSize)
         {
             var skip = (page - 1) * pageSize;
-            return await _dbContext.Advertisements
+            return await _dbContext.MyEvents
                 .AsNoTracking()
                 .Where(x => categoriesId.Contains(x.Category.Id))
                 .Skip(skip)
@@ -93,33 +93,33 @@ namespace DataAccess.Context.Repositories
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public async Task<Advertisement> GetById(int id)
+        public async Task<MyEvent> GetById(int id)
         {
-            return await _dbContext.Advertisements.FindAsync(id);
+            return await _dbContext.MyEvents.FindAsync(id);
         }
 
         /// <summary>
         /// Добавить объявление
         /// </summary>
-        /// <param name="advertisement">Сущность для добавления</param>
-        public async Task<int> Add(Advertisement advertisement)
+        /// <param name="myevent">Сущность для добавления</param>
+        public async Task<int> Add(MyEvent myevent)
         {
-            await _dbContext.Advertisements.AddAsync(advertisement);
+            await _dbContext.MyEvents.AddAsync(myevent);
             await _dbContext.SaveChangesAsync();
-            return advertisement.Id;
+            return myevent.Id;
         }
 
         /// <summary>
         /// Обновить объявление
         /// </summary>
-        /// <param name="advertisement">Сущность для обновления</param>
-        /*public Task Update(Advertisement advertisement)
+        /// <param name="myevent">Сущность для обновления</param>
+        /*public Task Update(MyEvent myevent)
         {
-            _dbContext.Advertisements.Update(advertisement);
+            _dbContext.MyEvents.Update(myevent);
             return Task.CompletedTask;
         }*/
 
-        public async Task Update(Advertisement item)
+        public async Task Update(MyEvent item)
         {
             _dbContext.Entry(item).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
@@ -133,11 +133,11 @@ namespace DataAccess.Context.Repositories
         /// <param name="id">Идентификатор сущности для удаления</param>
         public async Task Delete(int id)
         {
-            var entity = await _dbContext.Advertisements.FindAsync(id);
+            var entity = await _dbContext.MyEvents.FindAsync(id);
             if (entity != null)
             {
                 _dbSet.Remove(entity);
-                _dbContext.Advertisements.Remove(entity);
+                _dbContext.MyEvents.Remove(entity);
                 await _dbContext.SaveChangesAsync();
             }
         }

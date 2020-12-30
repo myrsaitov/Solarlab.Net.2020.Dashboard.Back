@@ -5,9 +5,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApi.Models.Advertisements
+namespace WebApi.Models.MyEvents
 {
-    public class AdvertisementCreateModel : AdvertisementModel
+    public class MyEventCreateModel : MyEventModel
     {
     }
 }

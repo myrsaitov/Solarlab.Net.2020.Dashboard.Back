@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace WebApi.Models.Advertisements
+namespace WebApi.Models.MyEvents
 {
-    public class AdvertisementUpdateModel : AdvertisementModel
+    public class MyEventUpdateModel : MyEventModel
     {
         /// <summary>
         /// Идентификатор

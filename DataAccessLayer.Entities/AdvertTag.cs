@@ -5,20 +5,20 @@ using System.Text;
 namespace DataAccess.Entities
 {
     /// <summary>
-    /// Cущность для связи Many-to-Many Advertisement-Tag
+    /// Cущность для связи Many-to-Many MyEvent-Tag
     /// https://metanit.com/sharp/entityframework/3.8.php
     /// </summary>
-    public class AdvertTag
+    public class MyEventTag
     {
         /// <summary>
         /// id объявления (ForeignKey)
         /// </summary>
-        public int AdvertId { get; set; }
+        public int MyEventId { get; set; }
 
         /// <summary>
         /// Объявление(навигационное свойство)
         /// </summary>
-        public virtual Advertisement Advertisement { get; set; }
+        public virtual MyEvent MyEvent { get; set; }
 
         /// <summary>
         /// Ключ (ForeignKey)

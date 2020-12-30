@@ -20,23 +20,23 @@ namespace DataAccess.Context.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AdvertTag",
+                name: "MyEventTag",
                 columns: table => new
                 {
-                    AdvertId = table.Column<int>(nullable: false),
+                    MyEventId = table.Column<int>(nullable: false),
                     TagId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AdvertTag", x => new { x.AdvertId, x.TagId });
+                    table.PrimaryKey("PK_MyEventTag", x => new { x.MyEventId, x.TagId });
                     table.ForeignKey(
-                        name: "FK_AdvertTag_Advertisements_AdvertId",
-                        column: x => x.AdvertId,
-                        principalTable: "Advertisements",
+                        name: "FK_MyEventTag_MyEvents_MyEventId",
+                        column: x => x.MyEventId,
+                        principalTable: "MyEvents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_AdvertTag_Tag_TagId",
+                        name: "FK_MyEventTag_Tag_TagId",
                         column: x => x.TagId,
                         principalTable: "Tag",
                         principalColumn: "Id",
@@ -44,15 +44,15 @@ namespace DataAccess.Context.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AdvertTag_TagId",
-                table: "AdvertTag",
+                name: "IX_MyEventTag_TagId",
+                table: "MyEventTag",
                 column: "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AdvertTag");
+                name: "MyEventTag");
 
             migrationBuilder.DropTable(
                 name: "Tag");

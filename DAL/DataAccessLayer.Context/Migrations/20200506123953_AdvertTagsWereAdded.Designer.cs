@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccess.Context.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20200506123953_AdvertTagsWereAdded")]
-    partial class AdvertTagsWereAdded
+    [Migration("20200506123953_MyEventTagsWereAdded")]
+    partial class MyEventTagsWereAdded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,22 +21,22 @@ namespace DataAccess.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
                 {
-                    b.Property<int>("AdvertId")
+                    b.Property<int>("MyEventId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("AdvertId", "TagId");
+                    b.HasKey("MyEventId", "TagId");
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("AdvertTags");
+                    b.ToTable("MyEventTags");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -65,7 +65,7 @@ namespace DataAccess.Context.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("MyEvents");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.ApplicationUser", b =>
@@ -202,7 +202,7 @@ namespace DataAccess.Context.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdvertisementId")
+                    b.Property<int?>("MyEventId")
                         .HasColumnType("int");
 
                     b.Property<string>("Body")
@@ -214,7 +214,7 @@ namespace DataAccess.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AdvertisementId");
+                    b.HasIndex("MyEventId");
 
                     b.ToTable("Comments");
                 });
@@ -366,22 +366,22 @@ namespace DataAccess.Context.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Advertisement", "Advertisement")
-                        .WithMany("AdvertTags")
-                        .HasForeignKey("AdvertId")
+                    b.HasOne("DataAccess.Entities.MyEvent", "MyEvent")
+                        .WithMany("MyEventTags")
+                        .HasForeignKey("MyEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.Tag", "Tag")
-                        .WithMany("Advertisements")
+                        .WithMany("MyEvents")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
                 {
                     b.HasOne("DataAccess.Entities.Category", "Category")
                         .WithMany()
@@ -397,9 +397,9 @@ namespace DataAccess.Context.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Comment", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Advertisement", null)
+                    b.HasOne("DataAccess.Entities.MyEvent", null)
                         .WithMany("Comments")
-                        .HasForeignKey("AdvertisementId");
+                        .HasForeignKey("MyEventId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

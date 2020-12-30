@@ -8,7 +8,7 @@ using WebApi.Models.Tags;
 
 namespace WebApi.Models
 {
-    public class AdvertisementGetModel
+    public class MyEventGetModel
     {
         /// <summary>
         /// Заголовок

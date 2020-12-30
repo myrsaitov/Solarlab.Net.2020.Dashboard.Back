@@ -17,7 +17,7 @@ CommentDto -> Comment (Destination member list)
 BusinessLogic.Services.Contracts.Models.CommentDto -> DataAccess.Entities.Comment (Destination member list)
 
 Unmapped properties:
-ParentAdvertisement
+ParentMyEvent
 
    at WebApi.Startup.GetMapperConfiguration() in C:\WORK\WebApi\Startup.cs:line 147
    at WebApi.Startup.ConfigureServices(IServiceCollection services) in C:\WORK\WebApi\Startup.cs:line 93
@@ -43,7 +43,7 @@ CommentDto -> Comment (Destination member list)
 BusinessLogic.Services.Contracts.Models.CommentDto -> DataAccess.Entities.Comment (Destination member list)
 
 Unmapped properties:
-ParentAdvertisement
+ParentMyEvent
 
    at WebApi.Startup.GetMapperConfiguration() in C:\WORK\WebApi\Startup.cs:line 147
    at WebApi.Startup.ConfigureServices(IServiceCollection services) in C:\WORK\WebApi\Startup.cs:line 93
@@ -69,7 +69,7 @@ CommentDto -> Comment (Destination member list)
 BusinessLogic.Services.Contracts.Models.CommentDto -> DataAccess.Entities.Comment (Destination member list)
 
 Unmapped properties:
-ParentAdvertisement
+ParentMyEvent
 
    at WebApi.Startup.GetMapperConfiguration() in C:\WORK\WebApi\Startup.cs:line 147
    at WebApi.Startup.ConfigureServices(IServiceCollection services) in C:\WORK\WebApi\Startup.cs:line 93
@@ -95,7 +95,7 @@ CommentDto -> Comment (Destination member list)
 BusinessLogic.Services.Contracts.Models.CommentDto -> DataAccess.Entities.Comment (Destination member list)
 
 Unmapped properties:
-ParentAdvertisement
+ParentMyEvent
 
    at WebApi.Startup.GetMapperConfiguration() in C:\WORK\WebApi\Startup.cs:line 147
    at WebApi.Startup.ConfigureServices(IServiceCollection services) in C:\WORK\WebApi\Startup.cs:line 93

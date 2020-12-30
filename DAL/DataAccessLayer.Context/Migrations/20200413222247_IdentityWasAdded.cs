@@ -8,8 +8,8 @@ namespace DataAccess.Context.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AdvertTag_Tag_TagId",
-                table: "AdvertTag");
+                name: "FK_MyEventTag_Tag_TagId",
+                table: "MyEventTag");
 
             migrationBuilder.DropPrimaryKey(
                 name: "PK_Tag",
@@ -217,8 +217,8 @@ namespace DataAccess.Context.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AdvertTag_Tags_TagId",
-                table: "AdvertTag",
+                name: "FK_MyEventTag_Tags_TagId",
+                table: "MyEventTag",
                 column: "TagId",
                 principalTable: "Tags",
                 principalColumn: "Id",
@@ -228,8 +228,8 @@ namespace DataAccess.Context.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_AdvertTag_Tags_TagId",
-                table: "AdvertTag");
+                name: "FK_MyEventTag_Tags_TagId",
+                table: "MyEventTag");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
@@ -270,8 +270,8 @@ namespace DataAccess.Context.Migrations
                 column: "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_AdvertTag_Tag_TagId",
-                table: "AdvertTag",
+                name: "FK_MyEventTag_Tag_TagId",
+                table: "MyEventTag",
                 column: "TagId",
                 principalTable: "Tag",
                 principalColumn: "Id",

@@ -8,7 +8,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.AlterColumn<string>(
                 name: "Body",
-                table: "Advertisements",
+                table: "MyEvents",
                 maxLength: 2048,
                 nullable: true,
                 oldClrType: typeof(string),
@@ -17,12 +17,12 @@ namespace DataAccess.Context.Migrations
 
             migrationBuilder.AddColumn<int>(
                 name: "CategoryId",
-                table: "Advertisements",
+                table: "MyEvents",
                 nullable: true);
 
             migrationBuilder.AddColumn<string>(
                 name: "Title",
-                table: "Advertisements",
+                table: "MyEvents",
                 maxLength: 256,
                 nullable: true);
 
@@ -33,32 +33,32 @@ namespace DataAccess.Context.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Body = table.Column<string>(maxLength: 2048, nullable: true),
-                    ParentAdvertisementId = table.Column<int>(nullable: true)
+                    ParentMyEventId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Comments", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Comments_Advertisements_ParentAdvertisementId",
-                        column: x => x.ParentAdvertisementId,
-                        principalTable: "Advertisements",
+                        name: "FK_Comments_MyEvents_ParentMyEventId",
+                        column: x => x.ParentMyEventId,
+                        principalTable: "MyEvents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Advertisements_CategoryId",
-                table: "Advertisements",
+                name: "IX_MyEvents_CategoryId",
+                table: "MyEvents",
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Comments_ParentAdvertisementId",
+                name: "IX_Comments_ParentMyEventId",
                 table: "Comments",
-                column: "ParentAdvertisementId");
+                column: "ParentMyEventId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Advertisements_Categories_CategoryId",
-                table: "Advertisements",
+                name: "FK_MyEvents_Categories_CategoryId",
+                table: "MyEvents",
                 column: "CategoryId",
                 principalTable: "Categories",
                 principalColumn: "Id",
@@ -68,27 +68,27 @@ namespace DataAccess.Context.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Advertisements_Categories_CategoryId",
-                table: "Advertisements");
+                name: "FK_MyEvents_Categories_CategoryId",
+                table: "MyEvents");
 
             migrationBuilder.DropTable(
                 name: "Comments");
 
             migrationBuilder.DropIndex(
-                name: "IX_Advertisements_CategoryId",
-                table: "Advertisements");
+                name: "IX_MyEvents_CategoryId",
+                table: "MyEvents");
 
             migrationBuilder.DropColumn(
                 name: "CategoryId",
-                table: "Advertisements");
+                table: "MyEvents");
 
             migrationBuilder.DropColumn(
                 name: "Title",
-                table: "Advertisements");
+                table: "MyEvents");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Body",
-                table: "Advertisements",
+                table: "MyEvents",
                 type: "nvarchar(max)",
                 nullable: true,
                 oldClrType: typeof(string),

@@ -11,7 +11,7 @@ using DataAccess.Repositories.Abstractions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WebApi.Models;
-using WebApi.Models.Advertisements;
+using WebApi.Models.MyEvents;
 using System.ComponentModel.DataAnnotations;
 using WebApi.Models.Comments;
 
@@ -22,14 +22,14 @@ namespace WebApi.Controllers
     /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class AbvertisementController : BaseController
+    public class MyEventController : BaseController
     {
-        readonly IAdvertisementService _advertisementService;
+        readonly IMyEventService _myeventService;
         readonly IMapper _mapper;
 
-        public AbvertisementController(IAdvertisementService advertisementService, IMapper mapper) : base(mapper)
+        public MyEventController(IMyEventService myeventService, IMapper mapper) : base(mapper)
         {
-            _advertisementService = advertisementService;
+            _myeventService = myeventService;
             _mapper = mapper;
         }
 
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get([Range(1, Int32.MaxValue)]int id)
         {
-            return await ProcessOperationResult(async () => await _advertisementService.GetById(id));
+            return await ProcessOperationResult(async () => await _myeventService.GetById(id));
         }
 
         /// <summary>
@@ -50,9 +50,9 @@ namespace WebApi.Controllers
         /// <param name="model">модель</param>
         /// <returns>IActionResult</returns>
         [HttpPost]
-        public async Task<IActionResult> Create([Required] AdvertisementCreateModel model)
+        public async Task<IActionResult> Create([Required] MyEventCreateModel model)
         {
-            return ProcessOperationResult(await _advertisementService.Create(Mapper.Map<AdvertisementDto>(model)));
+            return ProcessOperationResult(await _myeventService.Create(Mapper.Map<MyEventDto>(model)));
         }
 
         /// <summary>
@@ -63,7 +63,7 @@ namespace WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([Range(1, Int32.MaxValue)]int id)
         {
-            return ProcessOperationResult(await _advertisementService.Delete(id));
+            return ProcessOperationResult(await _myeventService.Delete(id));
         }
 
         /// <summary>
@@ -72,9 +72,9 @@ namespace WebApi.Controllers
         /// <param name="model">модель</param>
         /// <returns>IActionResult</returns>
         [HttpPut]
-        public async Task<IActionResult> Update([Required] AdvertisementUpdateModel model)
+        public async Task<IActionResult> Update([Required] MyEventUpdateModel model)
         {
-            return ProcessOperationResult(await _advertisementService.Update(Mapper.Map<AdvertisementDto>(model)));
+            return ProcessOperationResult(await _myeventService.Update(Mapper.Map<MyEventDto>(model)));
         }
 
         /// <summary>
@@ -90,21 +90,21 @@ namespace WebApi.Controllers
             [FromQuery, Required, Range(1, Int32.MaxValue)]int pageSize,
             [FromQuery, Range(1, Int32.MaxValue)]int? categoryId)
         {
-            return ProcessOperationResult(await _advertisementService.GetPaged(categoryId, page, pageSize));
+            return ProcessOperationResult(await _myeventService.GetPaged(categoryId, page, pageSize));
         }
 
         /// <summary>
         /// Добавать комментарий
         /// </summary>
-        /// <param name="advertisementId">идентификатор объявления</param>
+        /// <param name="myeventId">идентификатор объявления</param>
         /// <param name="model">модель комментария</param>
         /// <returns>IActionResult</returns>
-        [HttpPost("{advertisementId}/comments")]
+        [HttpPost("{myeventId}/comments")]
         public async Task<IActionResult> AddComment(
-            int advertisementId,
+            int myeventId,
             [Required] AddCommentModel model)
         {
-            return ProcessOperationResult(await _advertisementService.AddComment(advertisementId, Mapper.Map<CommentDto>(model)));
+            return ProcessOperationResult(await _myeventService.AddComment(myeventId, Mapper.Map<CommentDto>(model)));
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace WebApi.Controllers
         [HttpGet("GetAllTags")]
         public async Task<IActionResult> GetAllTags()
         {
-            return await ProcessOperationResult(async () => await _advertisementService.GetAllTags());
+            return await ProcessOperationResult(async () => await _myeventService.GetAllTags());
         }
 
         /// <summary>
@@ -125,7 +125,7 @@ namespace WebApi.Controllers
             [FromQuery, Required, Range(1, Int32.MaxValue)]int pageSize,
             [FromQuery, Range(1, Int32.MaxValue)]int? TagId)
         {
-            return ProcessOperationResult(await _advertisementService.GetTagPaged(TagId, page, pageSize));
+            return ProcessOperationResult(await _myeventService.GetTagPaged(TagId, page, pageSize));
         }
     }
 }

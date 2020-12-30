@@ -5,13 +5,13 @@ using FluentValidation;
 namespace BusinessLogic.Services.Validators
 {
     /// <summary>
-    /// Валидатор AdvertisementDto
+    /// Валидатор MyEventDto
     /// </summary>
-    public class AdvertisementDtoValidator : AbstractValidator<AdvertisementDto>
+    public class MyEventDtoValidator : AbstractValidator<MyEventDto>
     {
-        public AdvertisementDtoValidator()
+        public MyEventDtoValidator()
         {
-            RuleFor(x => x.Title).NotEmpty().WithMessage("AdvertisementDto Title is required");
+            RuleFor(x => x.Title).NotEmpty().WithMessage("MyEventDto Title is required");
         }
     }
 }

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using WebApi.Models.Tags;
 
-namespace WebApi.Models.Advertisements
+namespace WebApi.Models.MyEvents
 {
-    public class AdvertisementModel
+    public class MyEventModel
     {
         /// <summary>
         /// Заголовок

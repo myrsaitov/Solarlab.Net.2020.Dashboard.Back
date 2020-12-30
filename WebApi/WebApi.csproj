@@ -35,7 +35,7 @@
     <ProjectReference Include="..\Common\Common.Contracts\Common.Contracts.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Context\DataAccess.Context.csproj" />
     <ProjectReference Include="..\DAL\DataAccessLayer.Repositories.Abstractions\DataAccess.Repositories.Abstractions.csproj" />
-    <ProjectReference Include="..\Dashboard.Console\Dashboard.Console.csproj" />
+    <ProjectReference Include="..\Dashboard.Console\MyEvent.Console.csproj" />
     <ProjectReference Include="..\DataAccessLayer.Entities\DataAccess.Entities.csproj" />
   </ItemGroup>
 

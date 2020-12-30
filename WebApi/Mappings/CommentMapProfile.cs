@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using BusinessLogic.Services.Contracts.Models;
-using WebApi.Models.Advertisements;
+using WebApi.Models.MyEvents;
 using WebApi.Models.Tags;
 using WebApi.Models.Comments;
 using DataAccess.Entities;

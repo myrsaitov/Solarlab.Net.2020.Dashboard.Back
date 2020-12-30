@@ -21,22 +21,22 @@ namespace DataAccess.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
                 {
-                    b.Property<int>("AdvertId")
+                    b.Property<int>("MyEventId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("AdvertId", "TagId");
+                    b.HasKey("MyEventId", "TagId");
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("AdvertTag");
+                    b.ToTable("MyEventTag");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -58,7 +58,7 @@ namespace DataAccess.Context.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("MyEvents");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Category", b =>
@@ -124,12 +124,12 @@ namespace DataAccess.Context.Migrations
                         .HasColumnType("nvarchar(2048)")
                         .HasMaxLength(2048);
 
-                    b.Property<int?>("ParentAdvertisementId")
+                    b.Property<int?>("ParentMyEventId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ParentAdvertisementId");
+                    b.HasIndex("ParentMyEventId");
 
                     b.ToTable("Comments");
                 });
@@ -149,22 +149,22 @@ namespace DataAccess.Context.Migrations
                     b.ToTable("Tag");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Advertisement", "Advertisement")
+                    b.HasOne("DataAccess.Entities.MyEvent", "MyEvent")
                         .WithMany("Tags")
-                        .HasForeignKey("AdvertId")
+                        .HasForeignKey("MyEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.Tag", "Tag")
-                        .WithMany("Advertisements")
+                        .WithMany("MyEvents")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
                 {
                     b.HasOne("DataAccess.Entities.Category", "Category")
                         .WithMany()
@@ -180,9 +180,9 @@ namespace DataAccess.Context.Migrations
 
             modelBuilder.Entity("DataAccess.Entities.Comment", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Advertisement", "ParentAdvertisement")
+                    b.HasOne("DataAccess.Entities.MyEvent", "ParentMyEvent")
                         .WithMany()
-                        .HasForeignKey("ParentAdvertisementId");
+                        .HasForeignKey("ParentMyEventId");
                 });
 #pragma warning restore 612, 618
         }

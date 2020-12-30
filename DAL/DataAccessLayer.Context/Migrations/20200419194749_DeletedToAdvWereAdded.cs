@@ -8,7 +8,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.AddColumn<bool>(
                 name: "Deleted",
-                table: "Advertisements",
+                table: "MyEvents",
                 nullable: false,
                 defaultValue: false);
         }
@@ -17,7 +17,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "Deleted",
-                table: "Advertisements");
+                table: "MyEvents");
         }
     }
 }

@@ -8,7 +8,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.AddColumn<string>(
                 name: "eMail",
-                table: "Advertisements",
+                table: "MyEvents",
                 maxLength: 32,
                 nullable: true);
         }
@@ -17,7 +17,7 @@ namespace DataAccess.Context.Migrations
         {
             migrationBuilder.DropColumn(
                 name: "eMail",
-                table: "Advertisements");
+                table: "MyEvents");
         }
     }
 }

@@ -21,7 +21,7 @@ namespace DataAccess.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -33,7 +33,7 @@ namespace DataAccess.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("MyEvents");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Category", b =>

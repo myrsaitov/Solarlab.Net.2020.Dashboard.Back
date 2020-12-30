@@ -23,7 +23,7 @@ namespace DataAccess.Context
                 .AddJsonFile("appsettings.json")
                 .Build();
             var optionsBuilder = new DbContextOptionsBuilder<Context>();
-            optionsBuilder.UseSqlServer(config.GetConnectionString("AdvertDb"));
+            optionsBuilder.UseSqlServer(config.GetConnectionString("MyEventDb"));
             return new Context(optionsBuilder.Options);
         }
     }

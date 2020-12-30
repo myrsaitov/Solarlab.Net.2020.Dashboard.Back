@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataAccess.Entities
 {
-    public class Advertisement
+    public class MyEvent
     {
         public int Id { get; set; }
         
@@ -25,7 +25,7 @@ namespace DataAccess.Entities
 
         public virtual ICollection<Comment> Comments { get; set; }
 
-        public virtual ICollection<AdvertTag> AdvertTags { get; set; }
+        public virtual ICollection<MyEventTag> MyEventTags { get; set; }
 
     }
 }

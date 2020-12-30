@@ -21,22 +21,22 @@ namespace DataAccess.Context.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
                 {
-                    b.Property<int>("AdvertId")
+                    b.Property<int>("MyEventId")
                         .HasColumnType("int");
 
                     b.Property<int>("TagId")
                         .HasColumnType("int");
 
-                    b.HasKey("AdvertId", "TagId");
+                    b.HasKey("MyEventId", "TagId");
 
                     b.HasIndex("TagId");
 
-                    b.ToTable("AdvertTag");
+                    b.ToTable("MyEventTag");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.Advertisement", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEvent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -48,7 +48,7 @@ namespace DataAccess.Context.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Advertisements");
+                    b.ToTable("MyEvents");
                 });
 
             modelBuilder.Entity("DataAccess.Entities.Category", b =>
@@ -118,16 +118,16 @@ namespace DataAccess.Context.Migrations
                     b.ToTable("Tag");
                 });
 
-            modelBuilder.Entity("DataAccess.Entities.AdvertTag", b =>
+            modelBuilder.Entity("DataAccess.Entities.MyEventTag", b =>
                 {
-                    b.HasOne("DataAccess.Entities.Advertisement", "Advertisement")
+                    b.HasOne("DataAccess.Entities.MyEvent", "MyEvent")
                         .WithMany("Tags")
-                        .HasForeignKey("AdvertId")
+                        .HasForeignKey("MyEventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("DataAccess.Entities.Tag", "Tag")
-                        .WithMany("Advertisements")
+                        .WithMany("MyEvents")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
