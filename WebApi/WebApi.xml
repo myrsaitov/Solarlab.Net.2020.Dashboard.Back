@@ -59,6 +59,11 @@
             Получить полный список тагов всех объявлений
             </summary>
         </member>
+        <member name="M:WebApi.Controllers.AbvertisementController.GetTagPaged(System.Int32,System.Int32,System.Nullable{System.Int32})">
+            <summary>
+            Получить постраничный список по таг
+            </summary>
+        </member>
         <member name="T:WebApi.Controllers.AccountController">
             <summary>
             Контролер логина и регистрации пользователя

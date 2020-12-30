@@ -272,5 +272,48 @@ namespace BusinessLogic.Services
         }
 
 
+        public async Task<OperationResult<ICollection<AdvertisementDto>>> GetTagPaged(int? TagId, int page, int pageSize)
+        {
+            ICollection<AdvertisementDto> entities;
+
+            entities = new List<AdvertisementDto>();
+
+            if (TagId.HasValue)
+            {
+                var entityAdvertTag = await _adverttagRepository.GetAdvById(TagId); ;
+               
+
+                Advertisement entity = new Advertisement();
+                AdvertisementDto entityDto;
+
+               // List<AdvertisementDto> TagAdvertCol;
+
+               // TagAdvertCol = new List<AdvertisementDto>();
+
+                foreach (var advtag in entityAdvertTag)
+                {
+                    entity = await _advertisementRepository.GetById(advtag.AdvertId);
+                    entityDto = _mapper.Map<AdvertisementDto>(entity);
+                    entities.Add(entityDto);
+                }
+
+            }
+            else
+            {
+                //entities = await _advertisementRepository.GetPaged(page, pageSize);
+            }
+            return OperationResult<ICollection<AdvertisementDto>>.Ok(_mapper.Map<ICollection<AdvertisementDto>>(entities));
+        }
+
+
+
+
+
+
     }
 }
+
+
+
+
+ 

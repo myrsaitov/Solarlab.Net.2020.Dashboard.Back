@@ -14,5 +14,6 @@ namespace DataAccess.Repositories.Abstractions
         Task Update(AdvertTag adverttag);
         Task Delete(int adverttagId);
         Task<int> GetTagsCountById(int tagId);
+        Task<List<AdvertTag>> GetAdvById(int? tagId);
     }
 }

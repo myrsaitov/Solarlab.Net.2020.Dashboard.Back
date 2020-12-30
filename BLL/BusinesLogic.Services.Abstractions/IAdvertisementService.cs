@@ -54,5 +54,8 @@ namespace BusinessLogic.Services.Abstractions
         /// <param name="commentDto"></param>
         /// <returns>OperationResult</returns>
         Task<OperationResult<bool>> AddComment(int id, CommentDto commentDto);
+
+
+        Task<OperationResult<ICollection<AdvertisementDto>>> GetTagPaged(int? TagId, int page, int pageSize);
     }
 }

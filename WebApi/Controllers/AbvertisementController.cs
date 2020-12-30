@@ -116,5 +116,16 @@ namespace WebApi.Controllers
             return await ProcessOperationResult(async () => await _advertisementService.GetAllTags());
         }
 
+        /// <summary>
+        /// Получить постраничный список по таг
+        /// </summary>
+        [HttpGet("taglist")]
+        public async Task<IActionResult> GetTagPaged(
+            [FromQuery, Required, Range(1, Int32.MaxValue)]int page,
+            [FromQuery, Required, Range(1, Int32.MaxValue)]int pageSize,
+            [FromQuery, Range(1, Int32.MaxValue)]int? TagId)
+        {
+            return ProcessOperationResult(await _advertisementService.GetTagPaged(TagId, page, pageSize));
+        }
     }
 }

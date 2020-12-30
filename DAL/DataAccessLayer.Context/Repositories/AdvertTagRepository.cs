@@ -130,6 +130,25 @@ namespace DataAccess.Context.Repositories
 
             //return await _dbContext.AdvertTags.FindAsync(id);
         }
+
+
+
+
+        public async Task<List<AdvertTag>> GetAdvById(int? id)
+        {
+            //// include
+            //return _dbContext.AdvertTags
+            //    .Include(x => x.Comments)
+            //    .Include(x => x.Category)
+            //    .SingleOrDefault(x => x.Id == id);
+            //without include use only with lazyloading
+
+
+            return await _dbContext.AdvertTags.Where(x => x.TagId == id).ToListAsync();
+
+            //return await _dbContext.AdvertTags.FindAsync(id);
+        }
+
         #endregion
     }
 }
